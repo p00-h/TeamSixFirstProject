@@ -2,6 +2,7 @@
 #include "Monster.h"
 #include "Golem.h"
 #include "Imp.h"
+#include "Kobold.h"
 
 #include <iostream>
 #include <limits>
@@ -73,9 +74,10 @@ Monster* GameManager::CreateMonster(int level)
 {
 	Monster* monster = nullptr;
 
-    switch (RandRange(0, 1)) {
+    switch (RandRange(0, 2)) {
     case 0: monster = new Golem(level); break;
     case 1: monster = new Imp(level);    break;
+    case 2: monster = new Kobold(level); break;
     }
 
     const int hp = RandRange(level * 20, level * 30);
