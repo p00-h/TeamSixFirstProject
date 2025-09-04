@@ -18,5 +18,11 @@
     <ClCompile Include="TeamSixFirstProject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Character.h">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Chracater.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
