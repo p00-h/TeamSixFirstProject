@@ -10,3 +10,8 @@ std::string DefenseBoost::GetName()
 void DefenseBoost::Use(Character* character)
 {
 }
+
+int DefenseBoost::GetPrice() const
+{
+    return Price;
+}
