@@ -1,7 +1,7 @@
 ﻿#include "HealthPotion.h"
-//#include "Character.h"
+#include "Character.h"
 
-HealthPotion::HealthPotion() : Name("체력 회복 포션"), HealthRestore(50) {}
+HealthPotion::HealthPotion() : Name("체력 회복 포션"), HealthRestore(50),Price(5) {}
 
 std::string HealthPotion::GetName()
 {
