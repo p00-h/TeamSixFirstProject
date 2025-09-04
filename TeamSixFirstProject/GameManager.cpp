@@ -1,4 +1,8 @@
 #include "GameManager.h"
+#include "Monster.h"
+#include "Golem.h"
+#include "Imp.h"
+
 #include <iostream>
 #include <limits>
 #include <conio.h>   // _getch()
@@ -8,6 +12,11 @@
 #endif
 
 using namespace std;
+
+// lo~hi 사이의 랜덤 정수 반환
+static int RandRange(int lo, int hi) {
+    return lo + std::rand() % (hi - lo + 1);
+}
 
 GameManager::GameManager() {}
 
@@ -59,9 +68,36 @@ int GameManager::ShowMenu() {
     }
 }
 
+// level에 따라 몬스터 생성
+Monster* GameManager::CreateMonster(int level)
+{
+	Monster* monster = nullptr;
+
+    switch (RandRange(0, 1)) {
+    case 0: monster = new Golem(level); break;
+    case 1: monster = new Imp(level);    break;
+    }
+
+    const int hp = RandRange(level * 20, level * 30);
+    const int atk = RandRange(level * 5, level * 10);
+    monster->SetHP(hp);
+    monster->SetAttack(atk);
+    return monster;
+}
+    
+
+// 새 게임 시작
 void GameManager::StartNewGame() {
     ClearScreen();
     cout << "[TEXT RPG 시작]\n";
+
+	GameManager gameManager;
+
+	Monster* monster = gameManager.CreateMonster(1/*캐릭터 레벨*/);
+
+    cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
+         << ", HP: " << monster->GetHP()
+		<< ", Attack: " << monster->GetAttack() << "\n";
 
     // Battle Battle;
 
