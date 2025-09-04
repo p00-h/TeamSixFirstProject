@@ -1,12 +1,15 @@
 #pragma once
-#include <string>
-
-class Monster;
+#include "Title.h"
 
 class GameManager {
 public:
-    //void Battle(Character* player);
-    void Battle(std::string name);
+    GameManager();
+    void Run();
+
 private:
-    Monster* GenerateMonster(int level);
+    void ClearScreen();
+    void WaitForEnter();
+
+    int  ShowMenu();        // ↑↓ 선택 + Enter 확정
+    void StartNewGame();
 };
