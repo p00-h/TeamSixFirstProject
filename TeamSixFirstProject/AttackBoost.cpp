@@ -10,3 +10,8 @@ std::string AttackBoost::GetName()
 void AttackBoost::Use(Character* character)
 {
 }
+
+int AttackBoost::GetPrice() const
+{
+    return Price;
+}
