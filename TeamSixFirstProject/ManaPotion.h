@@ -4,12 +4,9 @@
 
 class ManaPotion :public Item
 {
-	std::string Name;
 	int ManaRestore;
-	int Price;
 
 public:
 	ManaPotion();
-	virtual std::string GetName() override;
 	virtual void Use(Character* character) override;
 };
