@@ -123,6 +123,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AttackBoost.cpp" />
+    <ClCompile Include="HealthPotion.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AttackBoost.h" />
+    <ClInclude Include="HealthPotion.h" />
+    <ClInclude Include="Item.h" />
 
     <ClCompile Include="Golem.cpp" />
     <ClCompile Include="Imp.cpp" />
