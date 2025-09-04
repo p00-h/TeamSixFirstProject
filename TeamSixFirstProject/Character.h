@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include "Item.h"
 
 class Character {
 private:
@@ -15,18 +16,25 @@ private:
     int Gold;
     const int ExpToLevelUp = 100;
 
-    std::map<std::string, int> Inventory; // 아이템 이름 -> 개수
+    std::map<std::string, Item*> Inventory;
 
 public:
     Character(const std::string& name);
+    ~Character();
 
     void ShowStatus() const;
     void AddExp(int amount);
     void AddGold(int amount);
-    void SpendGold(int amount);
-    void AddItem(const std::string& item, int count = 1);
-    void RemoveItem(const std::string& item, int count = 1);
+    bool SpendGold(int amount);
+    void AddItem(Item* item);
+    void RemoveItem(const std::string& itemName);
     void ShowInventory() const;
+    void UseItem(const std::string& itemName);
+
+    // 스탯 조작용
+    void Heal(int amount);
+    void RestoreMp(int amount);
+    void IncreaseAttack(int amount);
 
 private:
     void LevelUp();
