@@ -21,6 +21,36 @@
     <ClCompile Include="AttackBoost.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+
+    <ClCompile Include="Monster.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Golem.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Imp.cpp"><Filter>소스 파일</Filter></ClCompile>
+
+    <ClCompile Include="GameManager.cpp">
+
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+
+    <ClInclude Include="Monster.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Golem.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Imp.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+
+    <ClInclude Include="GameManager.h">
+
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Item.h">
