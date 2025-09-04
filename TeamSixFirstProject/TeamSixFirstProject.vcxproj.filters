@@ -64,7 +64,7 @@
       <Filter>소스 파일\GameManage</Filter>
     </ClCompile>
     <ClCompile Include="Kobold.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -99,7 +99,7 @@
       <Filter>헤더 파일\GameManage</Filter>
     </ClInclude>
     <ClInclude Include="Kobold.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

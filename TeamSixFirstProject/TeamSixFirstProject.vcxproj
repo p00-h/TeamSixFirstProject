@@ -134,6 +134,7 @@
     <ClInclude Include="Item.h" />
     <ClCompile Include="Golem.cpp" />
     <ClCompile Include="Imp.cpp" />
+    <ClCompile Include="Kobold.cpp" />
     <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="GameManager.cpp" />
@@ -142,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h" />
+    <ClInclude Include="Kobold.h" />
     <ClInclude Include="ManaPotion.h" />
     <ClInclude Include="TItle.h" />
   </ItemGroup>
