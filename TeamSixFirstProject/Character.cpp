@@ -83,3 +83,43 @@ void Character::LevelUp() { /// 레벨업 시 능력치 증가
     Defense += 5;
     std::cout << "레벨업! 현재 레벨: " << Level << "\n";
 }
+void Character::SetAttack(const int& attack)
+{
+    Attack = attack;
+}
+int Character::GetGold() const
+{
+    return Gold;
+}
+void Character::SetGold(const int& gold)
+{
+    Gold = gold;
+}
+int Character::GetExp() const
+{
+    return Exp;
+}
+void Character::SetExp(const int& exp)
+{
+    Exp = exp;
+}
+int Character::GetLevel() const
+{
+    return Level;
+}
+void Character::SetLevel(const int& level)
+{
+    Level = level;
+}
+int Character::GetAttack() const
+{
+    return Attack;
+}
+void Character::SetHP(const int& hp)
+{
+    Hp = hp;
+}
+int Character::GetHP() const
+{
+    return Hp;
+}
