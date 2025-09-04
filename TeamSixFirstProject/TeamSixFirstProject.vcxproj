@@ -123,11 +123,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Shop.cpp" />
-    <ClCompile Include="TeamSixFirstProject.cpp" />
+    <ClCompile Include="AttackBoost.cpp" />
+    <ClCompile Include="DefenseBoost.cpp" />
+    <ClCompile Include="HealthPotion.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shop.h" />
+    <ClInclude Include="AttackBoost.h" />
+    <ClInclude Include="DefenseBoost.h" />
+    <ClInclude Include="HealthPotion.h" />
+    <ClInclude Include="Item.h" />
+    <ClCompile Include="Golem.cpp" />
+    <ClCompile Include="Imp.cpp" />
+    <ClCompile Include="ManaPotion.cpp" />
+    <ClCompile Include="Monster.cpp" />
+    <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="TeamSixFirstProject.cpp" />
+    <ClCompile Include="TItle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameManager.h" />
+    <ClInclude Include="ManaPotion.h" />
+    <ClInclude Include="TItle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Golem.h" />
+    <ClInclude Include="Imp.h" />
+    <ClInclude Include="Monster.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
