@@ -75,6 +75,9 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\Character</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
