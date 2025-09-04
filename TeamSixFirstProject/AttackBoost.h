@@ -6,6 +6,7 @@ class AttackBoost :public Item
 {
 	std::string Name;
 	int AttackIncrease;
+	int Price;
 
 public:
 	AttackBoost();
