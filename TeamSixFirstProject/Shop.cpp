@@ -3,7 +3,7 @@
 #include <utility>
 #include <iostream>
 #include "Shop.h"
-//#include "Player.h"
+#include "Player.h"
 #include "AttackBoost.h"
 #include "DefenseBoost.h"
 #include "HealthPotion.h"
@@ -44,33 +44,23 @@ void Shop::DisplayItems()
 	}
 }
 
-void Shop::BuyItem(int Index, Character* Player)
+void Shop::BuyItem(int Index, Character* Player, int ItemCount)
 {
-	int playerGold = Player->GetGold();
+	
 	Item* buyItem = AvailableItems[Index - 1].first;
 
-	if (PlayerGold < buyItem.GetPrice())
+	if (Player->SpendGold(buyItem->GetPrice()))
 	{
-		cout << "돈이 부족합니다." << endl;
-	}
-	else
-	{
-		//Player->Inventory.Push_back(buyItem);
-		//Player->AddItem(buyItem);
+		Player->AddItem(buyItem, ItemCount);
 
-		Player->SetGold(playerGold - buyItem.GetGold());
+		cout << buyItem->GetName() << "을(를) 구매했습니다."
 
-		cout << buyItem.GetName() << "을 구매했습니다!"
+		
 	}
+
 }
 
-//void Shop::SellItem(int Index, Character* Player)
-//{
-//	map<Item*, int> PlayerInventory = Player->GetInventory();
-//
-//	PlayerInventory.begin();
-//
-//	PlayerInventory-
-//
-//	//Player->sellitem(Index, 1);
-//}
+void Shop::SellItem(int Index, Character* Player, , int ItemCount)
+{
+	//Player->Remove
+}
