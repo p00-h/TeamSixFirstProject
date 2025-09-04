@@ -1,8 +1,10 @@
 #pragma once
 #include <iostream>
 
+class Player;
+class Monster;
 class Battle
 {
 public:
-	Battle(Character* Character, Monster* monster);
+	Battle(Player* player, Monster* monster);
 };
