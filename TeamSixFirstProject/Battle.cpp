@@ -32,7 +32,7 @@ Battle::Battle(Player* player, Monster* monster)
 		default:
 			break;
 		}
-		monster->TakeDamege(player);
+		monster->Attack(player);
 		if (player->GetHP() > 0)
 		{
 			cout << monster->GetName() << "에게 " << monster->GetPower << "만큼 피해를 입었습니다.\n";
