@@ -1,47 +1,62 @@
-#include "Shop.h"
-#include "Item.h"
-#include "Player.h"
-//#include <vector>
-#include <map>;
+#include <map>
+#include <vector>
+#include <utility>
 #include <iostream>
+#include "Shop.h"
+//#include "Player.h"
+#include "AttackBoost.h"
+#include "DefenseBoost.h"
+#include "HealthPotion.h"
+#include "ManaPotion.h"
+
 using namespace std;
 
 Shop::Shop()
 {
-	//AvailableItems.push_back();
+	AvailableItems.push_back({ new AttackBoost(), 3});
+	AvailableItems.push_back({ new DefenseBoost(), 3});
+	AvailableItems.push_back({ new HealthPotion(), 3});
+	AvailableItems.push_back({ new ManaPotion(), 3});
+
 
 	cout << "상점에 오신 걸 환영합니다!" << endl;
+
 }
+
+Shop::~Shop()
+{
+	for (auto& it : AvailableItems)
+	{
+		delete it.first;
+	}
+	AvailableItems.clear();
+}
+
 
 void Shop::DisplayItems()
 {
-	cout << "구매 가능한 아이템" << endl;
-
-	for (auto it = AvailableItems)
+	cout << "구매 가능한 아이템:" << endl;
+	int i = 1;
+	for (auto& it : AvailableItems)
 	{
-		cout << it.GetName() << ": " << it.GetPrice();
-	}
-
-	for (iter = AvailableItems.begin(); iter != AvailableItems.end(); iter++)
-	{
-		cout << iter->first << "\n";
-		cout << iter->second << "\n";
+		cout << i << ". " << it.first->GetName() << " " << it.second << "개" << endl; //<< it.first->;
+		++i;
 	}
 }
 
 void Shop::BuyItem(int Index, Character* Player)
 {
 	int playerGold = Player->GetGold();
-	int buyItem = AvailableItems[Index];
+	Item* buyItem = AvailableItems[Index - 1].first;
 
-	if (PlayerGold < buyItem.GetGold())
+	if (PlayerGold < buyItem.GetPrice())
 	{
 		cout << "돈이 부족합니다." << endl;
 	}
 	else
 	{
-		//Player->Inventory.Push_back(AvailableItems[Index]);
-		//Player->AddItem(AvailableItems[Index]);
+		//Player->Inventory.Push_back(buyItem);
+		//Player->AddItem(buyItem);
 
 		Player->SetGold(playerGold - buyItem.GetGold());
 
@@ -49,13 +64,13 @@ void Shop::BuyItem(int Index, Character* Player)
 	}
 }
 
-void Shop::SellItem(int Index, Character* Player)
-{
-	map<Item*, int> PlayerInventory = Player->GetInventory();
-
-	PlayerInventory.begin();
-
-	PlayerInventory-
-
-	//Player->sellitem(Index, 1);
-}
+//void Shop::SellItem(int Index, Character* Player)
+//{
+//	map<Item*, int> PlayerInventory = Player->GetInventory();
+//
+//	PlayerInventory.begin();
+//
+//	PlayerInventory-
+//
+//	//Player->sellitem(Index, 1);
+//}

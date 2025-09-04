@@ -137,6 +137,7 @@
     <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="Shop.cpp" />
     <ClCompile Include="TeamSixFirstProject.cpp" />
     <ClCompile Include="TItle.cpp" />
   </ItemGroup>
