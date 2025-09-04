@@ -10,3 +10,8 @@ std::string ManaPotion::GetName()
 void ManaPotion::Use(Character* character)
 {
 }
+
+int ManaPotion::GetPrice() const
+{
+    return Price;
+}

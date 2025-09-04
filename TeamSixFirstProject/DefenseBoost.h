@@ -12,4 +12,5 @@ public:
 	DefenseBoost();
 	virtual std::string GetName() override;
 	virtual void Use(Character* character) override;
+	int GetPrice() const;
 };

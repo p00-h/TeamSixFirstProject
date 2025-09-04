@@ -31,6 +31,9 @@
     <Filter Include="헤더 파일\GameManage">
       <UniqueIdentifier>{43a5fc7c-b930-4cea-99fc-1786be180790}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Character">
+      <UniqueIdentifier>{2c5ebb85-3d2c-49c4-9a5f-f336d2952e64}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TeamSixFirstProject.cpp">
@@ -63,6 +66,15 @@
     <ClCompile Include="TItle.cpp">
       <Filter>소스 파일\GameManage</Filter>
     </ClCompile>
+    <ClCompile Include="Kobold.cpp">
+      <Filter>소스 파일\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.h">
+      <Filter>소스 파일\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\Character</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
@@ -94,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="TItle.h">
       <Filter>헤더 파일\GameManage</Filter>
+    </ClInclude>
+    <ClInclude Include="Kobold.h">
+      <Filter>헤더 파일\Monster</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

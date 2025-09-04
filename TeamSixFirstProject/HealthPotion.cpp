@@ -12,3 +12,8 @@ void HealthPotion::Use(Character* character)
 {
 
 }
+
+int HealthPotion::GetPrice() const
+{
+	return Price;
+}
