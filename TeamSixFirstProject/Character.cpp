@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character(const std::string& name)
+Character::Character(const std::string& name) /// 초기 스탯 설정
     : Name(name), Level(1), Hp(200), Mp(100), Attack(30), Defense(20), Exp(0), Gold(500) {
 }
 
@@ -61,7 +61,7 @@ void Character::RemoveItem(const std::string& item, int count) {
     }
 }
 
-void Character::ShowInventory() const {
+void Character::ShowInventory() const { 
     std::cout << "===== 인벤토리 =====\n";
     if (Inventory.empty()) {
         std::cout << "인벤토리가 비어있습니다.\n";
@@ -74,7 +74,7 @@ void Character::ShowInventory() const {
     std::cout << "====================\n";
 }
 
-void Character::LevelUp() {
+void Character::LevelUp() { /// 레벨업 시 능력치 증가
     Exp -= ExpToLevelUp;
     Level++;
     Hp += 50;
