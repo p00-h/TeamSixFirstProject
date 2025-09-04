@@ -13,7 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-<<<<<<< HEAD
     <Filter Include="소스 파일\Item">
       <UniqueIdentifier>{63a6228d-bedd-4fa6-8078-2bdd837b4f2b}</UniqueIdentifier>
     </Filter>
@@ -35,14 +34,11 @@
     <Filter Include="소스 파일\Character">
       <UniqueIdentifier>{2c5ebb85-3d2c-49c4-9a5f-f336d2952e64}</UniqueIdentifier>
     </Filter>
-=======
->>>>>>> parent of 22c80f4 (Docs 배틀->배틀 메니저로 이름변경)
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="TeamSixFirstProject.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="AttackBoost.cpp">
       <Filter>소스 파일\Item</Filter>
     </ClCompile>
@@ -113,15 +109,6 @@
     </ClInclude>
     <ClInclude Include="Kobold.h">
       <Filter>헤더 파일\Monster</Filter>
-=======
-    <ClCompile Include="Battle.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Battle.h">
-      <Filter>헤더 파일</Filter>
->>>>>>> parent of 22c80f4 (Docs 배틀->배틀 메니저로 이름변경)
     </ClInclude>
   </ItemGroup>
 </Project>

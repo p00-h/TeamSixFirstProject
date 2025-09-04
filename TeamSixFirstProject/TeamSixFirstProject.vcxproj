@@ -123,7 +123,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClCompile Include="AttackBoost.cpp" />
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Character.h" />
@@ -141,13 +140,10 @@
     <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="GameManager.cpp" />
-=======
-    <ClCompile Include="Battle.cpp" />
->>>>>>> parent of 22c80f4 (Docs 배틀->배틀 메니저로 이름변경)
     <ClCompile Include="TeamSixFirstProject.cpp" />
+    <ClCompile Include="TItle.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Kobold.h" />
     <ClInclude Include="ManaPotion.h" />
@@ -157,9 +153,6 @@
     <ClInclude Include="Golem.h" />
     <ClInclude Include="Imp.h" />
     <ClInclude Include="Monster.h" />
-=======
-    <ClInclude Include="Battle.h" />
->>>>>>> parent of 22c80f4 (Docs 배틀->배틀 메니저로 이름변경)
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
