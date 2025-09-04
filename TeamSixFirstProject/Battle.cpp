@@ -1,51 +1,110 @@
 #include "Battle.h"
-#include "Character.h"
-#include "Monster.h"
+
+
 using namespace std;
 
-Battle::Battle(Character* character, Monster* monster)
+
+Battle::Battle()
 {
+
+}
+
+void Battle::CharaterAttack(Character* character, Monster* monster)
+{
+	monster->SetHP(monster->GetHP() - character->GetAttack());
+	if (monster->GetHP() > 0)
+	{
+		cout << monster->GetName() << "에게 " << character->GetAttack() << "만큼 피해를 입혔습니다.\n";
+		cout << "남은 체력: " << monster->GetHP() << endl;
+	}
+	else
+	{
+		cout << "몬스터를 처치하였습니다.\n";
+		character->SetGold(character->GetGold() + 200);
+		character->SetExp(character->GetExp() + 50);
+		if (character->GetExp() >= 100)
+		{
+			character->SetLevel(character->GetLevel() + 1);
+			character->SetExp(character->GetExp() - 100);
+		}
+		return;
+	}
+}
+
+void Battle::MonsterAttack(Character* character, Monster* monster)
+{
+	character->SetHP(character->GetHP() - monster->GetAttack());
+	if (character->GetHP() > 0)
+	{
+		cout << monster->GetName() << "에게 " << monster->GetAttack() << "만큼 피해를 입었습니다.\n";
+		cout << "남은 체력: " << character->GetHP() << endl;
+	}
+	else
+	{
+		cout << "플레이어가 기절하였습니다.\n";
+
+		return;
+	}
+}
+
+void Battle::StartBattle(Character* character, Monster* monster)
+{
+	DirectionManager Direction;
+	vector<string> items{ "공격","스킬 사용", "도주" };
+	int count = items.size();
+	int sel = 0;
+	int go = 0;
 	while (true)
 	{
-		char Action;
-		cin >> Action;
-		switch (Action)
+		//특정 위치에 텍스트 고정시키는 방법 튜터님 & 팀원들과 상의하기
+		cout << "> " << items[0] << " \n";
+		cout << "  " << items[1] << " \n";
+		cout << "  " << items[2] << "\n";
+
+		//방향키로 입력받아서 선택사항을 선택.
+		sel = Direction.Direction();
+		if (sel != 122) go += sel;
+
+		if (go >= items.size()) go = 0;
+		else if (go < 0) go = items.size() - 1;
+
+		if (go >= 0 && go < items.size())
 		{
-		case 'a':
-			monster->SetHP(monster->GetHP() - character->GetAttack());
-			if (monster->GetHP() > 0)
+			for (int i = 0; i < count; i++)
 			{
-				cout << monster->GetName() << "에게 " << character->GetAttack() << "만큼 피해를 입혔습니다.\n";
-				cout << "남은 체력: " << monster->GetHP() << endl;
-			}
-			else
-			{
-				cout << "몬스터를 처치하였습니다.\n";
-				character->SetGold(character->GetGold() + 200);
-				character->SetExp(character->GetExp() + 50);
-				if (character->GetExp() >= 100)
+				if (i == go)
 				{
-					character->SetLevel(character->GetLevel() + 1);
-					character->SetExp(character->GetExp() - 100);
+					cout << "> " << items[i] << " \n";
 				}
-				return;
+				else cout << "  " << items[i] << "\n";
 			}
-			break;
-		default:
-			break;
 		}
-		
-		character->SetHP(character->GetHP() - monster->GetAttack());
-		if (character->GetHP() > 0)
+		//스피드 구현시 스피드가 몬스터보다 낮다면 이쪽에서 함수가 실행되도록;
+		//MonsterAttack(character, monster);
+		//if (character->GetHP() == 0 || monster->GetHP() == 0) break;
+		if (sel == 122)
 		{
-			cout << monster->GetName() << "에게 " << monster->GetAttack() << "만큼 피해를 입었습니다.\n";
-			cout << "남은 체력: " << character->GetHP() << endl;
+			switch (go)
+			{
+			case 0:
+				CharaterAttack(character, monster);
+				break;
+			case 1:
+				//스킬 구현시
+				cout << "미구현 단계입니다.";
+				break;
+			case 2:
+				cout << "성공적으로 도망쳤습니다.\n";
+				return;
+			default:
+				break;
+			}
+			if (character->GetHP() == 0 || monster->GetHP() == 0) break;
 		}
-		else
-		{
-			cout << "플레이어가 기절하였습니다.\n";
-			
-			return;
-		}
+
+		MonsterAttack(character, monster);
+		if (character->GetHP() == 0 || monster->GetHP() == 0) break;
+		//몬스터 제거를 어디서 할것인지?
+		//생성한곳? 아니면 배틀이 끝나는쪽?
 	}
 }
