@@ -1,19 +1,9 @@
 ﻿#include "HealthPotion.h"
 #include "Character.h"
 
-HealthPotion::HealthPotion() : Name("체력 회복 포션"), HealthRestore(50),Price(5) {}
-
-std::string HealthPotion::GetName()
-{
-	return Name;
-}
+HealthPotion::HealthPotion() : Item("체력 회복 포션", 5), HealthRestore(50) {}
 
 void HealthPotion::Use(Character* character)
 {
 
-}
-
-int HealthPotion::GetPrice() const
-{
-	return Price;
 }
