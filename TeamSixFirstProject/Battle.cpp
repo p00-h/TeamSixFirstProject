@@ -50,7 +50,7 @@ void Battle::MonsterAttack(Character* character, Monster* monster)
 int Battle::StartBattle(Character* character, Monster* monster)
 {
 	DirectionManager Direction;
-	vector<string> items{ "공격","스킬 사용", "도주" };
+	vector<string> items{ "공격", "스킬 사용","인벤토리", "도주"};
 	int count = items.size();
 	int sel = 0;
 	int go = 0;
@@ -79,7 +79,7 @@ int Battle::StartBattle(Character* character, Monster* monster)
 				else cout << "  " << items[i] << "\n";
 			}
 		}
-		//스피드 구현시 스피드가 몬스터보다 낮다면 이쪽에서 함수가 실행되도록;
+		//스피드 구현시 스피드가 몬스터보다 낮다면 이쪽에서 함수가 실행되도록
 		//MonsterAttack(character, monster);
 		//if (character->GetHP() == 0 || monster->GetHP() == 0) break;
 		if (sel == 122)
@@ -94,8 +94,17 @@ int Battle::StartBattle(Character* character, Monster* monster)
 				cout << "미구현 단계입니다.";
 				break;
 			case 2:
+				//인벤토리 구역이며
+				//선택지를 고르는 방식과 유사하게 만들것
+				//키값을 어떻게 찾아야하는지? string으로 key값이 설정이 되어있는데
+				//key값은 string value값은 item객체로 사용하는것으로 보임
+				character->ShowInventory();
+
+
+			case 3:
 				cout << "성공적으로 도망쳤습니다.\n";
-				return;
+				return 2;
+
 			default:
 				break;
 			}
@@ -104,7 +113,5 @@ int Battle::StartBattle(Character* character, Monster* monster)
 
 		MonsterAttack(character, monster);
 		if (character->GetHp() <= 0) return 0;
-		//몬스터 제거를 어디서 할것인지?
-		//생성한곳? 아니면 배틀이 끝나는쪽?
 	}
 }
