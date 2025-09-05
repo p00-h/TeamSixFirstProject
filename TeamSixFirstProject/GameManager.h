@@ -15,4 +15,5 @@ private:
     int  ShowMenu();        // ↑↓ 선택 + Enter 확정
     void StartNewGame();
 	Monster* CreateMonster(int level);
+    void openShop(Character& player);
 };

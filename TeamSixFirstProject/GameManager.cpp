@@ -5,6 +5,7 @@
 #include "Imp.h"
 #include "Kobold.h"
 #include "Battle.h"
+#include "Shop.h"
 
 #include <iostream>
 #include <limits>
@@ -88,6 +89,12 @@ Monster* GameManager::CreateMonster(int level)
     monster->SetAttack(atk);
     return monster;
 }
+
+void GameManager::openShop(Character& player)
+{
+    Shop shop;
+    shop.VisitShop(&player);
+}
     
 
 // 새 게임 시작
@@ -113,19 +120,40 @@ void GameManager::StartNewGame() {
 
 		Battle battle;
         //int isLive = battle.StartBattle(&player, monster);
-        int isLive = 0;
+        int isLive = 1;
 
         //결과 처리
         if (isLive) {
-            ClearScreen();
             player.AddExp(50);
             player.AddGold(RandRange(10, 20));
             
-            if (player.GetExp() >= 100) {
-                //레벨업
-            }
             player.ShowStatus();
 			cout << "플레이어가 승리했습니다!\n";
+            //드랍템
+
+
+            // 상점 방문 여부 묻기
+            while (true) {
+                std::cout << "\n상점에 방문 하시겠습니까? (Y / N)\n> ";
+                std::string choice; std::cin >> choice;
+                if (choice.empty()) continue;
+                char c = (char)std::toupper((unsigned char)choice[0]);
+                if (c == 'Y') {
+                    openShop(player);    // 상점 들어갔다가
+                    ClearScreen();       //    나와도 while 계속
+                    break;
+                }
+                else if (c == 'N') {
+                    ClearScreen();
+                    break;
+                }
+                else {
+                    std::cout << "Y/N 중에서 선택하세요.\n";
+                }
+            }
+
+            continue;
+
         }else if(isLive == -1){
             ClearScreen();
             player.ShowStatus();
