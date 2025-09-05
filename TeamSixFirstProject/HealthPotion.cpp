@@ -2,11 +2,15 @@
 #include "Character.h"
 #include <iostream>
 
-
-HealthPotion::HealthPotion() : Item("체력 회복 포션", 5), HealthRestore(50) {}
+HealthPotion::HealthPotion() : Item("체력 회복 포션", 5, 50) {}
 
 void HealthPotion::Use(Character* character)
 {
-	character->SetHp(character->GetHp() + HealthRestore);
-	std::cout << character->GetName() << "의 체력이 " << HealthRestore << " 회복 됐습니다." << std::endl;
+	character->SetHp(character->GetHp() + Value);
+	std::cout << character->GetName() << "의 체력이 " << Value << " 회복 됐습니다." << std::endl;
+}
+
+void HealthPotion::ItemInfo()
+{
+	std::cout << "체력을 " << Value << " 회복합니다." << std::endl;
 }

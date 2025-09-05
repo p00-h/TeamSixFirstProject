@@ -1,7 +1,8 @@
 #include "Item.h"
 #include <string>
+#include <iostream>
 
-Item::Item(std::string name, int price) : Name(name), Price(price) {}
+Item::Item(std::string name, int price, int value) : Name(name), Price(price), Value(value) {}
 
 int Item::GetPrice() const
 {
