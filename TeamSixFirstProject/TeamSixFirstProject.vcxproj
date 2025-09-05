@@ -151,6 +151,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Kobold.h" />
     <ClInclude Include="ManaPotion.h" />
+    <ClInclude Include="Shop.h" />
     <ClInclude Include="TItle.h" />
   </ItemGroup>
   <ItemGroup>
