@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 
+
 #ifdef _WIN32
 #include <windows.h>
 static void ClearScreen_T() { system("cls"); }
@@ -50,3 +51,4 @@ void ShowTitle(TitleStyle style) {
     PrintLinesWithDelay(lines, 5);
     cout << "\n";
 }
+

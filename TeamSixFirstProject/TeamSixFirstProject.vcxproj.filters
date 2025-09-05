@@ -75,10 +75,14 @@
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\Character</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Shop.cpp">
+=======
     <ClCompile Include="Item.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="Battle.cpp">
+>>>>>>> dev
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
