@@ -82,6 +82,7 @@ int Battle::StartBattle(Character* character, Monster* monster)
 		//스피드 구현시 스피드가 몬스터보다 낮다면 이쪽에서 함수가 실행되도록
 		//MonsterAttack(character, monster);
 		//if (character->GetHP() == 0 || monster->GetHP() == 0) break;
+		string SelectItem;
 		if (sel == 122)
 		{
 			switch (go)
@@ -95,11 +96,10 @@ int Battle::StartBattle(Character* character, Monster* monster)
 				break;
 			case 2:
 				//인벤토리 구역이며
-				//선택지를 고르는 방식과 유사하게 만들것
-				//키값을 어떻게 찾아야하는지? string으로 key값이 설정이 되어있는데
-				//key값은 string value값은 item객체로 사용하는것으로 보임
+				//인벤토리 접근이 안됨
 				character->ShowInventory();
-
+				cin >> SelectItem;
+				character->UseItem(SelectItem);
 
 			case 3:
 				cout << "성공적으로 도망쳤습니다.\n";
