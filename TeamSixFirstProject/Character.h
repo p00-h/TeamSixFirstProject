@@ -19,14 +19,6 @@ private:
 
     std::map<std::string, std::pair<Item*, int>> Inventory;
 
-    const std::map<std::string, std::pair<Item*, int>>& GetInventory() const {
-        return Inventory;
-    }
-
-    std::map<std::string, std::pair<Item*, int>>& GetInventory() {
-        return Inventory;
-    }
-
 public:
     Character(const std::string& name);
     ~Character();
@@ -40,6 +32,15 @@ public:
     void ShowInventory() const;
     bool UseItem(const std::string& itemName);
     bool SellItem(const std::string& itemName, int count, float ratio = -1.0f);
+
+	// 인벤토리 기능
+    const std::map<std::string, std::pair<Item*, int>>& GetInventory() const {
+        return Inventory;
+    }
+
+    std::map<std::string, std::pair<Item*, int>>& GetInventory() {
+        return Inventory;
+    }
 
     // 스탯 조작
     void Heal(int amount);
