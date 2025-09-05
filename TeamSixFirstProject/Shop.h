@@ -19,12 +19,12 @@ public:
 	void DisplayItems();
 
 
-	void BuyItem(std::pair<Item*, int>& item, Character* character);
-	void SellItem(std::pair<Item*, int>& item, Character* character);
+	void BuyItem(std::pair<Item*, int> item, Character* character);
+	void SellItem(std::pair<Item*, int> item, Character* character);
 
 private:
 	std::vector<std::pair<Item*, int>> AvailableItems;
 
-	float SellRatio;
+	float SellRatio = 0.5f;
 
 };
