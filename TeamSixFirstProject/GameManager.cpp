@@ -8,6 +8,11 @@
 #include "Kobold.h"
 #include "Battle.h"
 #include "Shop.h"
+#include "HealthPotion.h"
+#include "AttackBoost.h"
+#include "DefenseBoost.h"
+#include "ManaPotion.h"
+
 
 #include <iostream>
 #include <limits>
@@ -141,7 +146,19 @@ void GameManager::StartNewGame() {
                 cout << "플레이어가 승리했습니다!\n";
 			cout << "플레이어가 승리했습니다!\n";
             //드랍템
+            if (RandRange(1, 100) <= 30) { // 30% 확률 드랍
+                int dropType = RandRange(1, 4); // 1=체력포션, 2=공격력포션
+                Item* dropped = nullptr;
 
+                switch (dropType) {
+                case 1: dropped = new HealthPotion(); break;
+                case 2: dropped = new ManaPotion(); break;
+                case 3: dropped = new AttackBoost(); break;
+                case 4: dropped = new DefenseBoost(); break;
+                }
+
+                player.AddItem(dropped); // 인벤토리에 추가
+            }
 
             // 상점 방문 여부 묻기
             while (true) {
