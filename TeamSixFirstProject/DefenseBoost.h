@@ -7,5 +7,5 @@ class DefenseBoost :public Item
 public:
 	DefenseBoost();
 	virtual void Use(Character* character) override;
-	virtual void ItemInfo() override;
+	virtual std::string ItemInfo() override;
 };

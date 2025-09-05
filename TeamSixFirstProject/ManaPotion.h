@@ -7,5 +7,5 @@ class ManaPotion :public Item
 public:
 	ManaPotion();
 	virtual void Use(Character* character) override;
-	virtual void ItemInfo() override;
+	virtual std::string ItemInfo() override;
 };
