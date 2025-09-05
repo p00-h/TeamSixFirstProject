@@ -11,7 +11,7 @@ Character::~Character() {
     Inventory.clear();
 }
 
-void Character::ShowStatus() const {
+void Character::ShowStatus() const { // 캐릭터 상태 출력
     std::cout << "===== 캐릭터 상태 =====\n";
     std::cout << "이름: " << Name << "\n";
     std::cout << "레벨: " << Level << "\n";
@@ -56,20 +56,22 @@ void Character::AddItem(Item* item) {
     }
     else {
         std::cout << itemName << "은 이미 인벤토리에 있습니다.\n";
-        delete item;
+        delete item; // 중복으로 있으면 제거
     }
     std::cout << itemName << " 아이템이 인벤토리에 추가되었습니다!\n";
 }
 
-void Character::RemoveItem(const std::string& itemName) {
+bool Character::RemoveItem(const std::string& itemName) {
     auto it = Inventory.find(itemName);
     if (it != Inventory.end()) {
         delete it->second;
         Inventory.erase(it);
         std::cout << itemName << " 아이템을 제거했습니다.\n";
+        return true;
     }
     else {
         std::cout << itemName << " 아이템이 없습니다.\n";
+        return false;
     }
 }
 
@@ -86,14 +88,16 @@ void Character::ShowInventory() const {
     std::cout << "====================\n";
 }
 
-void Character::UseItem(const std::string& itemName) {
+bool Character::UseItem(const std::string& itemName) {
     auto it = Inventory.find(itemName);
     if (it != Inventory.end()) {
         it->second->Use(this);
-        RemoveItem(itemName); /// 아이템 한 번 쓰면 삭제
+        RemoveItem(itemName); // 한 번 쓰면 삭제
+        return true;
     }
     else {
         std::cout << itemName << " 아이템이 없습니다.\n";
+        return false;
     }
 }
 
@@ -112,7 +116,12 @@ void Character::IncreaseAttack(int amount) {
     std::cout << "공격력이 " << amount << " 증가했습니다! 현재 공격력: " << Attack << "\n";
 }
 
-void Character::LevelUp() { /// 레벨업 시 스탯 증가
+void Character::IncreaseDefense(int amount) {
+    Defense += amount;
+    std::cout << "방어력이 " << amount << " 증가했습니다! 현재 방어력: " << Defense << "\n";
+}
+
+void Character::LevelUp() {
     Exp -= ExpToLevelUp;
     Level++;
     Hp += 50;
