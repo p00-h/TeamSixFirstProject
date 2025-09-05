@@ -11,3 +11,21 @@ Slime::Slime(int level)
 												//레벨 보너스 대미지 사용 시
 	//SlimeBouns = level * 5;
 }
+
+void Slime::StickyBall()
+{
+	int StickyBallDamage = GetAttack() * 1.2;
+	cout << GetName() << "의 끈끈이 공! 대미지 : " << StickyBallDamage << endl;
+}
+
+void Slime::MucusSpit()
+{
+	int MucusSpitDamage = GetAttack() * 1.1;
+	cout << GetName() << "의 침 밷기! 대미지 : " << MucusSpitDamage << endl;
+}
+
+void Slime::JumpAttack()
+{
+	int JumpAttackDamage = GetAttack() * 1.4;
+	cout << GetName() << "의 점프 공격, 대미지 : " << JumpAttackDamage << endl;
+}
