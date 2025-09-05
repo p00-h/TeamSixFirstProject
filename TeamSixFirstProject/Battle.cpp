@@ -14,12 +14,12 @@ void Battle::CharaterAttack(Character* character, Monster* monster)
 	monster->SetHP(monster->GetHP() - character->GetAttack());
 	if (monster->GetHP() > 0)
 	{
-		cout << monster->GetName() << "¿¡°Ô " << character->GetAttack() << "¸¸Å­ ÇÇÇØ¸¦ ÀÔÇû½À´Ï´Ù.\n";
-		cout << "³²Àº Ã¼·Â: " << monster->GetHP() << endl;
+		cout << monster->GetName() << "ì—ê²Œ " << character->GetAttack() << "ë§Œí¼ í”¼í•´ë¥¼ ì…í˜”ìŠµë‹ˆë‹¤.\n";
+		cout << "ë‚¨ì€ ì²´ë ¥: " << monster->GetHP() << endl;
 	}
 	else
 	{
-		cout << "¸ó½ºÅÍ¸¦ Ã³Ä¡ÇÏ¿´½À´Ï´Ù.\n";
+		cout << "ëª¬ìŠ¤í„°ë¥¼ ì²˜ì¹˜í•˜ì˜€ìŠµë‹ˆë‹¤.\n";
 		character->SetGold(character->GetGold() + 200);
 		character->SetExp(character->GetExp() + 50);
 		if (character->GetExp() >= 100)
@@ -36,12 +36,12 @@ void Battle::MonsterAttack(Character* character, Monster* monster)
 	character->SetHp(character->GetHp() - monster->GetAttack());
 	if (character->GetHp() > 0)
 	{
-		cout << monster->GetName() << "¿¡°Ô " << monster->GetAttack() << "¸¸Å­ ÇÇÇØ¸¦ ÀÔ¾ú½À´Ï´Ù.\n";
-		cout << "³²Àº Ã¼·Â: " << character->GetHp() << endl;
+		cout << monster->GetName() << "ì—ê²Œ " << monster->GetAttack() << "ë§Œí¼ í”¼í•´ë¥¼ ì…ì—ˆìŠµë‹ˆë‹¤.\n";
+		cout << "ë‚¨ì€ ì²´ë ¥: " << character->GetHp() << endl;
 	}
 	else
 	{
-		cout << "ÇÃ·¹ÀÌ¾î°¡ ±âÀıÇÏ¿´½À´Ï´Ù.\n";
+		cout << "í”Œë ˆì´ì–´ê°€ ê¸°ì ˆí•˜ì˜€ìŠµë‹ˆë‹¤.\n";
 
 		return;
 	}
@@ -50,18 +50,18 @@ void Battle::MonsterAttack(Character* character, Monster* monster)
 int Battle::StartBattle(Character* character, Monster* monster)
 {
 	DirectionManager Direction;
-	vector<string> items{ "°ø°İ","½ºÅ³ »ç¿ë", "µµÁÖ" };
+	vector<string> items{ "ê³µê²©", "ìŠ¤í‚¬ ì‚¬ìš©","ì¸ë²¤í† ë¦¬", "ë„ì£¼"};
 	int count = items.size();
 	int sel = 0;
 	int go = 0;
 	while (true)
 	{
-		//Æ¯Á¤ À§Ä¡¿¡ ÅØ½ºÆ® °íÁ¤½ÃÅ°´Â ¹æ¹ı Æ©ÅÍ´Ô & ÆÀ¿øµé°ú »óÀÇÇÏ±â
+		//íŠ¹ì • ìœ„ì¹˜ì— í…ìŠ¤íŠ¸ ê³ ì •ì‹œí‚¤ëŠ” ë°©ë²• íŠœí„°ë‹˜ & íŒ€ì›ë“¤ê³¼ ìƒì˜í•˜ê¸°
 		cout << "> " << items[0] << " \n";
 		cout << "  " << items[1] << " \n";
 		cout << "  " << items[2] << "\n";
 
-		//¹æÇâÅ°·Î ÀÔ·Â¹Ş¾Æ¼­ ¼±ÅÃ»çÇ×À» ¼±ÅÃ.
+		//ë°©í–¥í‚¤ë¡œ ì…ë ¥ë°›ì•„ì„œ ì„ íƒì‚¬í•­ì„ ì„ íƒ.
 		sel = Direction.Direction();
 		if (sel != 122) go += sel;
 
@@ -79,9 +79,10 @@ int Battle::StartBattle(Character* character, Monster* monster)
 				else cout << "  " << items[i] << "\n";
 			}
 		}
-		//½ºÇÇµå ±¸Çö½Ã ½ºÇÇµå°¡ ¸ó½ºÅÍº¸´Ù ³·´Ù¸é ÀÌÂÊ¿¡¼­ ÇÔ¼ö°¡ ½ÇÇàµÇµµ·Ï;
+		//ìŠ¤í”¼ë“œ êµ¬í˜„ì‹œ ìŠ¤í”¼ë“œê°€ ëª¬ìŠ¤í„°ë³´ë‹¤ ë‚®ë‹¤ë©´ ì´ìª½ì—ì„œ í•¨ìˆ˜ê°€ ì‹¤í–‰ë˜ë„ë¡
 		//MonsterAttack(character, monster);
 		//if (character->GetHP() == 0 || monster->GetHP() == 0) break;
+		string SelectItem;
 		if (sel == 122)
 		{
 			switch (go)
@@ -90,12 +91,22 @@ int Battle::StartBattle(Character* character, Monster* monster)
 				CharaterAttack(character, monster);
 				break;
 			case 1:
-				//½ºÅ³ ±¸Çö½Ã
-				cout << "¹Ì±¸Çö ´Ü°èÀÔ´Ï´Ù.";
+				//ìŠ¤í‚¬ êµ¬í˜„ì‹œ
+				cout << "ë¯¸êµ¬í˜„ ë‹¨ê³„ì…ë‹ˆë‹¤.";
 				break;
+
 			case 2:
-				cout << "¼º°øÀûÀ¸·Î µµ¸ÁÃÆ½À´Ï´Ù.\n";
-				return;
+				//ì¸ë²¤í† ë¦¬ êµ¬ì—­ì´ë©°
+				//ì¸ë²¤í† ë¦¬ ì ‘ê·¼ì´ ì•ˆë¨
+				character->ShowInventory();
+				cin >> SelectItem;
+				character->UseItem(SelectItem);
+
+			case 3:
+				cout << "ì„±ê³µì ìœ¼ë¡œ ë„ë§ì³¤ìŠµë‹ˆë‹¤.\n";
+				return 2;
+
+
 			default:
 				break;
 			}
@@ -104,7 +115,6 @@ int Battle::StartBattle(Character* character, Monster* monster)
 
 		MonsterAttack(character, monster);
 		if (character->GetHp() <= 0) return 0;
-		//¸ó½ºÅÍ Á¦°Å¸¦ ¾îµğ¼­ ÇÒ°ÍÀÎÁö?
-		//»ı¼ºÇÑ°÷? ¾Æ´Ï¸é ¹èÆ²ÀÌ ³¡³ª´ÂÂÊ?
 	}
 }
+
