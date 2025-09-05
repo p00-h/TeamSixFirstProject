@@ -147,6 +147,7 @@
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Orc.cpp" />
     <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="Slime.cpp" />
     <ClCompile Include="TeamSixFirstProject.cpp" />
     <ClCompile Include="TItle.cpp" />
   </ItemGroup>
@@ -156,6 +157,7 @@
     <ClInclude Include="ManaPotion.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Shop.h" />
+    <ClInclude Include="Slime.h" />
     <ClInclude Include="TItle.h" />
   </ItemGroup>
   <ItemGroup>

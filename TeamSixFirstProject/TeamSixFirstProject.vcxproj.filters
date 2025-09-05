@@ -53,6 +53,9 @@
     <ClCompile Include="Orc.cpp">
       <Filter>Source Files\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Slime.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
@@ -96,6 +99,9 @@
     </ClInclude>
     <ClInclude Include="DirectionManager.h" />
     <ClInclude Include="Orc.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Slime.h">
       <Filter>Header Files\Monster</Filter>
     </ClInclude>
   </ItemGroup>
