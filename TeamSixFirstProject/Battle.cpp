@@ -82,7 +82,7 @@ int Battle::StartBattle(Character* character, Monster* monster)
 		//스피드 구현시 스피드가 몬스터보다 낮다면 이쪽에서 함수가 실행되도록
 		//MonsterAttack(character, monster);
 		//if (character->GetHP() == 0 || monster->GetHP() == 0) break;
-		string SelectItem;
+		//string SelectItem;
 		if (sel == 122)
 		{
 			switch (go)
@@ -98,9 +98,9 @@ int Battle::StartBattle(Character* character, Monster* monster)
 			case 2:
 				//인벤토리 구역이며
 				//인벤토리 접근이 안됨
-				character->ShowInventory();
+				/*character->ShowInventory();
 				cin >> SelectItem;
-				character->UseItem(SelectItem);
+				character->UseItem(SelectItem);*/
 
 			case 3:
 				cout << "성공적으로 도망쳤습니다.\n";
@@ -112,7 +112,7 @@ int Battle::StartBattle(Character* character, Monster* monster)
 			}
 			if (monster->GetHP() <= 0) return 1;
 		}
-
+		//int num = rand();
 		MonsterAttack(character, monster);
 		if (character->GetHp() <= 0) return 0;
 	}
