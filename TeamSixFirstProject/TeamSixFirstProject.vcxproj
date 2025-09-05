@@ -128,12 +128,14 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="Character.h" />
     <ClCompile Include="DefenseBoost.cpp" />
+    <ClCompile Include="DirectionManager.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h" />
     <ClInclude Include="Battle.h" />
     <ClInclude Include="DefenseBoost.h" />
+    <ClInclude Include="DirectionManager.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
     <ClCompile Include="Golem.cpp" />
