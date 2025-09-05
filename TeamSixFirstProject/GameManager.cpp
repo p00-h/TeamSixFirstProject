@@ -1,7 +1,11 @@
 #include "GameManager.h"
+#include "Character.h"
 #include "Monster.h"
 #include "Golem.h"
 #include "Imp.h"
+#include "Kobold.h"
+#include "Battle.h"
+#include "Shop.h"
 
 #include <iostream>
 #include <limits>
@@ -73,9 +77,10 @@ Monster* GameManager::CreateMonster(int level)
 {
 	Monster* monster = nullptr;
 
-    switch (RandRange(0, 1)) {
+    switch (RandRange(0, 2)) {
     case 0: monster = new Golem(level); break;
     case 1: monster = new Imp(level);    break;
+    case 2: monster = new Kobold(level); break;
     }
 
     const int hp = RandRange(level * 20, level * 30);
@@ -84,20 +89,88 @@ Monster* GameManager::CreateMonster(int level)
     monster->SetAttack(atk);
     return monster;
 }
+
+void GameManager::openShop(Character& player)
+{
+    Shop shop;
+    shop.VisitShop(&player);
+}
     
 
 // 새 게임 시작
 void GameManager::StartNewGame() {
     ClearScreen();
     cout << "[TEXT RPG 시작]\n";
+	cout << "* 닉네임을 입력해주세요: ";
+    string name;
+    cin >> name;
 
-	GameManager gameManager;
+    Character player(name);
+    
+    bool keepPlaying = true;
+    while (keepPlaying && player.GetHp() > 0) {
+        // 베틀
+        GameManager gameManager;
 
-	Monster* monster = gameManager.CreateMonster(1/*캐릭터 레벨*/);
+        Monster* monster = gameManager.CreateMonster(player.GetLevel());
 
-    cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
-         << ", HP: " << monster->GetHP()
-		<< ", Attack: " << monster->GetAttack() << "\n";
+        cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
+            << ", HP: " << monster->GetHP()
+            << ", Attack: " << monster->GetAttack() << "\n";
+
+		Battle battle;
+        //int isLive = battle.StartBattle(&player, monster);
+        int isLive = 1;
+
+        //결과 처리
+        if (isLive) {
+            player.AddExp(50);
+            player.AddGold(RandRange(10, 20));
+            
+            player.ShowStatus();
+			cout << "플레이어가 승리했습니다!\n";
+            //드랍템
+
+
+            // 상점 방문 여부 묻기
+            while (true) {
+                std::cout << "\n상점에 방문 하시겠습니까? (Y / N)\n> ";
+                std::string choice; std::cin >> choice;
+                if (choice.empty()) continue;
+                char c = (char)std::toupper((unsigned char)choice[0]);
+                if (c == 'Y') {
+                    openShop(player);    // 상점 들어갔다가
+                    ClearScreen();       //    나와도 while 계속
+                    break;
+                }
+                else if (c == 'N') {
+                    ClearScreen();
+                    break;
+                }
+                else {
+                    std::cout << "Y/N 중에서 선택하세요.\n";
+                }
+            }
+
+            continue;
+
+        }else if(isLive == -1){
+            ClearScreen();
+            player.ShowStatus();
+            cout << "플레이어가 도망쳤습니다...\n";
+        }
+        else {
+            ClearScreen();
+            player.ShowStatus();
+			cout << "플레이어가 패배했습니다...\n";
+        }
+    
+		delete monster;
+        break;
+    }
+    
+
+	
 
     // Battle Battle;
 
