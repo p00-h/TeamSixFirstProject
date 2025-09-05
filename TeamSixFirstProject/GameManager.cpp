@@ -123,10 +123,18 @@ void GameManager::StartNewGame() {
         int isLive = 0;
         //결과 처리
         if (isLive) {
-            player.AddExp(50);
+            player.SetExp(player.GetExp() + 50);
             player.AddGold(RandRange(10, 20));
-            
+			//레벨업
+			bool isLevelUp = false;
+            if(player.GetExp() >= 100) {
+                player.SetExp(0);
+                player.SetLevel(player.GetLevel() + 1);
+				isLevelUp = true;
+            }
             player.ShowStatus();
+            if(isLevelUp)
+                cout << "플레이어가 승리했습니다!\n";
 			cout << "플레이어가 승리했습니다!\n";
             //드랍템
 
