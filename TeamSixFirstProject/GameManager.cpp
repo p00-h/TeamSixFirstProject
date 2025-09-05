@@ -129,7 +129,7 @@ void GameManager::StartNewGame() {
 
 		Battle battle;
         //int isLive = battle.StartBattle(&player, monster);
-        int isLive = 0;
+        int isLive = 1;
         //결과 처리
         if (isLive) {
             player.SetExp(player.GetExp() + 50);
@@ -144,7 +144,8 @@ void GameManager::StartNewGame() {
             player.ShowStatus();
             if(isLevelUp)
                 cout << "플레이어가 승리했습니다!\n";
-			cout << "플레이어가 승리했습니다!\n";
+            else
+    			cout << "플레이어가 승리했습니다!\n";
             //드랍템
             if (RandRange(1, 100) <= 30) { // 30% 확률 드랍
                 int dropType = RandRange(1, 4); // 1=체력포션, 2=공격력포션
@@ -158,6 +159,7 @@ void GameManager::StartNewGame() {
                 }
 
                 player.AddItem(dropped); // 인벤토리에 추가
+				player.ShowInventory();
             }
 
             // 상점 방문 여부 묻기
