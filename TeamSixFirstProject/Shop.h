@@ -15,14 +15,16 @@ public:
 	void VisitShop(Character* character);
 	void ShowShopMenu(Character* character);
 	void ShowBuyMenu(Character* character);
+	void ShowSellMenu(Character* character);
 	void DisplayItems();
 
 
-	//void BuyItem(pair<Item*, int>& item, Character* character);
-	void SellItem(int Index, Character* character, int ItemCount = 1);
+	void BuyItem(std::pair<Item*, int>& item, Character* character);
+	void SellItem(std::pair<Item*, int>& item, Character* character);
 
 private:
 	std::vector<std::pair<Item*, int>> AvailableItems;
 
+	float SellRatio;
 
 };

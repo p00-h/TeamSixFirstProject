@@ -70,7 +70,7 @@ void Shop::ShowShopMenu(Character* character)
             }
             else if (ShopOptions[selected] == "아이템 판매") {
                 // 판매 메뉴 함수
-                // ShowSellMenu();
+                ShowSellMenu(character);
             }
             else if (ShopOptions[selected] == "상점 나가기") {
                 break; // 상점 나가기
@@ -90,8 +90,9 @@ void Shop::ShowBuyMenu(Character* character)
         for (int i = 0; i < AvailableItems.size(); i++) 
         {
             string name = AvailableItems[i].first->GetName();
-            if (i == itemSelected) cout << "> " << name << endl;
-            else cout << "  " << name << endl;
+            string info = AvailableItems[i].first->ItemInfo();
+            if (i == itemSelected) cout << "> " << name << "(" << info << ")" << " 재고:" << AvailableItems[i].second << endl;
+            else cout << "  " << name << "(" << info << ")" << " 재고:" << AvailableItems[i].second << endl;
         }
         cout << "ESC: 상점 메뉴로 돌아가기\n";
 
@@ -105,15 +106,23 @@ void Shop::ShowBuyMenu(Character* character)
         else if (key == 13) 
         {
            // cout << AvailableItems[itemSelected].first->GetName() << " 구매!\n";
-            //_getch(); // 잠깐 멈춤
+           
 
-            //BuyItem(AvailableItems[itemSelected], character);
+            BuyItem(AvailableItems[itemSelected], character);
+
+            _getch(); // 잠깐 멈춤
         }
         else if (key == 27) 
         { // ESC
             break; // 아이템 구매 메뉴 종료
         }
     }
+}
+
+void Shop::ShowSellMenu(Character* character)
+{
+
+
 }
 
 
@@ -129,38 +138,38 @@ void Shop::DisplayItems()
 }
 
 
-//void Shop::BuyItem(pair<Item*, int>& item, Character* character)
-//{
-//    Item* buyItem = item.first;
-//
-//    if (item.second <= 0)
-//    {
-//        cout << buyItem->GetName() << "의 재고가 부족합니다.";
-//
-//        return;
-//    }
-//
-//
-//    if (character->SpendGold(buyItem->GetPrice()))
-//    {
-//        character->AddItem(buyItem);
-//
-//        item.second--; 
-//
-//        cout << buyItem->GetName() << "을(를) 구매했습니다.";
-//    }
-//
-//    
-//
-//}
+
+void Shop::BuyItem(pair<Item*, int>& item, Character* character)
+{
+    Item* buyItem = item.first;
+
+    if (item.second <= 0)
+    {
+        cout << buyItem->GetName() << "의 재고가 부족합니다.";
+
+        return;
+    }
+
+    if (character->SpendGold(buyItem->GetPrice()))
+    {
+        cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
+
+        character->AddItem(buyItem);
+
+        item.second--; 
+
+        
+    }
+}
 
 
-//void Shop::SellItem(int Index, Character* Player, int ItemCount)
-//{
-//	Item* buyItem = AvailableItems[Index - 1].first;
-//
-//	if (Player->RemoveItem(ItemCount))
-//	{
-//
-//	}
-//}
+
+
+void Shop::SellItem(std::pair<Item*, int>& item, Character* character)
+{
+    item.first->GetName();
+
+    character->SellItem(item.first->GetName(), 1, SellRatio);
+
+}
+
