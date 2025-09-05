@@ -1,11 +1,6 @@
 #include "ManaPotion.h"
 
-ManaPotion::ManaPotion() : Name("마나 회복 포션"), ManaRestore(10), Price(5) {}
-
-std::string ManaPotion::GetName()
-{
-    return Name;
-}
+ManaPotion::ManaPotion() : Item("마나 회복 포션",5), ManaRestore(10) {}
 
 void ManaPotion::Use(Character* character)
 {
