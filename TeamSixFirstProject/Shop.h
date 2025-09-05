@@ -18,7 +18,7 @@ public:
 	void DisplayItems();
 
 
-	void BuyItem(Item* item, Character* character);
+	void BuyItem(pair<Item*, int>& item, Character* character);
 	void SellItem(int Index, Character* character, int ItemCount = 1);
 
 private:
