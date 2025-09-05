@@ -191,8 +191,8 @@ void GameManager::StartNewGame() {
             << ", Attack: " << monster->GetAttack() << "\n";
 
         Battle battle;
-        // int isLive = battle.StartBattle(&player, monster); // 실제 전투 함수로 교체
-        int isLive = 1; // 임시: 승리(1), 도망(2), 패배(0)
+        int isLive = battle.StartBattle(&player, monster); // 실제 전투 함수로 교체
+        //int isLive = 1; // 임시: 승리(1), 도망(2), 패배(0)
 
         // ===== 전투 결과 처리 =====
         if (isLive == 1) { // 승리
