@@ -8,6 +8,7 @@ Monster::Monster(const string& n, int level)
 	HP = 10;	
 	//Attack = rand() % (level * 10 - level * 5 + 1) + (level * 5);
 	Attack = 10;	
+	MP = 0;
 }
 
 void Monster::TakeDamage(int dmg)
