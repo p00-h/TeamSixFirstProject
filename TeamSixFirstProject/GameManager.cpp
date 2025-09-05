@@ -1,4 +1,5 @@
 #include "GameManager.h"
+#include "Character.h"
 #include "Monster.h"
 #include "Golem.h"
 #include "Imp.h"
@@ -92,14 +93,40 @@ Monster* GameManager::CreateMonster(int level)
 void GameManager::StartNewGame() {
     ClearScreen();
     cout << "[TEXT RPG 시작]\n";
+	std::cout << "* 닉네임을 입력해주세요: ";
+    std::string name;
+    std::cin >> name;
 
-	GameManager gameManager;
+    Character* player = new Character(name);
+    
+    bool keepPlaying = true;
+    while (keepPlaying && player->GetHp() > 0) {
+        bool isLive = false;
+        // 베틀
+        GameManager gameManager;
 
-	Monster* monster = gameManager.CreateMonster(1/*캐릭터 레벨*/);
+	    Monster* monster = gameManager.CreateMonster(player->GetLevel());
 
-    cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
-         << ", HP: " << monster->GetHP()
-		<< ", Attack: " << monster->GetAttack() << "\n";
+        cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
+             << ", HP: " << monster->GetHP()
+		    << ", Attack: " << monster->GetAttack() << "\n";
+    
+        //결과 처리
+        if (isLive) {
+            player->AddExp(50);
+            player->AddGold(RandRange(10,20));
+            player->ShowStatus();
+        }else{
+			cout << "플레이어가 패배했습니다...\n";
+        }
+        break;
+    
+        player->ShowStatus();
+		delete monster;
+    }
+    
+
+	
 
     // Battle Battle;
 
