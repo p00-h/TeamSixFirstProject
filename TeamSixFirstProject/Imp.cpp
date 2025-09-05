@@ -7,6 +7,7 @@ Imp::Imp(int level)
 {													//Monster.h의 HP와 Attack을 private를 유지하면서 수정 가능
 	SetHP(GetHP() + 5);
 	SetAttack(GetAttack() + 4);
+	SetMP(0);
 													//Monster.h의  HP와 Attack을 protected 사용 시
 	//HP += 5;
 	//Attack += 4;											
