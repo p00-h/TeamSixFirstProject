@@ -10,7 +10,7 @@ void DefenseBoost::Use(Character* character)
 	std::cout << character->GetName() << "의 방어력이 " << Value << " 증가 했습니다." << std::endl;
 }
 
-void DefenseBoost::ItemInfo()
+std::string DefenseBoost::ItemInfo()
 {
-	std::cout << "방어력이 " << Value << " 증가합니다." << std::endl;
+	return "방어력이 " + std::to_string(Value) + " 증가합니다.";
 }
