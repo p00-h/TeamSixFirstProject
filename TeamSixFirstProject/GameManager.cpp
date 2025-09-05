@@ -4,6 +4,7 @@
 #include "Golem.h"
 #include "Imp.h"
 #include "Kobold.h"
+#include "Battle.h"
 
 #include <iostream>
 #include <limits>
@@ -93,36 +94,51 @@ Monster* GameManager::CreateMonster(int level)
 void GameManager::StartNewGame() {
     ClearScreen();
     cout << "[TEXT RPG 시작]\n";
-	std::cout << "* 닉네임을 입력해주세요: ";
-    std::string name;
-    std::cin >> name;
+	cout << "* 닉네임을 입력해주세요: ";
+    string name;
+    cin >> name;
 
-    Character* player = new Character(name);
+    Character player(name);
     
     bool keepPlaying = true;
-    while (keepPlaying && player->GetHp() > 0) {
-        bool isLive = false;
+    while (keepPlaying && player.GetHp() > 0) {
         // 베틀
         GameManager gameManager;
 
-	    Monster* monster = gameManager.CreateMonster(player->GetLevel());
+        Monster* monster = gameManager.CreateMonster(player.GetLevel());
 
         cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
-             << ", HP: " << monster->GetHP()
-		    << ", Attack: " << monster->GetAttack() << "\n";
-    
+            << ", HP: " << monster->GetHP()
+            << ", Attack: " << monster->GetAttack() << "\n";
+
+		Battle battle;
+        //int isLive = battle.StartBattle(&player, monster);
+        int isLive = 0;
+
         //결과 처리
         if (isLive) {
-            player->AddExp(50);
-            player->AddGold(RandRange(10,20));
-            player->ShowStatus();
-        }else{
+            ClearScreen();
+            player.AddExp(50);
+            player.AddGold(RandRange(10, 20));
+            
+            if (player.GetExp() >= 100) {
+                //레벨업
+            }
+            player.ShowStatus();
+			cout << "플레이어가 승리했습니다!\n";
+        }else if(isLive == -1){
+            ClearScreen();
+            player.ShowStatus();
+            cout << "플레이어가 도망쳤습니다...\n";
+        }
+        else {
+            ClearScreen();
+            player.ShowStatus();
 			cout << "플레이어가 패배했습니다...\n";
         }
-        break;
     
-        player->ShowStatus();
 		delete monster;
+        break;
     }
     
 

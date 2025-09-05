@@ -93,9 +93,9 @@ int Battle::StartBattle(Character* character, Monster* monster)
 				//스킬 구현시
 				cout << "미구현 단계입니다.";
 				break;
-			case 2:
-				cout << "성공적으로 도망쳤습니다.\n";
-				return;
+			//case 2:
+			//	cout << "성공적으로 도망쳤습니다.\n";
+			//	return;
 			default:
 				break;
 			}
