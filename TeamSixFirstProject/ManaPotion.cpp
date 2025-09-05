@@ -10,7 +10,7 @@ void ManaPotion::Use(Character* character)
 	std::cout << character->GetName() << "의 마나가 " << Value << " 회복 됐습니다." << std::endl;
 }
 
-void ManaPotion::ItemInfo()
+std::string ManaPotion::ItemInfo()
 {
-	std::cout << "마나를 " << Value << " 회복합니다." << std::endl;
+	return "마나를 " + std::to_string(Value) + " 회복합니다.";
 }

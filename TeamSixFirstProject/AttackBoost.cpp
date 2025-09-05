@@ -10,7 +10,7 @@ void AttackBoost::Use(Character* character)
 	std::cout << character->GetName() << "의 공격력이 " << Value << " 증가 했습니다." << std::endl;
 }
 
-void AttackBoost::ItemInfo()
+std::string AttackBoost::ItemInfo()
 {
-	std::cout << "공격력이 " << Value << " 증가합니다." << std::endl;
+	return "공격력이 " + std::to_string(Value) + " 증가합니다.";
 }

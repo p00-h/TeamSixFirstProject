@@ -10,7 +10,7 @@ void HealthPotion::Use(Character* character)
 	std::cout << character->GetName() << "의 체력이 " << Value << " 회복 됐습니다." << std::endl;
 }
 
-void HealthPotion::ItemInfo()
+std::string HealthPotion::ItemInfo()
 {
-	std::cout << "체력을 " << Value << " 회복합니다." << std::endl;
+	return "체력을 " + std::to_string(Value) + " 회복합니다.";
 }
