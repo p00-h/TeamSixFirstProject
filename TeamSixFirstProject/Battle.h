@@ -1,8 +1,16 @@
-//#pragma once
-//#include <iostream>
-//
-//class Battle
-//{
-//public:
-//	Battle(Character* Character, Monster* monster);
-//};
+#pragma once
+#include <iostream>
+#include "Character.h"
+#include "Monster.h"
+#include "DirectionManager.h"
+#include "vector"
+
+class Battle
+{
+public:
+	Battle();
+	void CharaterAttack(Character* character, Monster* monster);
+	void MonsterAttack(Character* character, Monster* monster);
+	void StartBattle(Character* character, Monster* monster);
+};
+
