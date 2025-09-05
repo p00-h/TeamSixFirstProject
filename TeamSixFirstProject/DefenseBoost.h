@@ -4,9 +4,8 @@
 
 class DefenseBoost :public Item
 {
-	int DefenseIncrease;
-
 public:
 	DefenseBoost();
 	virtual void Use(Character* character) override;
+	virtual void ItemInfo() override;
 };

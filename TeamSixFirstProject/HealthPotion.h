@@ -4,9 +4,8 @@
 
 class HealthPotion :public Item
 {
-	int HealthRestore;
-
 public:
 	HealthPotion();
 	virtual void Use(Character* character) override;
+	virtual void ItemInfo() override;
 };
