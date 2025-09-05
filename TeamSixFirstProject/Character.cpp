@@ -95,6 +95,27 @@ bool Character::UseItem(const std::string& itemName) {
         RemoveItem(itemName); // 한 번 쓰면 삭제
         return true;
     }
+    std::cout << itemName << " 아이템이 없습니다.\n";
+    return false;
+}
+
+bool Character::SellItem(const std::string& itemName, int count, float ratio) {
+    auto it = Inventory.find(itemName);
+    if (it != Inventory.end() && it->second.second >= count) {
+        int price = it->second.first->GetPrice();
+
+        // ratio 값이 -1.0f 면 기본 SellRatio 사용
+        float appliedRatio = (ratio > 0.0f ? ratio : SellRatio);
+
+        int goldEarned = static_cast<int>(price * appliedRatio * count);
+
+        if (RemoveItem(itemName, count)) {
+            AddGold(goldEarned);
+            std::cout << itemName << " x" << count
+                << " 판매 완료! +" << goldEarned << " 골드 획득\n";
+            return true;
+        }
+		
     else {
         std::cout << itemName << " 아이템이 없습니다.\n";
         return false;
