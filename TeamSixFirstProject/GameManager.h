@@ -1,6 +1,7 @@
 #pragma once
 #include "Title.h"
 #include "Monster.h"
+#include "Character.h"
 
 class GameManager {
 public:
@@ -14,4 +15,5 @@ private:
     int  ShowMenu();        // ↑↓ 선택 + Enter 확정
     void StartNewGame();
 	Monster* CreateMonster(int level);
+
 };
