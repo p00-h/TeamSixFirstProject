@@ -4,9 +4,8 @@
 
 class AttackBoost :public Item
 {
-	int AttackIncrease;
-
 public:
 	AttackBoost();
 	virtual void Use(Character* character) override;
+	virtual void ItemInfo() override;
 };
