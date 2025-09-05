@@ -14,3 +14,8 @@ std::string HealthPotion::ItemInfo()
 {
 	return "체력을 " + std::to_string(Value) + " 회복합니다.";
 }
+
+Item* HealthPotion::Clone() const
+{
+	return new HealthPotion(*this);
+}

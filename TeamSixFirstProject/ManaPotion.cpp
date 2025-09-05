@@ -14,3 +14,8 @@ std::string ManaPotion::ItemInfo()
 {
 	return "마나를 " + std::to_string(Value) + " 회복합니다.";
 }
+
+Item* ManaPotion::Clone() const
+{
+	return new ManaPotion(*this);
+}
