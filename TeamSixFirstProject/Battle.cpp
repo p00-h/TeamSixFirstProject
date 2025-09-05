@@ -33,11 +33,11 @@ void Battle::CharaterAttack(Character* character, Monster* monster)
 
 void Battle::MonsterAttack(Character* character, Monster* monster)
 {
-	character->SetHP(character->GetHP() - monster->GetAttack());
-	if (character->GetHP() > 0)
+	character->SetHp(character->GetHp() - monster->GetAttack());
+	if (character->GetHp() > 0)
 	{
 		cout << monster->GetName() << "에게 " << monster->GetAttack() << "만큼 피해를 입었습니다.\n";
-		cout << "남은 체력: " << character->GetHP() << endl;
+		cout << "남은 체력: " << character->GetHp() << endl;
 	}
 	else
 	{
@@ -47,7 +47,7 @@ void Battle::MonsterAttack(Character* character, Monster* monster)
 	}
 }
 
-void Battle::StartBattle(Character* character, Monster* monster)
+int Battle::StartBattle(Character* character, Monster* monster)
 {
 	DirectionManager Direction;
 	vector<string> items{ "공격","스킬 사용", "도주" };
@@ -99,11 +99,11 @@ void Battle::StartBattle(Character* character, Monster* monster)
 			default:
 				break;
 			}
-			if (character->GetHP() == 0 || monster->GetHP() == 0) break;
+			if (monster->GetHP() <= 0) return 1;
 		}
 
 		MonsterAttack(character, monster);
-		if (character->GetHP() == 0 || monster->GetHP() == 0) break;
+		if (character->GetHp() <= 0) return 0;
 		//몬스터 제거를 어디서 할것인지?
 		//생성한곳? 아니면 배틀이 끝나는쪽?
 	}
