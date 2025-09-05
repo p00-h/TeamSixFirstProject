@@ -120,8 +120,7 @@ void GameManager::StartNewGame() {
 
 		Battle battle;
         //int isLive = battle.StartBattle(&player, monster);
-        int isLive = 1;
-
+        int isLive = 0;
         //결과 처리
         if (isLive) {
             player.AddExp(50);
@@ -154,7 +153,7 @@ void GameManager::StartNewGame() {
 
             continue;
 
-        }else if(isLive == -1){
+        }else if(isLive == 2){
             ClearScreen();
             player.ShowStatus();
             cout << "플레이어가 도망쳤습니다...\n";
