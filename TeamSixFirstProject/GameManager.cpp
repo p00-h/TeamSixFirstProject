@@ -3,6 +3,8 @@
 #include "Monster.h"
 #include "Golem.h"
 #include "Imp.h"
+#include "Orc.h"
+#include "Slime.h"
 #include "Kobold.h"
 #include "Battle.h"
 #include "Shop.h"
@@ -77,10 +79,12 @@ Monster* GameManager::CreateMonster(int level)
 {
 	Monster* monster = nullptr;
 
-    switch (RandRange(0, 2)) {
+    switch (RandRange(0, 4)) {
     case 0: monster = new Golem(level); break;
     case 1: monster = new Imp(level);    break;
     case 2: monster = new Kobold(level); break;
+    case 3: monster = new Orc(level); break;
+    case 4: monster = new Slime(level); break;
     }
 
     const int hp = RandRange(level * 20, level * 30);
@@ -120,14 +124,21 @@ void GameManager::StartNewGame() {
 
 		Battle battle;
         //int isLive = battle.StartBattle(&player, monster);
-        int isLive = 1;
-
+        int isLive = 0;
         //결과 처리
         if (isLive) {
-            player.AddExp(50);
+            player.SetExp(player.GetExp() + 50);
             player.AddGold(RandRange(10, 20));
-            
+			//레벨업
+			bool isLevelUp = false;
+            if(player.GetExp() >= 100) {
+                player.SetExp(0);
+                player.SetLevel(player.GetLevel() + 1);
+				isLevelUp = true;
+            }
             player.ShowStatus();
+            if(isLevelUp)
+                cout << "플레이어가 승리했습니다!\n";
 			cout << "플레이어가 승리했습니다!\n";
             //드랍템
 
@@ -154,7 +165,7 @@ void GameManager::StartNewGame() {
 
             continue;
 
-        }else if(isLive == -1){
+        }else if(isLive == 2){
             ClearScreen();
             player.ShowStatus();
             cout << "플레이어가 도망쳤습니다...\n";

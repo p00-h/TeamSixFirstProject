@@ -17,7 +17,6 @@ private:
     const int ExpToLevelUp = 100;
 
     std::map<std::string, Item*> Inventory; // 아이템 이름 -> 아이템 포인터
-<<<<<<< HEAD
 
     const std::map<std::string, std::pair<Item*, int>>& GetInventory() const {
         return Inventory;
@@ -26,8 +25,6 @@ private:
     std::map<std::string, std::pair<Item*, int>>& GetInventory() {
         return Inventory;
     }
-=======
->>>>>>> 18cc75d9037e9ae83b7d01292d2f955280c42eb2
 
 public:
     Character(const std::string& name);
@@ -42,13 +39,7 @@ public:
     bool RemoveItem(const std::string& itemName);
     void ShowInventory() const;
     bool UseItem(const std::string& itemName);
-<<<<<<< HEAD
-<<<<<<< HEAD
     bool SellItem(const std::string& itemName, int count, float ratio = -1.0f);
-=======
->>>>>>> 18cc75d9037e9ae83b7d01292d2f955280c42eb2
-=======
->>>>>>> 18cc75d9037e9ae83b7d01292d2f955280c42eb2
 
     // 스탯 조작용
     void Heal(int amount);

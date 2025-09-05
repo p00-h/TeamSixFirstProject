@@ -95,8 +95,6 @@ bool Character::UseItem(const std::string& itemName) {
         RemoveItem(itemName); // 한 번 쓰면 삭제
         return true;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
     std::cout << itemName << " 아이템이 없습니다.\n";
     return false;
 }
@@ -117,11 +115,11 @@ bool Character::SellItem(const std::string& itemName, int count, float ratio) {
                 << " 판매 완료! +" << goldEarned << " 골드 획득\n";
             return true;
         }
-
+		
     else {
         std::cout << itemName << " 아이템이 없습니다.\n";
         return false;
-
+    }
 }
 
 void Character::Heal(int amount) {

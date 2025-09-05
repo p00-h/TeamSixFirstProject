@@ -8,6 +8,7 @@ private:
 	int HP;
 	int Attack;
 	int MP;
+	int AttackBouns;
 
 public:
 	Monster(const std::string& N, int level);	// &문자열 복사하지 않고 직접 참조
@@ -20,6 +21,8 @@ public:
 	{ return Attack; }						//HP, Attack을 protected 사용시 cpp로 가야됨.
 	int GetMP() const
 	{ return MP; }
+	int GetAttackBouns()const 
+	{ return AttackBouns; }
 
 	void SetHP(int newHP)
 	{ HP = newHP; }

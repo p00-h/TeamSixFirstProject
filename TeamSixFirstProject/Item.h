@@ -16,6 +16,6 @@ public:
 	std::string GetName() const;
 	int GetPrice() const;
 	
-	virtual void ItemInfo() = 0;
+	virtual std::string ItemInfo() = 0;
 	virtual void Use(Character* character) = 0;
 };
