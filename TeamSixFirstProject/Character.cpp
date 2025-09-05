@@ -55,7 +55,6 @@ void Character::AddItem(Item* item, int count) {
         else {
             it->second.second += count;
         }
-        delete item;
     }
 
     std::cout << itemName << " x" << count << " 인벤토리에 추가되었습니다!\n";
