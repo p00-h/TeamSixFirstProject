@@ -169,11 +169,11 @@ void GameManager::StartNewGame() {
         // 메뉴 구성: 첫 전투 전 / 이후 분기
         int sel = 0;
         if (!didBattleOnce) {
-            sel = ArrowMenu({ "전투 시작", "나가기" }, player, "행동 선택");
+            sel = ArrowMenu({ "전투 시작", "타이틀 화면으로 나가기" }, player, "행동 선택");
             if (sel == 1) break; // 나가기
         }
         else {
-            sel = ArrowMenu({ "전투", "상점", "나가기" }, player, "행동 선택");
+            sel = ArrowMenu({ "전투", "상점", "타이틀 화면으로 나가기" }, player, "행동 선택");
             if (sel == 2) break; // 나가기
             if (sel == 1) {      // 상점
                 openShop(player);
@@ -210,8 +210,7 @@ void GameManager::StartNewGame() {
 
             ClearScreen();
             player.ShowStatus();
-            std::cout << (isLevelUp ? "레벨 업! " : "")
-                << "플레이어가 승리했습니다!\n";
+            std::cout << "플레이어가 승리했습니다! " << (isLevelUp ? "레벨 업! \n" : "\n");
 
             // 드랍템 (30%)
             if (RandRange(1, 100) <= 30) {
