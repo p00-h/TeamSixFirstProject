@@ -3,7 +3,8 @@
 #include "Character.h"
 #include "Monster.h"
 #include "DirectionManager.h"
-#include "vector"
+#include <vector>
+#include <windows.h>
 
 class Battle
 {
