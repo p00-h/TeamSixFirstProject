@@ -16,5 +16,4 @@ public:
 	int GetPrice() const;
 
 	virtual void Use(Character* character) = 0;
-	
 };

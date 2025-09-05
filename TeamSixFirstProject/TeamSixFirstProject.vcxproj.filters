@@ -1,127 +1,117 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="소스 파일\Item">
-      <UniqueIdentifier>{63a6228d-bedd-4fa6-8078-2bdd837b4f2b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Monster">
-      <UniqueIdentifier>{e6a0ea96-99ea-4c6e-949d-5e9eb2866614}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Item">
-      <UniqueIdentifier>{e65fb5a7-0b7f-4031-a6fb-f0a26c8146b6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\Monster">
-      <UniqueIdentifier>{50f39303-f5d9-498c-bbab-6761f86cafc4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\GameManage">
-      <UniqueIdentifier>{677caca4-5503-4bed-81ec-9cae5510a3fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="헤더 파일\GameManage">
-      <UniqueIdentifier>{43a5fc7c-b930-4cea-99fc-1786be180790}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Character">
-      <UniqueIdentifier>{2c5ebb85-3d2c-49c4-9a5f-f336d2952e64}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="TeamSixFirstProject.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackBoost.cpp">
-      <Filter>소스 파일\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="DefenseBoost.cpp">
-      <Filter>소스 파일\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthPotion.cpp">
-      <Filter>소스 파일\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="ManaPotion.cpp">
-      <Filter>소스 파일\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Golem.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Imp.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>소스 파일\GameManage</Filter>
-    </ClCompile>
-    <ClCompile Include="TItle.cpp">
-      <Filter>소스 파일\GameManage</Filter>
-    </ClCompile>
-    <ClCompile Include="Kobold.cpp">
-      <Filter>소스 파일\Monster</Filter>
-    </ClCompile>
     <ClCompile Include="Character.h">
-      <Filter>소스 파일\Character</Filter>
+      <Filter>Header Files</Filter>
     </ClCompile>
     <ClCompile Include="Character.cpp">
-      <Filter>소스 파일\Character</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
     <ClCompile Include="Shop.cpp">
-=======
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TeamSixFirstProject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AttackBoost.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="DefenseBoost.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="HealthPotion.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="ManaPotion.cpp">
+      <Filter>Source Files\Item</Filter>
+    </ClCompile>
     <ClCompile Include="Item.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>Source Files\Item</Filter>
     </ClCompile>
     <ClCompile Include="Battle.cpp">
->>>>>>> dev
-      <Filter>소스 파일</Filter>
+      <Filter>Source Files\GameManage</Filter>
+    </ClCompile>
+    <ClCompile Include="GameManager.cpp">
+      <Filter>Source Files\GameManage</Filter>
+    </ClCompile>
+    <ClCompile Include="TItle.cpp">
+      <Filter>Source Files\GameManage</Filter>
+    </ClCompile>
+    <ClCompile Include="Golem.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Imp.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Kobold.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Source Files\Monster</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
-      <Filter>헤더 파일\Item</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="DefenseBoost.h">
-      <Filter>헤더 파일\Item</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="HealthPotion.h">
-      <Filter>헤더 파일\Item</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="ManaPotion.h">
-      <Filter>헤더 파일\Item</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="Item.h">
-      <Filter>헤더 파일\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Golem.h">
-      <Filter>헤더 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Imp.h">
-      <Filter>헤더 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>헤더 파일\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>헤더 파일\GameManage</Filter>
-    </ClInclude>
-    <ClInclude Include="TItle.h">
-      <Filter>헤더 파일\GameManage</Filter>
-    </ClInclude>
-    <ClInclude Include="Kobold.h">
-      <Filter>헤더 파일\Monster</Filter>
+      <Filter>Header Files\Item</Filter>
     </ClInclude>
     <ClInclude Include="Battle.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>Header Files\GameManage</Filter>
     </ClInclude>
+    <ClInclude Include="GameManager.h">
+      <Filter>Header Files\GameManage</Filter>
+    </ClInclude>
+    <ClInclude Include="TItle.h">
+      <Filter>Header Files\GameManage</Filter>
+    </ClInclude>
+    <ClInclude Include="Golem.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Imp.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Kobold.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{bbc5fb23-72cd-42f1-aa57-c7a8587adbae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c4881d65-ab15-4822-b19c-fc9f8fd03b14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Item">
+      <UniqueIdentifier>{a0d1e07c-4e13-4105-8caf-91219a3831f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Monster">
+      <UniqueIdentifier>{a41fc62d-2f70-43c2-b608-5c74b21f6145}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GameManage">
+      <UniqueIdentifier>{73762a21-dea0-436c-8538-57012aae9f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Item">
+      <UniqueIdentifier>{70628fdd-6e57-42f7-a5d1-606c8cf48dd6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Monster">
+      <UniqueIdentifier>{e09525dd-7094-422d-b1f9-93cfe75a9a6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GameManage">
+      <UniqueIdentifier>{b3e8990a-815e-4cd4-9286-a901eb0a7a61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
