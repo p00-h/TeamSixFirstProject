@@ -8,4 +8,5 @@ public:
 	ManaPotion();
 	virtual void Use(Character* character) override;
 	virtual std::string ItemInfo() override;
+	virtual Item* Clone() const override;
 };
