@@ -14,3 +14,8 @@ std::string DefenseBoost::ItemInfo()
 {
 	return "방어력이 " + std::to_string(Value) + " 증가합니다.";
 }
+
+Item* DefenseBoost::Clone() const
+{
+	return new DefenseBoost(*this);
+}
