@@ -107,9 +107,7 @@ void Shop::ShowBuyMenu(Character* character)
         }
         else if (key == 13) 
         {
-           // cout << AvailableItems[itemSelected].first->GetName() << " ±¸¸Å!\n";
-           
-
+         
             BuyItem(AvailableItems[itemSelected], character);
 
             _getch(); // Àá±ñ ¸ØÃã
@@ -150,15 +148,7 @@ void Shop::ShowSellMenu(Character* character)
 
         system("cls");
         cout << "===== ¾ÆÀÌÅÛ ÆÇ¸Å =====" << endl;
-        /* for (int i = 0; i < Inventory.size(); i++)
-         {
-
-             if (i == itemSelected) cout << "> " << Inventory[0].first << endl;
-             else cout << "  " << endl;
-         }*/
-
-
-      
+ 
         for (int i =0; i < Inventory.size(); i++)
         {
             string itemName = Inventory[i].first->GetName();
@@ -179,7 +169,6 @@ void Shop::ShowSellMenu(Character* character)
         }
         else if (key == 13)
         {
-            // cout << AvailableItems[itemSelected].first->GetName() << " ±¸¸Å!\n";
 
             SellItem(Inventory[itemSelected], character);
 
@@ -206,9 +195,9 @@ void Shop::DisplayItems()
     }
 }
 
-void Shop::BuyItem(pair<Item*, int> item, Character* character)
+void Shop::BuyItem(pair<Item*, int>& item, Character* character)
 {
-    Item* buyItem = item.first;
+    Item* buyItem = item.first->Clone();
 
     if (item.second <= 0)
     {

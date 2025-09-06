@@ -19,7 +19,7 @@ public:
 	void DisplayItems();
 
 
-	void BuyItem(std::pair<Item*, int> item, Character* character);
+	void BuyItem(std::pair<Item*, int>& item, Character* character);
 	void SellItem(std::pair<Item*, int> item, Character* character);
 
 private:
