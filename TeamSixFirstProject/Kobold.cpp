@@ -33,3 +33,20 @@ void Kobold::TramCarRush()
 	int TramCarRushDamage = GetAttack() * 1.8;
 	cout << GetName() << "의 광차 러쉬! 대미지 : " << TramCarRushDamage << endl;
 }
+
+void Kobold::NormalAttack()
+{
+	int Dmg = GetAttack();
+	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
+	SetMP(GetMP() + 1);	//일반 공격할 때 마나+1
+}
+
+void Kobold::UseSkill()
+{
+	int Choice = rand() % 3;	//0~2 중 하나
+	if (Choice == 0) PickaxeAttack();
+	else if (Choice == 1)OreThrow();
+	else TramCarRush();
+
+	SetMP(0);	//스킬 사용 후 마나 초기화
+}

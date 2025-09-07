@@ -33,3 +33,20 @@ void Imp::IceBolt()
 	int IceBoltDamage = GetAttack() * 1.3;
 	cout << GetName() << "의 아이스 볼트! 대미지 : " << IceBoltDamage << endl;
 }
+
+void Imp::NormalAttack()
+{
+	int Dmg = GetAttack();
+	cout << GetName() << "의 일반 공격! 대미지: " << Dmg << endl;
+	SetMP(GetMP() + 1); //일반 공격할 때 마나+1
+}
+
+void Imp::UseSkill()
+{
+	int Choice = rand() % 3;	//0~2 중 하나
+	if (Choice == 0) Magic();
+	else if (Choice == 1) SpiralIce();
+	else IceBolt();
+
+	SetMP(0);	//스킬 사용 후 마나 초기화
+}

@@ -33,3 +33,20 @@ void Golem::SharpRock()
 	int SharpRockDamage = GetAttack() * 2.5;
 	cout << GetName() << "의 날카로운 바위 공격! 대미지 : " << SharpRockDamage << endl;
 }
+
+void Golem::NormalAttack()
+{
+	int Dmg = GetAttack();
+	cout << GetName() << "의 일반 공격! 대미지: " << Dmg << endl;
+	SetMP(GetMP() + 1);	//일반 공격할 때 마나 +1
+}
+
+void Golem::UseSkill()
+{
+	int Choice = rand() % 3;	//0~2 중 하나
+	if (Choice == 0) Stomp();
+	else if (Choice == 1) WindMill();
+	else SharpRock();
+
+	SetMP(0);	//스킬 사용 후 마나 초기화
+}

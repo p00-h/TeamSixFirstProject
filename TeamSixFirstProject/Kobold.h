@@ -13,4 +13,7 @@ class Kobold : public Monster
 		
 //private:
 //	int AttackBouns;	//레벨에 따른 보너스 정의
+
+		void NormalAttack() override;	//일반 공격
+		void UseSkill() override;	//랜덤 스킬
 };
