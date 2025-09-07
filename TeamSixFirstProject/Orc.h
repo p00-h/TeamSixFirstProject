@@ -13,6 +13,6 @@ class Orc : public Monster
 	//private:
 	//	int OrcBouns;		//레벨 보너스 대미지 사용 시
 		
-		void NormalAttack();	//일반 공격
-		void UseSkill();	//랜덤 스킬
+		void NormalAttack() override;	//일반 공격
+		void UseSkill() override;	//랜덤 스킬
 };
