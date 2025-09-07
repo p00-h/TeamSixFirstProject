@@ -14,15 +14,8 @@
 using namespace std;
 
 Shop::Shop()
-{
-    AvailableItems.push_back({ new AttackBoost(), 3 });
-    AvailableItems.push_back({ new DefenseBoost(), 3 });
-    AvailableItems.push_back({ new HealthPotion(), 3 });
-    AvailableItems.push_back({ new ManaPotion(), 3 });
-
-
-    cout << "상점에 오신 걸 환영합니다!" << endl;
-
+{ 
+    ResetItem();
 }
 
 Shop::~Shop()
@@ -35,8 +28,18 @@ Shop::~Shop()
 }
 
 
+void Shop::ResetItem()
+{
+    AvailableItems.push_back({ new AttackBoost(), 3 });
+    AvailableItems.push_back({ new DefenseBoost(), 3 });
+    AvailableItems.push_back({ new HealthPotion(), 3 });
+    AvailableItems.push_back({ new ManaPotion(), 3 });
+}
+
+
 void Shop::VisitShop(Character* character)
 {
+    cout << "상점에 오신 걸 환영합니다!" << endl;
 
     ShowShopMenu(character);
 
@@ -107,7 +110,9 @@ void Shop::ShowBuyMenu(Character* character)
         }
         else if (key == 13) 
         {
-         
+           // cout << AvailableItems[itemSelected].first->GetName() << " 구매!\n";
+           
+
             BuyItem(AvailableItems[itemSelected], character);
 
             _getch(); // 잠깐 멈춤
@@ -148,7 +153,15 @@ void Shop::ShowSellMenu(Character* character)
 
         system("cls");
         cout << "===== 아이템 판매 =====" << endl;
- 
+        /* for (int i = 0; i < Inventory.size(); i++)
+         {
+
+             if (i == itemSelected) cout << "> " << Inventory[0].first << endl;
+             else cout << "  " << endl;
+         }*/
+
+
+      
         for (int i =0; i < Inventory.size(); i++)
         {
             string itemName = Inventory[i].first->GetName();
@@ -169,6 +182,7 @@ void Shop::ShowSellMenu(Character* character)
         }
         else if (key == 13)
         {
+            // cout << AvailableItems[itemSelected].first->GetName() << " 구매!\n";
 
             SellItem(Inventory[itemSelected], character);
 
@@ -194,6 +208,8 @@ void Shop::DisplayItems()
         ++i;
     }
 }
+
+
 
 void Shop::BuyItem(pair<Item*, int>& item, Character* character)
 {

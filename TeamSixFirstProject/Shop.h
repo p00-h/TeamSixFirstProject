@@ -10,7 +10,7 @@ class Shop
 public:
 	Shop();
 	~Shop();
-
+	void ResetItem();
 
 	void VisitShop(Character* character);
 	void ShowShopMenu(Character* character);
@@ -18,6 +18,7 @@ public:
 	void ShowSellMenu(Character* character);
 	void DisplayItems();
 
+	
 
 	void BuyItem(std::pair<Item*, int>& item, Character* character);
 	void SellItem(std::pair<Item*, int> item, Character* character);
