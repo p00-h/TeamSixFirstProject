@@ -324,6 +324,11 @@ void GameManager::PlayLoop(Character& player) {
                 player.SetExp(player.GetExp() + 50);
                 player.AddGold(RandRange(10, 20));
 
+                int tempHP = player.GetMaxHp();
+				int tempAtk = player.GetAttack();
+				int tempDef = player.GetDefense();
+				int tempMp = player.GetMaxMp();
+
                 bool isLevelUp = false;
                 if (player.GetExp() >= 100) {
                     player.SetExp(0);
@@ -331,20 +336,33 @@ void GameManager::PlayLoop(Character& player) {
                     isLevelUp = true;
 
                     // 레벨업 시 스탯 증가
-                    player.SetMaxHp(player.GetMaxHp() + 20);
+                    player.SetMaxHp(player.GetMaxHp() + (player.GetLevel() * 20));
                     player.SetMaxMp(player.GetMaxMp() + 10);
-                    player.SetAttack(player.GetAttack() + 5);
+                    player.SetAttack(player.GetAttack() +(player.GetLevel() * 5));
                     player.SetDefense(player.GetDefense() + 3);
 
-                    // 레벨업 시 체력/마나 회복
                     player.SetHp(player.GetMaxHp());
                     player.SetMp(player.GetMaxMp());
+					player.SetAttack(player.GetAttack());
+					player.SetDefense(player.GetDefense());
                 }
 
                 ClearScreen();
                 player.ShowStatus();
-                std::cout << "플레이어가 승리했습니다! \n" 
-                    << (isLevelUp ? "레벨 업! HP +20, MP +10, 공격력 +5, 방어력 +3 \n" : "\n");
+            
+                if (isLevelUp == true) {
+                    cout << "플레이어가 승리했습니다! \n";
+                    cout << "레벨 업! +" <<  player.GetMaxHp() - tempHP
+                        << ", MP +10, 공격력 +" 
+                        << player.GetAttack() - tempAtk
+                        << ", 방어력 +3 \n";
+					cout << player.GetDefense() - tempDef  << "\n";
+					cout << player.GetMaxMp() - tempMp  << "\n";
+                }
+                else {
+                    cout << "플레이어가 승리했습니다! \n";
+                }
+
 
                 if (RandRange(1, 100) <= 30) {
                     int dropType = RandRange(1, 4);
