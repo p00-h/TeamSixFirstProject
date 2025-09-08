@@ -116,6 +116,9 @@
     <ClInclude Include="DragonArt.h">
       <Filter>Header Files\Monster</Filter>
     </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Header Files\GameManage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
