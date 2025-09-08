@@ -224,7 +224,7 @@ void Shop::ShowShopUI(vector<pair<Item*, int>> items, int selectnum,  Character*
 
     }
     cout << "-----------------------------------------" << endl;
-    cout << "[효과] " << AvailableItems[selectnum].first->ItemInfo() << endl;
+    cout << "[효과] " << items[selectnum].first->ItemInfo() << endl;
     //cout << "-----------------------------------------" << endl;
     cout << "보유 골드:" << character->GetGold() << "G \n";
     cout << "-----------------------------------------" << endl;
