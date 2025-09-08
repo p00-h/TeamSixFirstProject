@@ -105,27 +105,27 @@ void Shop::ShowBuyMenu(Character* character)
         cout << "-----------------------------------------" << endl;
         //setw(10);
         
-        
+        ShowShopUI(AvailableItems, itemSelected, character);
 
-        for (int i = 0; i < AvailableItems.size(); i++) 
-        {
-            string name = AvailableItems[i].first->GetName();
-            string info = AvailableItems[i].first->ItemInfo();
-            int price = AvailableItems[i].first->GetPrice();
-            int count = AvailableItems[i].second;
+        //for (int i = 0; i < AvailableItems.size(); i++) 
+        //{
+        //    string name = AvailableItems[i].first->GetName();
+        //    string info = AvailableItems[i].first->ItemInfo();
+        //    int price = AvailableItems[i].first->GetPrice();
+        //    int count = AvailableItems[i].second;
 
-            int space = (name.size());
+        //    int space = (name.size());
 
-           if (i == itemSelected) cout << "> " << name << setw(22- space) << "x"<< count << setw(10) << price << "G " << endl;
-           else cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+        //   if (i == itemSelected) cout << "> " << name << setw(22- space) << "x"<< count << setw(10) << price << "G " << endl;
+        //   else cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
 
-        }
-        cout << "-----------------------------------------" << endl;
-        cout <<"[효과] " << AvailableItems[itemSelected].first->ItemInfo() << endl;
+        //}
         //cout << "-----------------------------------------" << endl;
-        cout << "보유 골드:" << character->GetGold() << "G \n";
-        cout << "-----------------------------------------" << endl;
-        cout << "ESC: 상점 메뉴로 돌아가기\n";
+        //cout <<"[효과] " << AvailableItems[itemSelected].first->ItemInfo() << endl;
+        ////cout << "-----------------------------------------" << endl;
+        //cout << "보유 골드:" << character->GetGold() << "G \n";
+        //cout << "-----------------------------------------" << endl;
+        //cout << "ESC: 상점 메뉴로 돌아가기\n";
 
         int key = _getch();
         if (key == 224) 
@@ -175,18 +175,11 @@ void Shop::ShowSellMenu(Character* character)
 
 
         system("cls");
-        cout << "===== 아이템 판매 =====" << endl;
-      
-        for (int i =0; i < Inventory.size(); i++)
-        {
-            string itemName = Inventory[i].first->GetName();
-            int itemCount = Inventory[i].second;             
+        cout << "============= [아이템 판매] =============" << endl;
+        cout << "       아이템명       개수      가격 \n";
+        cout << "-----------------------------------------" << endl;
 
-           if(i == itemSelected) cout << "> " << itemName << " : " << itemCount << endl;
-           else  cout << "  " << itemName << " : " << itemCount << endl;
-        }
-
-        cout << "ESC: 상점 메뉴로 돌아가기\n";
+        ShowShopUI(Inventory, itemSelected, character, SellRatio);
 
         int key = _getch();
         if (key == 224)
@@ -197,8 +190,6 @@ void Shop::ShowSellMenu(Character* character)
         }
         else if (key == 13)
         {
-            // cout << AvailableItems[itemSelected].first->GetName() << " 구매!\n";
-
             SellItem(Inventory[itemSelected], character);
 
             _getch(); // 잠깐 멈춤
@@ -211,7 +202,28 @@ void Shop::ShowSellMenu(Character* character)
 
 }
 
+void Shop::ShowShopUI(vector<pair<Item*, int>> items, int selectnum,  Character* character, float priceratio)
+{
+    for (int i = 0; i < items.size(); i++)
+    {
+        string name = items[i].first->GetName();
+        string info = items[i].first->ItemInfo();
+        int price = items[i].first->GetPrice() * priceratio;
+        int count = items[i].second;
 
+        int space = (name.size());
+
+        if (i == selectnum) cout << "> " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+        else cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+
+    }
+    cout << "-----------------------------------------" << endl;
+    cout << "[효과] " << AvailableItems[selectnum].first->ItemInfo() << endl;
+    //cout << "-----------------------------------------" << endl;
+    cout << "보유 골드:" << character->GetGold() << "G \n";
+    cout << "-----------------------------------------" << endl;
+    cout << "ESC: 상점 메뉴로 돌아가기\n";
+}
 
 void Shop::DisplayItems()
 {
@@ -257,4 +269,6 @@ void Shop::SellItem(pair<Item*, int> item, Character* character)
     character->SellItem(name, 1, SellRatio);
 
 }
+
+
 

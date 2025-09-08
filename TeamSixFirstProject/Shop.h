@@ -28,4 +28,5 @@ private:
 
 	float SellRatio = 0.5f;
 
+	void ShowShopUI(std::vector<std::pair<Item*, int>> items, int selectnum, Character* character ,float priceratio = 1.f);
 };
