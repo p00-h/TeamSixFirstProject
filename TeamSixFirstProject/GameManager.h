@@ -14,6 +14,7 @@ public:
 private:
     void ClearScreen();
     void WaitForEnter();
+	void ShowGameRules();
 
     int  ShowMenu();        //타이틀 ↑↓ 선택 + Enter 확정
     void StartNewGame();

@@ -148,6 +148,8 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
 
 // 새 게임 시작
 void GameManager::StartNewGame() {
+    ShowGameRules();
+	WaitForEnter();
     ClearScreen();
     std::cout << "[TEXT RPG 시작]\n";
     std::cout << "* 닉네임을 입력해주세요: ";
@@ -259,4 +261,20 @@ void GameManager::Run() {
             break;
         }
     }
+}
+
+void GameManager::ShowGameRules() {
+    cout << "[게임 규칙 안내]\n";
+    cout << "* 플레이어는 전투를 통해 경험치를 얻고 레벨을 올릴 수 있습니다.\n";
+    cout << "* 15레벨에 도달하면 강력한 보스 몬스터 [드래곤]이 등장합니다.\n";
+    cout << "* 드래곤과의 결투에서 승리하면 게임은 엔딩을 맞이하게 됩니다.\n";
+    cout << "* 전투 중 행동은 3가지 중 하나를 선택할 수 있습니다.\n";
+    cout << "    - 공격: 몬스터에게 직접 공격을 가합니다.\n";
+    cout << "    - 아이템 사용: 인벤토리에서 아이템을 사용합니다.\n";
+    cout << "    - 도망가기: 전투에서 도망칠 수 있습니다.\n";
+    cout << "* 상점은 전투를 최소 1회 이상 진행해야 활성화됩니다.\n";
+    cout << "* 상점에서는 아이템 구매 및 판매가 가능합니다.\n";
+    cout << "    - 구매: 골드를 소모해 아이템을 획득합니다.\n";
+    cout << "    - 판매: 아이템을 판매하고 상점 구매가의 절반만큼의 골드를 획득합니다.\n\n";
+	cout << "게임을 시작하려면 엔터 키를 눌러주세요...\n";
 }
