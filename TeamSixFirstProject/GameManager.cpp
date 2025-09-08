@@ -6,6 +6,7 @@
 #include "Orc.h"
 #include "Slime.h"
 #include "Kobold.h"
+#include "Dragon.h"
 #include "Battle.h"
 #include "Shop.h"
 #include "HealthPotion.h"
@@ -81,20 +82,26 @@ int GameManager::ShowMenu() {
 // level에 따라 몬스터 생성
 Monster* GameManager::CreateMonster(int level)
 {
-	Monster* monster = nullptr;
+    Monster* monster = nullptr;
 
-    switch (RandRange(0, 4)) {
-    case 0: monster = new Golem(level); break;
-    case 1: monster = new Imp(level);    break;
-    case 2: monster = new Kobold(level); break;
-    case 3: monster = new Orc(level); break;
-    case 4: monster = new Slime(level); break;
+    if (level >= 15) {
+        monster = new Dragon(level);
+    }
+    else {
+        switch (RandRange(0, 4)) {
+        case 0: monster = new Golem(level); break;
+        case 1: monster = new Imp(level);    break;
+        case 2: monster = new Kobold(level); break;
+        case 3: monster = new Orc(level); break;
+        case 4: monster = new Slime(level); break;
+        }
     }
 
     const int hp = RandRange(level * 20, level * 30);
     const int atk = RandRange(level * 5, level * 10);
     monster->SetHP(hp);
     monster->SetAttack(atk);
+	
     return monster;
 }
 
@@ -182,10 +189,16 @@ void GameManager::StartNewGame() {
         // ===== 전투 시작 =====
         GameManager gm; 
         Monster* monster = gm.CreateMonster(player.GetLevel());
-
-        std::cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
-            << ", HP: " << monster->GetHP()
-            << ", Attack: " << monster->GetAttack() << "\n";
+        
+        if (player.GetLevel() >= 15) {
+            std::cout << "보스 몬스터 [드래곤]이 나타났습니다!"
+                << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
+        }
+        else {
+            std::cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
+                << ", HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
+        }
+        
 
         Battle battle;
         int isLive = battle.StartBattle(&player, monster); // 실제 전투 함수로 교체
@@ -193,38 +206,48 @@ void GameManager::StartNewGame() {
 
         // ===== 전투 결과 처리 =====
         if (isLive == 1) { // 승리
-            didBattleOnce = true;
-
-            player.SetExp(player.GetExp() + 50);
-            player.AddGold(RandRange(10, 20));
-
-            bool isLevelUp = false;
-            if (player.GetExp() >= 100) {
-                player.SetExp(0);
-                player.SetLevel(player.GetLevel() + 1);
-                isLevelUp = true;
+            if(player.GetLevel() >= 15 && monster->GetName() == "드래곤") {
+                ClearScreen();
+                player.ShowStatus();
+                std::cout << "플레이어가 드래곤을 물리치고 게임을 클리어했습니다! 축하합니다!\n";
+                keepPlaying = false;
+                WaitForEnter();
+                break;
             }
+            else {
+                didBattleOnce = true;
 
-            ClearScreen();
-            player.ShowStatus();
-            std::cout << "플레이어가 승리했습니다! " << (isLevelUp ? "레벨 업! \n" : "\n");
+                player.SetExp(player.GetExp() + 50);
+                player.AddGold(RandRange(10, 20));
 
-            // 드랍템 (30%)
-            if (RandRange(1, 100) <= 30) {
-                int dropType = RandRange(1, 4);
-                Item* dropped = nullptr;
-                switch (dropType) {
-                case 1: dropped = new HealthPotion();  break;
-                case 2: dropped = new ManaPotion();    break;
-                case 3: dropped = new AttackBoost();   break;
-                case 4: dropped = new DefenseBoost();  break;
+                bool isLevelUp = false;
+                if (player.GetExp() >= 100) {
+                    player.SetExp(0);
+                    player.SetLevel(player.GetLevel() + 1);
+                    isLevelUp = true;
                 }
-                player.AddItem(dropped);
-                std::cout << "\n[전리품 획득]\n";
-                player.ShowInventory();
+
+                ClearScreen();
+                player.ShowStatus();
+                std::cout << "플레이어가 승리했습니다! " << (isLevelUp ? "레벨 업! \n" : "\n");
+
+                // 드랍템 (30%)
+                if (RandRange(1, 100) <= 30) {
+                    int dropType = RandRange(1, 4);
+                    Item* dropped = nullptr;
+                    switch (dropType) {
+                    case 1: dropped = new HealthPotion();  break;
+                    case 2: dropped = new ManaPotion();    break;
+                    case 3: dropped = new AttackBoost();   break;
+                    case 4: dropped = new DefenseBoost();  break;
+                    }
+                    player.AddItem(dropped);
+                    std::cout << "\n[전리품 획득]\n";
+                    player.ShowInventory();
+                }
+                WaitForEnter();
+                ClearScreen();
             }
-            WaitForEnter();      
-            ClearScreen();       
         }
         else if (isLive == 2) { // 도망
             ClearScreen();
