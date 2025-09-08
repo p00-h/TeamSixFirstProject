@@ -23,6 +23,11 @@ Shop::Shop()
 
 Shop::~Shop()
 {
+    DeleteShopItem();
+}
+
+void Shop::DeleteShopItem()
+{
     for (auto& it : AvailableItems)
     {
         delete it.first;
@@ -30,9 +35,10 @@ Shop::~Shop()
     AvailableItems.clear();
 }
 
-
 void Shop::ResetItem()
 {
+    DeleteShopItem();
+
     AvailableItems.push_back({ new AttackBoost(), 3 });
     AvailableItems.push_back({ new DefenseBoost(), 3 });
     AvailableItems.push_back({ new HealthPotion(), 3 });
@@ -224,6 +230,7 @@ void Shop::ShowShopUI(vector<pair<Item*, int>> items, int selectnum,  Character*
     cout << "-----------------------------------------" << endl;
     cout << "ESC: 상점 메뉴로 돌아가기\n";
 }
+
 
 void Shop::DisplayItems()
 {
