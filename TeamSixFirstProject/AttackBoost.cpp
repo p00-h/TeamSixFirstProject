@@ -14,3 +14,8 @@ std::string AttackBoost::ItemInfo()
 {
 	return "공격력이 " + std::to_string(Value) + " 증가합니다.";
 }
+
+Item* AttackBoost::Clone() const
+{
+	return new AttackBoost(*this);
+}

@@ -1,8 +1,11 @@
-//#include <map>
+#include <map>
 #include <vector>
 #include <utility>
 #include <iostream>
 #include <conio.h>
+#include <iomanip>
+
+
 #include "Shop.h"
 #include "Character.h"
 #include "Item.h"
@@ -14,15 +17,8 @@
 using namespace std;
 
 Shop::Shop()
-{
-    AvailableItems.push_back({ new AttackBoost(), 3 });
-    AvailableItems.push_back({ new DefenseBoost(), 3 });
-    AvailableItems.push_back({ new HealthPotion(), 3 });
-    AvailableItems.push_back({ new ManaPotion(), 3 });
-
-
-    cout << "상점에 오신 걸 환영합니다!" << endl;
-
+{ 
+    ResetItem();
 }
 
 Shop::~Shop()
@@ -35,9 +31,17 @@ Shop::~Shop()
 }
 
 
+void Shop::ResetItem()
+{
+    AvailableItems.push_back({ new AttackBoost(), 3 });
+    AvailableItems.push_back({ new DefenseBoost(), 3 });
+    AvailableItems.push_back({ new HealthPotion(), 3 });
+    AvailableItems.push_back({ new ManaPotion(), 3 });
+}
+
+
 void Shop::VisitShop(Character* character)
 {
-
     ShowShopMenu(character);
 
 }
@@ -50,11 +54,19 @@ void Shop::ShowShopMenu(Character* character)
     while (true) 
     {
         system("cls");
-        cout << "===== 상점 =====\n";
+        cout << "============= [상점] =============" << endl;
+        cout << "상점 주인: 상점에 온걸 환영하네!\n           뭐가 필요하지? \n";
+        cout << "----------------------------------" << endl;
+        cout << "보유 골드:" << character->GetGold() << "G \n";
+        cout << "----------------------------------" << endl;
+
         for (int i = 0; i < 3; i++) {
             if (i == selected) cout << "> " << ShopOptions[i] << endl;
             else cout << "  " << ShopOptions[i] << endl;
         }
+
+        cout << "==================================" << endl;
+        
 
         int key = _getch();
         if (key == 224) 
@@ -66,16 +78,18 @@ void Shop::ShowShopMenu(Character* character)
         else if (key == 13) 
         { // 엔터
             if (ShopOptions[selected] == "아이템 구매") {
-                ShowBuyMenu(character); // 아이템 구매 메뉴 따로 함수로 분리
+                ShowBuyMenu(character); 
             }
             else if (ShopOptions[selected] == "아이템 판매") {
                 // 판매 메뉴 함수
-                ShowSellMenu(character);
+               ShowSellMenu(character);
             }
             else if (ShopOptions[selected] == "상점 나가기") {
                 break; // 상점 나가기
             }
         }
+
+        
     }
 }
 
@@ -86,14 +100,31 @@ void Shop::ShowBuyMenu(Character* character)
     while (true) 
     {
         system("cls");
-        cout << "===== 아이템 구매 =====\n";
+        cout << "============= [아이템 구매] =============" << endl;
+        cout << "       아이템명       재고      가격 \n";
+        cout << "-----------------------------------------" << endl;
+        //setw(10);
+        
+        
+
         for (int i = 0; i < AvailableItems.size(); i++) 
         {
             string name = AvailableItems[i].first->GetName();
             string info = AvailableItems[i].first->ItemInfo();
-            if (i == itemSelected) cout << "> " << name << "(" << info << ")" << " 재고:" << AvailableItems[i].second << endl;
-            else cout << "  " << name << "(" << info << ")" << " 재고:" << AvailableItems[i].second << endl;
+            int price = AvailableItems[i].first->GetPrice();
+            int count = AvailableItems[i].second;
+
+            int space = (name.size());
+
+           if (i == itemSelected) cout << "> " << name << setw(22- space) << "x"<< count << setw(10) << price << "G " << endl;
+           else cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+
         }
+        cout << "-----------------------------------------" << endl;
+        cout <<"[효과] " << AvailableItems[itemSelected].first->ItemInfo() << endl;
+        //cout << "-----------------------------------------" << endl;
+        cout << "보유 골드:" << character->GetGold() << "G \n";
+        cout << "-----------------------------------------" << endl;
         cout << "ESC: 상점 메뉴로 돌아가기\n";
 
         int key = _getch();
@@ -105,9 +136,6 @@ void Shop::ShowBuyMenu(Character* character)
         }
         else if (key == 13) 
         {
-           // cout << AvailableItems[itemSelected].first->GetName() << " 구매!\n";
-           
-
             BuyItem(AvailableItems[itemSelected], character);
 
             _getch(); // 잠깐 멈춤
@@ -121,9 +149,68 @@ void Shop::ShowBuyMenu(Character* character)
 
 void Shop::ShowSellMenu(Character* character)
 {
+    int itemSelected = 0;
 
+  
+
+    while (true)
+    {
+        map<string, pair<Item*, int>> InventoryMap = character->GetInventory();
+
+        vector<pair<Item*, int>> Inventory;
+
+        for (auto& it : InventoryMap)
+        {
+            Inventory.push_back(it.second);
+        }
+
+        if (Inventory.empty())
+        {
+            cout << "인벤토리가 비어있습니다." << endl;
+
+            _getch();
+
+            return;
+        }
+
+
+        system("cls");
+        cout << "===== 아이템 판매 =====" << endl;
+      
+        for (int i =0; i < Inventory.size(); i++)
+        {
+            string itemName = Inventory[i].first->GetName();
+            int itemCount = Inventory[i].second;             
+
+           if(i == itemSelected) cout << "> " << itemName << " : " << itemCount << endl;
+           else  cout << "  " << itemName << " : " << itemCount << endl;
+        }
+
+        cout << "ESC: 상점 메뉴로 돌아가기\n";
+
+        int key = _getch();
+        if (key == 224)
+        {
+            key = _getch();
+            if (key == 72 && itemSelected > 0) itemSelected--; // ↑
+            if (key == 80 && itemSelected < Inventory.size() - 1) itemSelected++; // ↓
+        }
+        else if (key == 13)
+        {
+            // cout << AvailableItems[itemSelected].first->GetName() << " 구매!\n";
+
+            SellItem(Inventory[itemSelected], character);
+
+            _getch(); // 잠깐 멈춤
+        }
+        else if (key == 27)
+        { // ESC
+            break; // 아이템 구매 메뉴 종료
+        }
+    }
 
 }
+
 
 
 void Shop::DisplayItems()
@@ -141,7 +228,7 @@ void Shop::DisplayItems()
 
 void Shop::BuyItem(pair<Item*, int>& item, Character* character)
 {
-    Item* buyItem = item.first;
+    Item* buyItem = item.first->Clone();
 
     if (item.second <= 0)
     {
@@ -154,7 +241,7 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
     {
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
 
-        character->AddItem(buyItem);
+        character->AddItem(buyItem,1);
 
         item.second--; 
 
@@ -162,14 +249,12 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
     }
 }
 
-
-
-
-void Shop::SellItem(std::pair<Item*, int>& item, Character* character)
+void Shop::SellItem(pair<Item*, int> item, Character* character)
 {
-    item.first->GetName();
+    string name = item.first->GetName();
+    
 
-    character->SellItem(item.first->GetName(), 1, SellRatio);
+    character->SellItem(name, 1, SellRatio);
 
 }
 
