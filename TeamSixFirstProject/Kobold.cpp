@@ -38,7 +38,7 @@ void Kobold::NormalAttack()
 {
 	int Dmg = GetAttack();
 	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
-	SetMP(GetMP() + 1);	//일반 공격할 때 마나+1
+	//SetMP(GetMP() + 1);	//일반 공격할 때 마나+1
 }
 
 void Kobold::UseSkill()
@@ -48,5 +48,5 @@ void Kobold::UseSkill()
 	else if (Choice == 1)OreThrow();
 	else TramCarRush();
 
-	SetMP(0);	//스킬 사용 후 마나 초기화
+	//SetMP(0);	//스킬 사용 후 마나 초기화
 }

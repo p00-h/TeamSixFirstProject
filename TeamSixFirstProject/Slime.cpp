@@ -34,7 +34,7 @@ void Slime::NormalAttack()
 {
 	int Dmg = GetAttack();
 	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
-	SetMP(GetMP() + 1);
+	//SetMP(GetMP() + 1);
 }
 
 void Slime::UseSkill()
@@ -44,5 +44,5 @@ void Slime::UseSkill()
 	else if (Choice == 1) MucusSpit();
 	else JumpAttack();
 
-	SetMP(0);
+	//SetMP(0);
 }

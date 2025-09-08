@@ -34,7 +34,7 @@ void Orc::NormalAttack()
 {
 	int Dmg = GetAttack();
 	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
-	SetMP(GetMP() + 1);	//공격시 마나+1
+	//SetMP(GetMP() + 1);	//공격시 마나+1
 }
 
 void Orc::UseSkill()
@@ -44,5 +44,5 @@ void Orc::UseSkill()
 	else if (Choice == 1) ClubAttack();
 	else GroundShaking();
 
-	SetMP(0);	//마나 초기화
+	//SetMP(0);	//마나 초기화
 }
