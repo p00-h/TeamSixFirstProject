@@ -4,18 +4,18 @@
 
 ManaPotion::ManaPotion() : Item("마나 회복 포션",5, 10, 0) {}
 
-void ManaPotion::Use(Character* character)
+void ManaPotion::Use(Character* character) // 아이템 사용
 {
 	character->SetMp(character->GetMp() + Value);
 	std::cout << character->GetName() << "의 마나가 " << Value << " 회복 됐습니다." << std::endl;
 }
 
-std::string ManaPotion::ItemInfo()
+std::string ManaPotion::ItemInfo() const // 아이템 정보
 {
 	return "마나를 " + std::to_string(Value) + " 회복합니다.";
 }
 
-Item* ManaPotion::Clone() const
+Item* ManaPotion::Clone() const // 아이템 복제
 {
 	return new ManaPotion(*this);
 }
