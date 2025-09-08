@@ -2,7 +2,7 @@
 #include "Character.h"
 #include <iostream>
 
-HealthPotion::HealthPotion() : Item("체력 회복 포션", 5, 50) {}
+HealthPotion::HealthPotion() : Item("체력 회복 포션", 5, 50, 0) {}
 
 void HealthPotion::Use(Character* character)
 {
