@@ -13,15 +13,8 @@ public:
 	void ResetItem();
 
 	void VisitShop(Character* character);
-	void ShowShopMenu(Character* character);
-	void ShowBuyMenu(Character* character);
-	void ShowSellMenu(Character* character);
-	void DisplayItems();
-
 	
-
-	void BuyItem(std::pair<Item*, int>& item, Character* character);
-	void SellItem(std::pair<Item*, int> item, Character* character);
+	void DisplayItems();
 
 private:
 	std::vector<std::pair<Item*, int>> AvailableItems;
@@ -30,4 +23,11 @@ private:
 
 	void ShowShopUI(std::vector<std::pair<Item*, int>> items, int selectnum, Character* character ,float priceratio = 1.f);
 	void DeleteShopItem();
+
+	void ShowShopMenu(Character* character);
+	void ShowBuyMenu(Character* character);
+	void ShowSellMenu(Character* character);
+
+	void BuyItem(std::pair<Item*, int>& item, Character* character);
+	void SellItem(std::pair<Item*, int> item, Character* character);
 };
