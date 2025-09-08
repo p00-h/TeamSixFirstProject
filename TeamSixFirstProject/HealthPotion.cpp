@@ -6,8 +6,16 @@ HealthPotion::HealthPotion() : Item("체력 회복 포션", 5, 50, 0) {}
 
 void HealthPotion::Use(Character* character) // 아이템 사용
 {
-	character->SetHp(character->GetHp() + Value);
-	std::cout << character->GetName() << "의 체력이 " << Value << " 회복 됐습니다." << std::endl;
+	if (character->GetHp() >= character->GetMaxHp())
+	{
+		ItemSound();
+		character->SetHp(character->GetHp() + Value);
+		std::cout << character->GetName() << "의 체력이 " << Value << " 회복 됐습니다." << std::endl;
+	}
+	else
+	{
+		std::cout << "이미 체력이 가득 찼습니다." << std::endl;
+	}
 }
 
 std::string HealthPotion::ItemInfo() const // 아이템 정보
