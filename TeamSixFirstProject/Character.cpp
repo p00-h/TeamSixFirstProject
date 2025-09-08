@@ -70,7 +70,6 @@ bool Character::RemoveItem(const std::string& itemName, int count) {
                 delete it->second.first;
                 Inventory.erase(it);
             }
-            std::cout << itemName << " x" << count << " 제거했습니다.\n";
             return true;
         }
     }

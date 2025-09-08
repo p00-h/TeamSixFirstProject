@@ -33,7 +33,7 @@ static vector<string> SplitLines(const string& block) {
     return out;
 }
 
-// ==== ASCII 아트 (RPG GAME) ====
+// ==== ASCII 아트 ====
 static const string BANNER_EDGE = R"(
 
  _____  _____   ___  ___  ___        _____  _____ __   __
