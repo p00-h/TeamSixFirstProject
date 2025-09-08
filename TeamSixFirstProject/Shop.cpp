@@ -179,6 +179,11 @@ void Shop::ShowSellMenu(Character* character)
             return;
         }
 
+        if (Inventory.size() <= itemSelected)
+        {
+            itemSelected = 0;
+        }
+
 
         system("cls");
         cout << "============= [아이템 판매] =============" << endl;
