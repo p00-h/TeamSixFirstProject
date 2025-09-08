@@ -29,3 +29,20 @@ void Slime::JumpAttack()
 	int JumpAttackDamage = GetAttack() * 1.4;
 	cout << GetName() << "의 점프 공격, 대미지 : " << JumpAttackDamage << endl;
 }
+
+void Slime::NormalAttack()
+{
+	int Dmg = GetAttack();
+	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
+	//SetMP(GetMP() + 1);
+}
+
+void Slime::UseSkill()
+{
+	int Choice = rand() % 3;
+	if (Choice == 0) StickyBall();
+	else if (Choice == 1) MucusSpit();
+	else JumpAttack();
+
+	//SetMP(0);
+}
