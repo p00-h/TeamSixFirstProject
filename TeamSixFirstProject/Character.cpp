@@ -20,8 +20,8 @@ void Character::ShowStatus() const {
     std::cout << "이름: " << Name << "\n";
     std::cout << "레벨: " << Level << "\n";
     std::cout << "경험치: " << Exp << "\n";
-    std::cout << "체력: " << Hp << "\n";
-    std::cout << "마나: " << Mp << "\n";
+    std::cout << "체력: " << Hp << " / " << MaxHp << "\n";
+    std::cout << "마나: " << Mp << " / " << MaxMp << "\n";
     std::cout << "공격력: " << Attack << "\n";
     std::cout << "방어력: " << Defense << "\n";
     std::cout << "골드: " << Gold << "\n";
@@ -143,4 +143,26 @@ void Character::IncreaseAttack(int amount) {
 void Character::IncreaseDefense(int amount) {
     Defense += amount;
     std::cout << "방어력이 " << amount << " 증가했습니다. (현재 방어력: " << Defense << ")\n";
+}
+
+void Character::ApplyLevelUp() {
+    Level += 1;
+    // 증가량은 한곳에 고정
+    int HpUp = Level * 20;
+    int MpUp = 10;
+    int AtkUp = Level * 5;
+    int DefUp = 3;
+
+    SetMaxHp(MaxHp + HpUp);
+    SetMaxMp(MaxMp + MpUp);
+    SetAttack(Attack + AtkUp);
+    SetDefense(Defense + DefUp);
+
+    SetHp(MaxHp);
+    SetMp(MaxMp);
+
+    std::cout << "[LVLUP] +HP " << HpUp
+        << ", +MP " << MpUp
+        << ", +ATK " << AtkUp
+        << ", +DEF " << DefUp << "\n";
 }
