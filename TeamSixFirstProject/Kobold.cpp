@@ -3,7 +3,7 @@
 using namespace std;
 
 Kobold::Kobold(int level)
-	:Monster("Kobold", level)
+	:Monster("코볼트", level)
 {														//Monster.h의 HP와 Attack을 private를 유지하면서 수정 가능
 	SetHP(GetHP() + 10);
 	SetAttack(GetAttack() + 2);
