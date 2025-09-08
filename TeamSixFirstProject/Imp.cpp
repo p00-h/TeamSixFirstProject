@@ -3,7 +3,7 @@
 using namespace std;
 
 Imp::Imp(int level)
-	:Monster("Imp", level)
+	:Monster("임프", level)
 {													//Monster.h의 HP와 Attack을 private를 유지하면서 수정 가능
 	SetHP(GetHP() + 5);
 	SetAttack(GetAttack() + 4);
