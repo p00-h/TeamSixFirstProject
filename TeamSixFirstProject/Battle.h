@@ -5,6 +5,7 @@
 #include "DirectionManager.h"
 #include <vector>
 #include <windows.h>
+#include <queue>
 
 class Battle
 {
