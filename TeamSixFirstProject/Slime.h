@@ -12,4 +12,6 @@ class Slime : public Monster
 
 	//private:
 	//	int SlimeBouns;	//레벨 보너스 대미지 사용 시
+		void NormalAttack() override;
+		void UseSkill() override;
 };

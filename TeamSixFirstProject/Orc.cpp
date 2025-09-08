@@ -29,3 +29,20 @@ void Orc::GroundShaking()
 	int GroundShakingDamage = GetAttack() * 2;
 	cout << GetName() << "의 땅울림!! 대미지 : " << GroundShakingDamage << endl;
 }
+
+void Orc::NormalAttack()
+{
+	int Dmg = GetAttack();
+	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
+	//SetMP(GetMP() + 1);	//공격시 마나+1
+}
+
+void Orc::UseSkill()
+{
+	int Choice = rand() % 3;
+	if (Choice == 0)  BellyFatAttack();
+	else if (Choice == 1) ClubAttack();
+	else GroundShaking();
+
+	//SetMP(0);	//마나 초기화
+}

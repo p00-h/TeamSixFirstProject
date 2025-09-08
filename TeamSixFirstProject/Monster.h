@@ -1,5 +1,7 @@
 #pragma once
+#include <iostream>
 #include <string>
+
 
 class Monster
 {
@@ -33,4 +35,10 @@ public:
 
 	void TakeDamage(int dmg);	//주는 대미지 Monster.cpp  줄13 구현
 	bool IsDead() const;	// Monster.cpp 줄 18번 구현
+
+	//다형성 가상 함수
+	virtual void NormalAttack() = 0;
+	virtual void UseSkill() = 0;
+
+	virtual ~Monster() {}
 };
