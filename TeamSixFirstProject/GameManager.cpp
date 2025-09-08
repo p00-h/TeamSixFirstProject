@@ -99,7 +99,7 @@ Monster* GameManager::CreateMonster(int level)
     return monster;
 }
 
-void GameManager::openShop(Character& player)
+void GameManager::OpenShop(Character& player)
 {
     Shop shop;
     shop.VisitShop(&player);
@@ -176,7 +176,7 @@ void GameManager::StartNewGame() {
             sel = ArrowMenu({ "전투", "상점", "타이틀 화면으로 나가기" }, player, "행동 선택");
             if (sel == 2) break; // 나가기
             if (sel == 1) {      // 상점
-                openShop(player);
+                OpenShop(player);
                 continue;
             }
             // sel == 0 -> 전투
