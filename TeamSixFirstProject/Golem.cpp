@@ -3,7 +3,7 @@
 using namespace std;
 
 Golem::Golem(int level)
-	:Monster("Golem", level)
+	:Monster("골렘", level)
 {												//Monster.h의 HP와 Attack을 private를 유지하면서 수정 가능
 	SetHP(GetHP()+50);	
 	SetAttack(GetAttack() + 15);

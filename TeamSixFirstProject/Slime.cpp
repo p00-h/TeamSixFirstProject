@@ -3,7 +3,7 @@
 using namespace std;
 
 Slime::Slime(int level)
-	:Monster("Slime", level)
+	:Monster("ΩΩ∂Û¿”", level)
 {
 	SetHP(GetHP() + 8);
 	SetAttack(GetAttack() + 5);

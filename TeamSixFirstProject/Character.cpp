@@ -1,8 +1,11 @@
 #include "Character.h"
 
-Character::Character(const std::string& name)
-    : Name(name), Level(1), Exp(0), Hp(200), Mp(100),
-    Attack(30), Defense(20), Gold(500) { // 기본 스탯 설정
+Character::Character(const std::string& name) // 초기 스탯 설정
+    : Name(name), Level(1), Exp(0),
+    MaxHp(100), Hp(100),
+    MaxMp(50), Mp(50),
+    Attack(10), Defense(5), Gold(100)
+{
 }
 
 Character::~Character() {
@@ -70,7 +73,6 @@ bool Character::RemoveItem(const std::string& itemName, int count) {
                 delete it->second.first;
                 Inventory.erase(it);
             }
-            std::cout << itemName << " x" << count << " 제거했습니다.\n";
             return true;
         }
     }
