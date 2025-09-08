@@ -326,6 +326,11 @@ void GameManager::PlayLoop(Character& player) {
                     player.SetExp(0);
                     player.SetLevel(player.GetLevel() + 1);
                     isLevelUp = true;
+
+                    player.SetHp(player.GetHp() + 20); // 레벨업 시 스탯 증가
+                    player.SetMp(player.GetMp() + 10);
+                    player.SetAttack(player.GetAttack() + 5);
+                    player.SetDefense(player.GetDefense() + 3);
                 }
 
                 ClearScreen();
