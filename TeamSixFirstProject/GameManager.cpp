@@ -13,6 +13,7 @@
 #include "AttackBoost.h"
 #include "DefenseBoost.h"
 #include "ManaPotion.h"
+#include "DragonArt.h"
 
 
 #include <iostream>
@@ -285,6 +286,7 @@ void GameManager::PlayLoop(Character& player) {
             }
             if (sel == 1) {
                 OpenShop(player);
+                didBattleOnce = false;
                 continue;
             }
         }
@@ -294,8 +296,11 @@ void GameManager::PlayLoop(Character& player) {
         Monster* monster = gm.CreateMonster(player.GetLevel());
 
         if (player.GetLevel() >= 10) {
+            ClearScreen();
             std::cout << "보스 몬스터 [드래곤]이 나타났습니다!"
                 << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
+            PrintDragonArt();
+			WaitForEnter();
         }
         else {
             std::cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
@@ -308,10 +313,8 @@ void GameManager::PlayLoop(Character& player) {
         if (isLive == 1) { // 승리
             if (player.GetLevel() >= 10 && monster->GetName() == "드래곤") {
                 ClearScreen();
-                player.ShowStatus();
-                std::cout << "플레이어가 드래곤을 물리치고 게임을 클리어했습니다! 축하합니다!\n";
+				PrintTheEnd();
                 keepPlaying = false;
-                WaitForEnter();
                 delete monster;
                 break;
             }
@@ -340,7 +343,8 @@ void GameManager::PlayLoop(Character& player) {
 
                 ClearScreen();
                 player.ShowStatus();
-                std::cout << "플레이어가 승리했습니다! " << (isLevelUp ? "레벨 업! \n" : "\n");
+                std::cout << "플레이어가 승리했습니다! \n" 
+                    << (isLevelUp ? "레벨 업! HP +20, MP +10, 공격력 +5, 방어력 +3 \n" : "\n");
 
                 if (RandRange(1, 100) <= 30) {
                     int dropType = RandRange(1, 4);
@@ -370,7 +374,7 @@ void GameManager::PlayLoop(Character& player) {
         else { // 패배
             ClearScreen();
             player.ShowStatus();
-            std::cout << "플레이어가 패배했습니다.\n";
+            PrintGameover();
             WaitForEnter();
             ClearScreen();
             keepPlaying = false;
