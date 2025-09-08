@@ -32,6 +32,7 @@ public:
     void ShowInventory() const;
     bool UseItem(const std::string& itemName);
     bool SellItem(const std::string& itemName, int count, float ratio = -1.0f);
+    void ApplyLevelUp();
 
 	// 인벤토리 기능
     const std::map<std::string, std::pair<Item*, int>>& GetInventory() const {

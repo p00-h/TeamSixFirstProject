@@ -332,19 +332,7 @@ void GameManager::PlayLoop(Character& player) {
                 bool isLevelUp = false;
                 if (player.GetExp() >= 100) {
                     player.SetExp(0);
-                    player.SetLevel(player.GetLevel() + 1);
                     isLevelUp = true;
-
-                    // 레벨업 시 스탯 증가
-                    player.SetMaxHp(player.GetMaxHp() + (player.GetLevel() * 20));
-                    player.SetMaxMp(player.GetMaxMp() + 10);
-                    player.SetAttack(player.GetAttack() +(player.GetLevel() * 5));
-                    player.SetDefense(player.GetDefense() + 3);
-
-                    player.SetHp(player.GetMaxHp());
-                    player.SetMp(player.GetMaxMp());
-					player.SetAttack(player.GetAttack());
-					player.SetDefense(player.GetDefense());
                 }
 
                 ClearScreen();
@@ -352,12 +340,7 @@ void GameManager::PlayLoop(Character& player) {
             
                 if (isLevelUp == true) {
                     cout << "플레이어가 승리했습니다! \n";
-                    cout << "레벨 업! +" <<  player.GetMaxHp() - tempHP
-                        << ", MP +10, 공격력 +" 
-                        << player.GetAttack() - tempAtk
-                        << ", 방어력 +3 \n";
-					cout << player.GetDefense() - tempDef  << "\n";
-					cout << player.GetMaxMp() - tempMp  << "\n";
+                    player.ApplyLevelUp();
                 }
                 else {
                     cout << "플레이어가 승리했습니다! \n";
