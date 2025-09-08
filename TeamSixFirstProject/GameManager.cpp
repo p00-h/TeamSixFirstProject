@@ -46,18 +46,17 @@ void GameManager::WaitForEnter() {
 
 // 화살표 ↑↓로 이동하고 Enter로 확정하는 메뉴
 int GameManager::ShowMenu() {
-    const char* items[] = { "게임 시작하기", "종료" };
+    const char* items[] = { "게임 시작하기", "    게임 종료" };
     const int count = 2;
     int sel = 0;
 
     while (true) {
         ClearScreen();
         ShowTitle(); // 타이틀 아트 출력
-        cout << "\n==== 메뉴 ====\n\n";
 
         for (int i = 0; i < count; ++i) {
-            if (i == sel) cout << "> " << items[i] << " <\n";
-            else          cout << "  " << items[i] << "\n";
+            if (i == sel) cout << "                                           -> " << items[i] << "\n";
+            else          cout << "                                              " << items[i] << "\n";
         }
 
         int key = _getch();
@@ -99,24 +98,19 @@ Monster* GameManager::CreateMonster(int level)
     return monster;
 }
 
-void GameManager::openShop(Character& player)
+void GameManager::OpenShop(Character& player)
 {
     Shop shop;
     shop.VisitShop(&player);
 }
 
-int GameManager::ArrowMenu(const std::vector<std::string>& items, const Character& player, const char* title)
+int GameManager::ArrowMenu(const std::vector<std::string>& items, const Character& player)
 {
     int sel = 0;
     const int n = static_cast<int>(items.size());
 
     while (true) {
         ClearScreen();
-
-        // 상단 타이틀(선택)
-        if (title && *title) {
-            std::cout << "==== " << title << " ====\n\n";
-        }
 
         // 상태/인벤토리 고정 표시
         player.ShowStatus();
@@ -125,10 +119,10 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
         std::cout << "\n";
 
         // 메뉴 렌더링
-        std::cout << "---- 선택 ----\n";
+        std::cout << "========================\n";
         for (int i = 0; i < n; ++i) {
-            if (i == sel) std::cout << "> " << items[i] << " <\n";
-            else          std::cout << "  " << items[i] << "\n";
+            if (i == sel) std::cout << "                 -> " << items[i] << "\n";
+            else          std::cout << "                    " << items[i] << "\n";
         }
 
         // 입력 처리
@@ -169,14 +163,14 @@ void GameManager::StartNewGame() {
         // 메뉴 구성: 첫 전투 전 / 이후 분기
         int sel = 0;
         if (!didBattleOnce) {
-            sel = ArrowMenu({ "전투 시작", "타이틀 화면으로 나가기" }, player, "행동 선택");
+            sel = ArrowMenu({ "전투", "종료" }, player);
             if (sel == 1) break; // 나가기
         }
         else {
-            sel = ArrowMenu({ "전투", "상점", "타이틀 화면으로 나가기" }, player, "행동 선택");
+            sel = ArrowMenu({ "전투", "상점", "종료" }, player);
             if (sel == 2) break; // 나가기
             if (sel == 1) {      // 상점
-                openShop(player);
+                OpenShop(player);
                 continue;
             }
             // sel == 0 -> 전투

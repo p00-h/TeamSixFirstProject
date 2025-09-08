@@ -2,7 +2,7 @@
 #include "Character.h"
 #include <iostream>
 
-DefenseBoost::DefenseBoost() : Item("방어력 증가 포션", 15, 10) {}
+DefenseBoost::DefenseBoost() : Item("방어력 증가 포션", 15, 10, 3) {}
 
 void DefenseBoost::Use(Character* character)
 {
@@ -18,4 +18,13 @@ std::string DefenseBoost::ItemInfo()
 Item* DefenseBoost::Clone() const
 {
 	return new DefenseBoost(*this);
+}
+
+void DefenseBoost::ExpireEffect(Character* character)
+{
+	if (Turn <= 0)
+	{
+		character->SetDefense(character->GetDefense() - Value);
+		std::cout << Name << "의 효과가 끝났습니다." << std::endl;
+	}
 }

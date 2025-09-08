@@ -41,11 +41,13 @@ bool Character::SpendGold(int amount) {
 
 void Character::AddItem(Item* item, int count) {
     if (!item) return;
-    std::string itemName = item->GetName();
 
+    std::string itemName = item->GetName();
     auto it = Inventory.find(itemName);
+
     if (it == Inventory.end()) {
-        Inventory[itemName] = { item, count };
+        Inventory[itemName] = { item->Clone(), count };
+        std::cout << itemName << " x" << count << " 인벤토리에 추가되었습니다!\n";
     }
     else {
         if (it->second.second + count > 99) {
@@ -57,8 +59,6 @@ void Character::AddItem(Item* item, int count) {
         }
         delete item;
     }
-
-    std::cout << itemName << " x" << count << " 인벤토리에 추가되었습니다!\n";
 }
 
 bool Character::RemoveItem(const std::string& itemName, int count) {
