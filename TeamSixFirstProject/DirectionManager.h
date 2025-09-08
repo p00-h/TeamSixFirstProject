@@ -13,5 +13,6 @@ public:
 #define RIGHT 77
 #define LEFT 75
 #define ENTER 13
+#define ESC 27
 	int Direction();
 };
