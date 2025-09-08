@@ -10,6 +10,7 @@ void DefenseBoost::Use(Character* character) // 아이템 사용
 {
 	if (Turn <= 0) // 아이템 효과 중첩 방지
 	{
+		ItemSound();
 		Turn = 3;
 		character->SetDefense(character->GetDefense() + Value);
 		cout << character->GetName() << "의 방어력이 " << Turn << "턴 동안 " << Value << " 증가합니다." << endl;
