@@ -131,6 +131,7 @@
     <ClCompile Include="DirectionManager.cpp" />
     <ClCompile Include="Dragon.cpp" />
     <ClCompile Include="DragonArt.cpp" />
+    <ClCompile Include="GolemArt.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="DirectionManager.h" />
     <ClInclude Include="Dragon.h" />
     <ClInclude Include="DragonArt.h" />
+    <ClInclude Include="GolemArt.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
     <ClCompile Include="Golem.cpp" />
