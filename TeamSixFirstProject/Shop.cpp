@@ -3,7 +3,9 @@
 #include <utility>
 #include <iostream>
 #include <conio.h>
-#include <iomanip>
+#include <iomanip> //setw
+#include <Windows.h>
+#include <mmsystem.h>
 
 
 #include "Shop.h"
@@ -13,6 +15,9 @@
 #include "DefenseBoost.h"
 #include "HealthPotion.h"
 #include "ManaPotion.h"
+
+#pragma comment(lib,"winmm.lib")
+
 
 using namespace std;
 
@@ -87,7 +92,6 @@ void Shop::ShowShopMenu(Character* character)
                 ShowBuyMenu(character); 
             }
             else if (ShopOptions[selected] == "아이템 판매") {
-                // 판매 메뉴 함수
                ShowSellMenu(character);
             }
             else if (ShopOptions[selected] == "상점 나가기") {
@@ -113,26 +117,6 @@ void Shop::ShowBuyMenu(Character* character)
         
         ShowShopUI(AvailableItems, itemSelected, character);
 
-        //for (int i = 0; i < AvailableItems.size(); i++) 
-        //{
-        //    string name = AvailableItems[i].first->GetName();
-        //    string info = AvailableItems[i].first->ItemInfo();
-        //    int price = AvailableItems[i].first->GetPrice();
-        //    int count = AvailableItems[i].second;
-
-        //    int space = (name.size());
-
-        //   if (i == itemSelected) cout << "> " << name << setw(22- space) << "x"<< count << setw(10) << price << "G " << endl;
-        //   else cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
-
-        //}
-        //cout << "-----------------------------------------" << endl;
-        //cout <<"[효과] " << AvailableItems[itemSelected].first->ItemInfo() << endl;
-        ////cout << "-----------------------------------------" << endl;
-        //cout << "보유 골드:" << character->GetGold() << "G \n";
-        //cout << "-----------------------------------------" << endl;
-        //cout << "ESC: 상점 메뉴로 돌아가기\n";
-
         int key = _getch();
         if (key == 224) 
         {
@@ -156,8 +140,6 @@ void Shop::ShowBuyMenu(Character* character)
 void Shop::ShowSellMenu(Character* character)
 {
     int itemSelected = 0;
-
-  
 
     while (true)
     {
@@ -265,6 +247,8 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
     {
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
 
+        PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+
         character->AddItem(buyItem,1);
 
         item.second--; 
@@ -277,6 +261,7 @@ void Shop::SellItem(pair<Item*, int> item, Character* character)
 {
     string name = item.first->GetName();
     
+    PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
 
     character->SellItem(name, 1, SellRatio);
 

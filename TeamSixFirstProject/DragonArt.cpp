@@ -16,6 +16,8 @@ const std::vector<std::string> DragonArt =
     R"(              /       /    /=======＼ /     _ //    /       |                     )",
     R"(             ( (  (       /=========( (  (   |     /         |                   )",
     R"(                          |==========＼    ＼    ＼       |               )",
+	R"(                           ＼===========＼    ＼    ＼     |                )",
+    R"()",
 };
 
 void PrintDragonArt()	//출력 함수 호출

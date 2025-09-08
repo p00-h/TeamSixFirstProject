@@ -10,6 +10,7 @@ void AttackBoost::Use(Character* character) // 아이템 사용
 {
 	if (Turn <= 0) // 아이템 효과 중첩 방지
 	{
+		ItemSound();
 		Turn = 3;
 		character->SetAttack(character->GetAttack() + Value);
 		cout << character->GetName() << "의 공격력이 " << Turn << "턴 동안 " << Value << " 증가합니다." << endl;

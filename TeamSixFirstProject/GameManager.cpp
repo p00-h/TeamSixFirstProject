@@ -13,6 +13,7 @@
 #include "AttackBoost.h"
 #include "DefenseBoost.h"
 #include "ManaPotion.h"
+#include "DragonArt.h"
 
 
 #include <iostream>
@@ -170,7 +171,7 @@ Monster* GameManager::CreateMonster(int level)
 {
     Monster* monster = nullptr;
 
-    if (level >= 15) {
+    if (level >= 10) {
         monster = new Dragon(level);
     }
     else {
@@ -285,6 +286,7 @@ void GameManager::PlayLoop(Character& player) {
             }
             if (sel == 1) {
                 OpenShop(player);
+                didBattleOnce = false;
                 continue;
             }
         }
@@ -293,9 +295,12 @@ void GameManager::PlayLoop(Character& player) {
         GameManager gm;
         Monster* monster = gm.CreateMonster(player.GetLevel());
 
-        if (player.GetLevel() >= 15) {
+        if (player.GetLevel() >= 10) {
+            ClearScreen();
             std::cout << "보스 몬스터 [드래곤]이 나타났습니다!"
                 << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
+            PrintDragonArt();
+			WaitForEnter();
         }
         else {
             std::cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
@@ -306,12 +311,10 @@ void GameManager::PlayLoop(Character& player) {
         int isLive = battle.StartBattle(&player, monster);
 
         if (isLive == 1) { // 승리
-            if (player.GetLevel() >= 15 && monster->GetName() == "드래곤") {
+            if (player.GetLevel() >= 10 && monster->GetName() == "드래곤") {
                 ClearScreen();
-                player.ShowStatus();
-                std::cout << "플레이어가 드래곤을 물리치고 게임을 클리어했습니다! 축하합니다!\n";
+				PrintTheEnd();
                 keepPlaying = false;
-                WaitForEnter();
                 delete monster;
                 break;
             }
@@ -321,26 +324,28 @@ void GameManager::PlayLoop(Character& player) {
                 player.SetExp(player.GetExp() + 50);
                 player.AddGold(RandRange(10, 20));
 
+                int tempHP = player.GetMaxHp();
+				int tempAtk = player.GetAttack();
+				int tempDef = player.GetDefense();
+				int tempMp = player.GetMaxMp();
+
                 bool isLevelUp = false;
                 if (player.GetExp() >= 100) {
                     player.SetExp(0);
-                    player.SetLevel(player.GetLevel() + 1);
                     isLevelUp = true;
-
-                    // 레벨업 시 스탯 증가
-                    player.SetMaxHp(player.GetMaxHp() + 20);
-                    player.SetMaxMp(player.GetMaxMp() + 10);
-                    player.SetAttack(player.GetAttack() + 5);
-                    player.SetDefense(player.GetDefense() + 3);
-
-                    // 레벨업 시 체력/마나 회복
-                    player.SetHp(player.GetMaxHp());
-                    player.SetMp(player.GetMaxMp());
                 }
 
                 ClearScreen();
                 player.ShowStatus();
-                std::cout << "플레이어가 승리했습니다! " << (isLevelUp ? "레벨 업! \n" : "\n");
+            
+                if (isLevelUp == true) {
+                    cout << "플레이어가 승리했습니다! \n";
+                    player.ApplyLevelUp();
+                }
+                else {
+                    cout << "플레이어가 승리했습니다! \n";
+                }
+
 
                 if (RandRange(1, 100) <= 30) {
                     int dropType = RandRange(1, 4);
@@ -370,7 +375,7 @@ void GameManager::PlayLoop(Character& player) {
         else { // 패배
             ClearScreen();
             player.ShowStatus();
-            std::cout << "플레이어가 패배했습니다.\n";
+            PrintGameover();
             WaitForEnter();
             ClearScreen();
             keepPlaying = false;
@@ -413,7 +418,7 @@ void GameManager::Run() {
 void GameManager::ShowGameRules() {
     cout << "[게임 규칙 안내]\n";
     cout << "* 플레이어는 전투를 통해 경험치를 얻고 레벨을 올릴 수 있습니다.\n";
-    cout << "* 15레벨에 도달하면 강력한 보스 몬스터 [드래곤]이 등장합니다.\n";
+    cout << "* 10레벨에 도달하면 강력한 보스 몬스터 [드래곤]이 등장합니다.\n";
     cout << "* 드래곤과의 결투에서 승리하면 게임은 엔딩을 맞이하게 됩니다.\n";
     cout << "* 전투 중 행동은 3가지 중 하나를 선택할 수 있습니다.\n";
     cout << "    - 공격: 몬스터에게 직접 공격을 가합니다.\n";

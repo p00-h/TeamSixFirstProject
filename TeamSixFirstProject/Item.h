@@ -24,6 +24,7 @@ public:
 	virtual std::string ItemInfo() const = 0;
 	virtual Item* Clone() const = 0;
 
+	virtual void ItemSound();
 
 	virtual ~Item() = default;
 };
