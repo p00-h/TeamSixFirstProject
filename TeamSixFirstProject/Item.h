@@ -16,6 +16,7 @@ protected:
 public:
 	std::string GetName() const;
 	int GetPrice() const;
+	int GetTurn() const;
 
 	virtual void TurnDecrease(Character* character);
 
