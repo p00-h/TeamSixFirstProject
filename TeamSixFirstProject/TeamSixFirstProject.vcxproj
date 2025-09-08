@@ -136,6 +136,7 @@
   <ItemGroup>
     <ClInclude Include="AttackBoost.h" />
     <ClInclude Include="Battle.h" />
+    <ClInclude Include="Color.h" />
     <ClInclude Include="DefenseBoost.h" />
     <ClInclude Include="DirectionManager.h" />
     <ClInclude Include="Dragon.h" />

@@ -3,7 +3,7 @@
 using namespace std;
 
 Dragon::Dragon(int level)
-	:Monster("Dragon", level)
+	:Monster("µå·¡°ï", level)
 {
 	SetHP(GetHP() + 100);
 	SetAttack(GetAttack() + 40);
