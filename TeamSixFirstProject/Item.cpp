@@ -19,3 +19,8 @@ void Item::TurnDecrease(Character* character)
 {
 
 }
+
+int Item::GetTurn() const
+{
+	return Turn;
+}
