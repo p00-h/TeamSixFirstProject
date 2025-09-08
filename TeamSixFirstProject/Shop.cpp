@@ -23,6 +23,11 @@ Shop::Shop()
 
 Shop::~Shop()
 {
+    DeleteShopItem();
+}
+
+void Shop::DeleteShopItem()
+{
     for (auto& it : AvailableItems)
     {
         delete it.first;
@@ -30,9 +35,10 @@ Shop::~Shop()
     AvailableItems.clear();
 }
 
-
 void Shop::ResetItem()
 {
+    DeleteShopItem();
+
     AvailableItems.push_back({ new AttackBoost(), 3 });
     AvailableItems.push_back({ new DefenseBoost(), 3 });
     AvailableItems.push_back({ new HealthPotion(), 3 });
@@ -173,6 +179,11 @@ void Shop::ShowSellMenu(Character* character)
             return;
         }
 
+        if (Inventory.size() <= itemSelected)
+        {
+            itemSelected = 0;
+        }
+
 
         system("cls");
         cout << "============= [아이템 판매] =============" << endl;
@@ -218,12 +229,13 @@ void Shop::ShowShopUI(vector<pair<Item*, int>> items, int selectnum,  Character*
 
     }
     cout << "-----------------------------------------" << endl;
-    cout << "[효과] " << AvailableItems[selectnum].first->ItemInfo() << endl;
+    cout << "[효과] " << items[selectnum].first->ItemInfo() << endl;
     //cout << "-----------------------------------------" << endl;
     cout << "보유 골드:" << character->GetGold() << "G \n";
     cout << "-----------------------------------------" << endl;
     cout << "ESC: 상점 메뉴로 돌아가기\n";
 }
+
 
 void Shop::DisplayItems()
 {

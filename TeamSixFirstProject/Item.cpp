@@ -10,13 +10,12 @@ int Item::GetPrice() const
 	return Price;
 }
 
-void Item::TurnDecrease()
-{
-	--Turn;
-	std::cout << Name << "의 효과가 " << Turn << "턴 남았습니다." << std::endl;
-}
-
 std::string Item::GetName() const
 {
 	return Name;
+}
+
+void Item::TurnDecrease(Character* character)
+{
+
 }
