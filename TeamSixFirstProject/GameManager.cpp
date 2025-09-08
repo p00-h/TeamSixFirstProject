@@ -148,6 +148,7 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
 
 // 새 게임 시작
 void GameManager::StartNewGame() {
+    ClearScreen();
     ShowGameRules();
 	WaitForEnter();
     ClearScreen();
@@ -276,5 +277,4 @@ void GameManager::ShowGameRules() {
     cout << "* 상점에서는 아이템 구매 및 판매가 가능합니다.\n";
     cout << "    - 구매: 골드를 소모해 아이템을 획득합니다.\n";
     cout << "    - 판매: 아이템을 판매하고 상점 구매가의 절반만큼의 골드를 획득합니다.\n\n";
-	cout << "게임을 시작하려면 엔터 키를 눌러주세요...\n";
 }
