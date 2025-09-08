@@ -129,6 +129,8 @@
     <ClCompile Include="Character.h" />
     <ClCompile Include="DefenseBoost.cpp" />
     <ClCompile Include="DirectionManager.cpp" />
+    <ClCompile Include="Dragon.cpp" />
+    <ClCompile Include="DragonArt.cpp" />
     <ClCompile Include="HealthPotion.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -136,6 +138,8 @@
     <ClInclude Include="Battle.h" />
     <ClInclude Include="DefenseBoost.h" />
     <ClInclude Include="DirectionManager.h" />
+    <ClInclude Include="Dragon.h" />
+    <ClInclude Include="DragonArt.h" />
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
     <ClCompile Include="Golem.cpp" />

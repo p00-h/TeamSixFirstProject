@@ -56,6 +56,12 @@
     <ClCompile Include="Slime.cpp">
       <Filter>Source Files\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="Dragon.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="DragonArt.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
@@ -102,6 +108,12 @@
       <Filter>Header Files\Monster</Filter>
     </ClInclude>
     <ClInclude Include="Slime.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Dragon.h">
+      <Filter>Header Files\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="DragonArt.h">
       <Filter>Header Files\Monster</Filter>
     </ClInclude>
   </ItemGroup>
