@@ -20,5 +20,5 @@ private:
 	Monster* CreateMonster(int level);
     void OpenShop(Character& player);
     // 행동 선택 메뉴
-    int ArrowMenu(const std::vector<std::string>& items, const Character& player, const char* title);
+    int ArrowMenu(const std::vector<std::string>& items, const Character& player);
 };
