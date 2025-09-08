@@ -9,8 +9,8 @@ private:
     std::string Name;
     int Level;
     int Exp;
-    int Hp;
-    int Mp;
+    int Hp, MaxHp;   // 현재 HP, 최대 HP
+    int Mp, MaxMp;   // 현재 MP, 최대 MP
     int Attack;
     int Defense;
     int Gold;
@@ -59,10 +59,14 @@ public:
     void SetExp(int exp) { Exp = exp; }
 
     int GetHp() const { return Hp; }
-    void SetHp(int hp) { Hp = hp; }
+    int GetMaxHp() const { return MaxHp; }
+    void SetHp(int value) { Hp = std::min(value, MaxHp); }   // 최대치 넘지 않도록 조심
+    void SetMaxHp(int value) { MaxHp = value; if (Hp > MaxHp) Hp = MaxHp; }
 
     int GetMp() const { return Mp; }
-    void SetMp(int mp) { Mp = mp; }
+    int GetMaxMp() const { return MaxMp; }
+    void SetMp(int value) { Mp = std::min(value, MaxMp); }   // 최대치 넘지 않도록 조심
+    void SetMaxMp(int value) { MaxMp = value; if (Mp > MaxMp) Mp = MaxMp; }
 
     int GetAttack() const { return Attack; }
     void SetAttack(int attack) { Attack = attack; }
