@@ -13,5 +13,6 @@ public:
 	void CharaterAttack(Character* character, Monster* monster);
 	void MonsterAttack(Character* character, Monster* monster);
 	int StartBattle(Character* character, Monster* monster);
+	
 };
 
