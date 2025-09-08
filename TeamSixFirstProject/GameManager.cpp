@@ -170,7 +170,7 @@ Monster* GameManager::CreateMonster(int level)
 {
     Monster* monster = nullptr;
 
-    if (level >= 15) {
+    if (level >= 10) {
         monster = new Dragon(level);
     }
     else {
@@ -293,7 +293,7 @@ void GameManager::PlayLoop(Character& player) {
         GameManager gm;
         Monster* monster = gm.CreateMonster(player.GetLevel());
 
-        if (player.GetLevel() >= 15) {
+        if (player.GetLevel() >= 10) {
             std::cout << "보스 몬스터 [드래곤]이 나타났습니다!"
                 << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
         }
@@ -306,7 +306,7 @@ void GameManager::PlayLoop(Character& player) {
         int isLive = battle.StartBattle(&player, monster);
 
         if (isLive == 1) { // 승리
-            if (player.GetLevel() >= 15 && monster->GetName() == "드래곤") {
+            if (player.GetLevel() >= 10 && monster->GetName() == "드래곤") {
                 ClearScreen();
                 player.ShowStatus();
                 std::cout << "플레이어가 드래곤을 물리치고 게임을 클리어했습니다! 축하합니다!\n";
@@ -403,7 +403,7 @@ void GameManager::Run() {
 void GameManager::ShowGameRules() {
     cout << "[게임 규칙 안내]\n";
     cout << "* 플레이어는 전투를 통해 경험치를 얻고 레벨을 올릴 수 있습니다.\n";
-    cout << "* 15레벨에 도달하면 강력한 보스 몬스터 [드래곤]이 등장합니다.\n";
+    cout << "* 10레벨에 도달하면 강력한 보스 몬스터 [드래곤]이 등장합니다.\n";
     cout << "* 드래곤과의 결투에서 승리하면 게임은 엔딩을 맞이하게 됩니다.\n";
     cout << "* 전투 중 행동은 3가지 중 하나를 선택할 수 있습니다.\n";
     cout << "    - 공격: 몬스터에게 직접 공격을 가합니다.\n";
