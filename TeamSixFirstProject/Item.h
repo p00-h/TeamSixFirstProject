@@ -16,12 +16,13 @@ protected:
 public:
 	std::string GetName() const;
 	int GetPrice() const;
-	void TurnDecrease();
-	virtual std::string ItemInfo() = 0;
+
+	virtual void TurnDecrease(Character* character);
 
 	virtual void Use(Character* character) = 0;
-	virtual void ExpireEffect(Character* character);
+	virtual std::string ItemInfo() const = 0;
 	virtual Item* Clone() const = 0;
+
 
 	virtual ~Item() = default;
 };
