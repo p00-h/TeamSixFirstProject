@@ -3,7 +3,7 @@
 using namespace std;
 
 Orc::Orc(int level)
-	:Monster("Orc", level)
+	:Monster("ø¿≈©", level)
 {
 	SetHP(GetHP() + 20);
 	SetAttack(GetAttack() + 10);
