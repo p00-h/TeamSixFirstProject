@@ -248,7 +248,8 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
 
         PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
-
+        Sleep(1000);
+        PlaySound(TEXT("Field1.wav"), NULL, SND_FILENAME | SND_ASYNC);
         character->AddItem(buyItem,1);
 
         item.second--; 
