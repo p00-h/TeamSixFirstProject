@@ -148,6 +148,7 @@
     <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="GameManager.cpp" />
+    <ClCompile Include="MonsterArt.cpp" />
     <ClCompile Include="Orc.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Slime.cpp" />
@@ -158,6 +159,7 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Kobold.h" />
     <ClInclude Include="ManaPotion.h" />
+    <ClInclude Include="MonsterArt.h" />
     <ClInclude Include="Orc.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Slime.h" />

@@ -59,6 +59,9 @@
     <ClCompile Include="Dragon.cpp">
       <Filter>Source Files\Monster</Filter>
     </ClCompile>
+    <ClCompile Include="MonsterArt.cpp">
+      <Filter>Source Files\Monster</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
@@ -112,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files\GameManage</Filter>
+    </ClInclude>
+    <ClInclude Include="MonsterArt.h">
+      <Filter>Header Files\Monster</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
