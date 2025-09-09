@@ -10,5 +10,4 @@ public:
 	virtual void TurnDecrease(Character* character) override;
 	virtual std::string ItemInfo() const override;
 	virtual Item* Clone() const override;
-	virtual void SetTurn(int turn) override;
 };

@@ -20,7 +20,10 @@ std::string Item::GetName() const
 
 void Item::TurnDecrease(Character* character) {}
 
-void Item::SetTurn(int turn) {}
+void Item::SetTurn(int turn)
+{
+	Turn = turn;
+}
 
 void Item::ItemSound()
 {
