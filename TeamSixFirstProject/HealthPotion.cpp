@@ -6,7 +6,7 @@ HealthPotion::HealthPotion() : Item("체력 회복 포션", 5, 50, 0) {}
 
 void HealthPotion::Use(Character* character) // 아이템 사용
 {
-	if (character->GetHp() >= character->GetMaxHp())
+	if (character->GetHp() < character->GetMaxHp())
 	{
 		ItemSound();
 		character->SetHp(character->GetHp() + Value);

@@ -6,7 +6,7 @@ ManaPotion::ManaPotion() : Item("마나 회복 포션",5, 10, 0) {}
 
 void ManaPotion::Use(Character* character) // 아이템 사용
 {
-	if (character->GetMp() >= character->GetMaxMp())
+	if (character->GetMp() < character->GetMaxMp())
 	{
 		ItemSound();
 		character->SetMp(character->GetMp() + Value);
