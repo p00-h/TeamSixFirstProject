@@ -23,12 +23,12 @@
 #include <fstream>
 #include <iomanip>
 
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
 
 using namespace std;
-
 
 static Item* CreateItemByName(const std::string& name) {
     { HealthPotion t;  if (t.GetName() == name) return new HealthPotion(); }
