@@ -146,4 +146,9 @@
       <UniqueIdentifier>{b3e8990a-815e-4cd4-9286-a901eb0a7a61}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="Image.bmp">
+      <Filter>Header Files\GameManage</Filter>
+    </Image>
+  </ItemGroup>
 </Project>

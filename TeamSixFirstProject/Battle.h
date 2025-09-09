@@ -6,6 +6,7 @@
 #include <vector>
 #include <windows.h>
 #include <queue>
+#include <mmsystem.h>
 
 class Battle
 {
