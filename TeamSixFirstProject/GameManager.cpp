@@ -13,7 +13,7 @@
 #include "AttackBoost.h"
 #include "DefenseBoost.h"
 #include "ManaPotion.h"
-#include "DragonArt.h"
+#include "MonsterArt.h"
 #include "Color.h"
 
 
