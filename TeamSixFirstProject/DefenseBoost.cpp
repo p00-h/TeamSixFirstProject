@@ -38,8 +38,6 @@ void DefenseBoost::TurnDecrease(Character* character) // 턴 감소 후 아이템 효과 
 		return;
 	}
 
-	--Turn;
-
 	if (Turn == 0)
 	{
 		character->SetDefense(character->GetDefense() - Value);

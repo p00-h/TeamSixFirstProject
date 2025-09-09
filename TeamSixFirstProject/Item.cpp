@@ -18,9 +18,11 @@ std::string Item::GetName() const
 	return Name;
 }
 
-void Item::TurnDecrease(Character* character)
-{
+void Item::TurnDecrease(Character* character) {}
 
+void Item::SetTurn(int turn)
+{
+	Turn = turn;
 }
 
 void Item::ItemSound()
