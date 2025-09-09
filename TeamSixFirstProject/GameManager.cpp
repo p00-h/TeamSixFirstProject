@@ -273,7 +273,7 @@ void GameManager::PlayLoop(Character& player) {
             if (sel == 1) {
                 ClearScreen();
                 std::cout << "게임을 저장중입니다.\n";
-                SaveToFile(player);           // ★ 실제 저장 호출
+                SaveToFile(player);           // 실제 저장 호출
                 break;
             }
         }
@@ -282,7 +282,7 @@ void GameManager::PlayLoop(Character& player) {
             if (sel == 2) {
                 ClearScreen();
                 std::cout << "게임을 저장중입니다.\n";
-                SaveToFile(player);           // ★ 실제 저장 호출
+                SaveToFile(player);           // 실제 저장 호출
                 break;
             }
             if (sel == 1) {

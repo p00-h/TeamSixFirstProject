@@ -31,11 +31,6 @@ Item* DefenseBoost::Clone() const // 아이템 복제
 	return new DefenseBoost(*this);
 }
 
-void DefenseBoost::SetTurn(int turn)
-{
-	Turn = turn;
-}
-
 void DefenseBoost::TurnDecrease(Character* character) // 턴 감소 후 아이템 효과 사라짐
 {
 	if (Turn < 0)
@@ -47,7 +42,6 @@ void DefenseBoost::TurnDecrease(Character* character) // 턴 감소 후 아이템 효과 
 	{
 		character->SetDefense(character->GetDefense() - Value);
 		cout << Name << "의 효과가 끝났습니다." << endl;
-		Turn = -1;
 
 	}
 	else

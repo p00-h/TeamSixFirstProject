@@ -18,14 +18,15 @@ public:
 	int GetPrice() const;
 	int GetTurn() const;
 
+	void SetTurn(int turn);
+
 	virtual void TurnDecrease(Character* character);
-	virtual void SetTurn(int turn);
 
 	virtual void Use(Character* character) = 0;
 	virtual std::string ItemInfo() const = 0;
 	virtual Item* Clone() const = 0;
 
-	virtual void ItemSound();
+	void ItemSound();
 
 	virtual ~Item() = default;
 };
