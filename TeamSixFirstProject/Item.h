@@ -19,6 +19,7 @@ public:
 	int GetTurn() const;
 
 	virtual void TurnDecrease(Character* character);
+	virtual void SetTurn(int turn);
 
 	virtual void Use(Character* character) = 0;
 	virtual std::string ItemInfo() const = 0;
