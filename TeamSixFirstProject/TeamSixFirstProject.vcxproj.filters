@@ -59,22 +59,7 @@
     <ClCompile Include="Dragon.cpp">
       <Filter>Source Files\Monster</Filter>
     </ClCompile>
-    <ClCompile Include="DragonArt.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="GolemArt.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="ImpArt.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="KoboldArt.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="OrcArt.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="SlimeArt.cpp">
+    <ClCompile Include="MonsterArt.cpp">
       <Filter>Source Files\Monster</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,25 +113,10 @@
     <ClInclude Include="Dragon.h">
       <Filter>Header Files\Monster</Filter>
     </ClInclude>
-    <ClInclude Include="DragonArt.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>Header Files\GameManage</Filter>
     </ClInclude>
-    <ClInclude Include="GolemArt.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="ImpArt.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="KoboldArt.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="OrcArt.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="SlimeArt.h">
+    <ClInclude Include="MonsterArt.h">
       <Filter>Header Files\Monster</Filter>
     </ClInclude>
   </ItemGroup>
