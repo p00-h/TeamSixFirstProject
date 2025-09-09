@@ -31,14 +31,17 @@ Item* DefenseBoost::Clone() const // 아이템 복제
 	return new DefenseBoost(*this);
 }
 
+void DefenseBoost::SetTurn(int turn)
+{
+	Turn = turn;
+}
+
 void DefenseBoost::TurnDecrease(Character* character) // 턴 감소 후 아이템 효과 사라짐
 {
 	if (Turn < 0)
 	{
 		return;
 	}
-
-	--Turn;
 
 	if (Turn == 0)
 	{
