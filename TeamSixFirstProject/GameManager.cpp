@@ -300,6 +300,7 @@ void GameManager::PlayLoop(Character& player) {
             std::cout << "보스 몬스터 [드래곤]이 나타났습니다!"
                 << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
             PrintDragonArt();
+            PlaySound(TEXT("Thunder9.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			WaitForEnter();
         }
         else {
@@ -314,6 +315,7 @@ void GameManager::PlayLoop(Character& player) {
             if (player.GetLevel() >= 10 && monster->GetName() == "드래곤") {
                 ClearScreen();
 				PrintTheEnd();
+                _getch();
                 keepPlaying = false;
                 delete monster;
                 break;
@@ -340,6 +342,7 @@ void GameManager::PlayLoop(Character& player) {
             
                 if (isLevelUp == true) {
                     cout << "플레이어가 승리했습니다! \n";
+                    PlaySound(TEXT("Up1.wav"), NULL, SND_FILENAME | SND_ASYNC);
                     player.ApplyLevelUp();
                 }
                 else {
