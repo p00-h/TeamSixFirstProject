@@ -14,6 +14,7 @@
 #include "DefenseBoost.h"
 #include "ManaPotion.h"
 #include "DragonArt.h"
+#include "Color.h"
 
 
 #include <iostream>
@@ -297,11 +298,13 @@ void GameManager::PlayLoop(Character& player) {
 
         if (player.GetLevel() >= 10) {
             ClearScreen();
+            setColor(RED);
             std::cout << "보스 몬스터 [드래곤]이 나타났습니다!"
                 << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
             PrintDragonArt();
             PlaySound(TEXT("Thunder9.wav"), NULL, SND_FILENAME | SND_ASYNC);
 			WaitForEnter();
+            setColor(BRIGHT_WHITE);
         }
         else {
             std::cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
@@ -310,7 +313,7 @@ void GameManager::PlayLoop(Character& player) {
 
         Battle battle;
         int isLive = battle.StartBattle(&player, monster);
-
+        
         if (isLive == 1) { // 승리
             if (player.GetLevel() >= 10 && monster->GetName() == "드래곤") {
                 ClearScreen();
@@ -331,19 +334,21 @@ void GameManager::PlayLoop(Character& player) {
 				int tempDef = player.GetDefense();
 				int tempMp = player.GetMaxMp();
 
+                ClearScreen();
+                player.ShowStatus();
+
                 bool isLevelUp = false;
                 if (player.GetExp() >= 100) {
                     player.SetExp(0);
                     isLevelUp = true;
                 }
-
-                ClearScreen();
-                player.ShowStatus();
             
                 if (isLevelUp == true) {
                     cout << "플레이어가 승리했습니다! \n";
-                    PlaySound(TEXT("Up1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+                    setColor(LIGHT_BLUE);
+                    PlaySound(TEXT("Up1.wav"), NULL, SND_FILENAME | SND_ASYNC); 
                     player.ApplyLevelUp();
+                    setColor(BRIGHT_WHITE);
                 }
                 else {
                     cout << "플레이어가 승리했습니다! \n";
@@ -376,11 +381,13 @@ void GameManager::PlayLoop(Character& player) {
             didBattleOnce = true;
         }
         else { // 패배
+            setColor(LIGHT_RED);
             ClearScreen();
             player.ShowStatus();
             PrintGameover();
             WaitForEnter();
             ClearScreen();
+            setColor(BRIGHT_WHITE);
             keepPlaying = false;
         }
 
@@ -427,8 +434,10 @@ void GameManager::ShowGameRules() {
     cout << "    - 공격: 몬스터에게 직접 공격을 가합니다.\n";
     cout << "    - 아이템 사용: 인벤토리에서 아이템을 사용합니다.\n";
     cout << "    - 도망가기: 전투에서 도망칠 수 있습니다.\n";
+    cout << "* 몬스터는 마나가 다 차오르면 강력한 스킬을 사용합니다.\n";
     cout << "* 상점은 전투를 최소 1회 이상 진행해야 활성화됩니다.\n";
     cout << "* 상점에서는 아이템 구매 및 판매가 가능합니다.\n";
     cout << "    - 구매: 골드를 소모해 아이템을 획득합니다.\n";
     cout << "    - 판매: 아이템을 판매하고 상점 구매가의 절반만큼의 골드를 획득합니다.\n\n";
+    cout << "* 상점에 재방문하기 위해서는 전투를 1회 이상 진행해야합니다.\n";
 }
