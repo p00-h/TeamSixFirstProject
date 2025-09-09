@@ -61,12 +61,12 @@ public:
 
     int GetHp() const { return Hp; }
     int GetMaxHp() const { return MaxHp; }
-    void SetHp(int value) { Hp = std::min(value, MaxHp); }   // 최대치 넘지 않도록 조심
+    void SetHp(int value);   // 최대치 넘지 않도록 조심
     void SetMaxHp(int value) { MaxHp = value; if (Hp > MaxHp) Hp = MaxHp; }
 
     int GetMp() const { return Mp; }
     int GetMaxMp() const { return MaxMp; }
-    void SetMp(int value) { Mp = std::min(value, MaxMp); }   // 최대치 넘지 않도록 조심
+    void SetMp(int value);   // 최대치 넘지 않도록 조심
     void SetMaxMp(int value) { MaxMp = value; if (Mp > MaxMp) Mp = MaxMp; }
 
     int GetAttack() const { return Attack; }

@@ -145,6 +145,16 @@ void Character::IncreaseDefense(int amount) {
     std::cout << "방어력이 " << amount << " 증가했습니다. (현재 방어력: " << Defense << ")\n";
 }
 
+void Character::SetHp(int value)
+{
+    Hp = std::min(value, MaxHp); 
+}
+
+void Character::SetMp(int value)
+{
+    Mp = std::min(value, MaxMp);
+}
+
 void Character::ApplyLevelUp() {
     Level += 1;
     // 증가량은 한곳에 고정
@@ -161,7 +171,7 @@ void Character::ApplyLevelUp() {
     SetHp(MaxHp);
     SetMp(MaxMp);
 
-    std::cout << "[LVLUP] +HP " << HpUp
+    std::cout << "[레벨업!] +HP " << HpUp
         << ", +MP " << MpUp
         << ", +ATK " << AtkUp
         << ", +DEF " << DefUp << "\n";

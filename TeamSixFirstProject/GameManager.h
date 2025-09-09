@@ -18,7 +18,7 @@ private:
 
     bool SaveToFile(const Character& player, const std::string& path = "save.txt");
     bool LoadFromFile(Character& player, const std::string& path = "save.txt");
-    void PlayLoop(Character& player); // 전투/상점 메인 루프를 분리
+    void PlayLoop(Character& player); // 전투/상점 메인 루프 분리
 
     int  ShowMenu();        //타이틀 ↑↓ 선택 + Enter 확정
     // 행동 선택 메뉴
