@@ -249,7 +249,7 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
 
         PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
         Sleep(1000);
-        PlaySound(TEXT("Field1.wav"), NULL, SND_FILENAME | SND_ASYNC);
+        PlaySound(TEXT("Field1.wav"), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP);
         character->AddItem(buyItem,1);
 
         item.second--; 
