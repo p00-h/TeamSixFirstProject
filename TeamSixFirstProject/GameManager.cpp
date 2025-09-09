@@ -307,8 +307,16 @@ void GameManager::PlayLoop(Character& player) {
             setColor(BRIGHT_WHITE);
         }
         else {
+            ClearScreen();
             std::cout << "몬스터가 생성되었습니다! 이름: " << monster->GetName()
                 << ", HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
+            if (monster->GetName() == "드래곤")       PrintDragonArt();
+            else if (monster->GetName() == "골렘")    PrintGolemArt();
+            else if (monster->GetName() == "임프")    PrintImpArt();
+            else if (monster->GetName() == "코볼트")  PrintKoboldArt();
+            else if (monster->GetName() == "오크")    PrintOrcArt();
+            else if (monster->GetName() == "슬라임")  PrintSlimeArt();
+			WaitForEnter();
         }
 
         Battle battle;

@@ -21,25 +21,6 @@ void PrintKoboldArt();
 void PrintOrcArt();
 void PrintSlimeArt(); 
 
-enum class MonsterArtId {
-	Dragon,
-	Golem,
-	Imp,
-	Kobold,
-	Orc,
-	Slime
-};
-
 inline void PrintArt(const std::vector<std::string>& art) {
 	for (const auto& line : art) std::cout << line << '\n';
-}
-
-inline void PrintMonsterArt(MonsterArtId id) {
-	switch (id) {
-	case MonsterArtId::Dragon: return PrintDragonArt();
-	case MonsterArtId::Golem: return PrintGolemArt();
-	case MonsterArtId::Imp: return PrintImpArt();
-	case MonsterArtId::Kobold: return PrintKoboldArt();
-	case MonsterArtId::Orc: return PrintOrcArt();
-	}
 }
