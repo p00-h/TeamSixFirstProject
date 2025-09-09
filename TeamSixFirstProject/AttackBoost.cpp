@@ -42,7 +42,6 @@ void AttackBoost::TurnDecrease(Character* character) // 턴 감소 후 아이템 효과 �
 	{
 		character->SetAttack(character->GetAttack() - Value);
 		cout << Name << "의 효과가 끝났습니다." << endl;
-		Turn = -1;
 
 	}
 	else
