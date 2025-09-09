@@ -144,27 +144,35 @@
     <ClInclude Include="DragonArt.h" />
     <ClInclude Include="GolemArt.h" />
     <ClInclude Include="HealthPotion.h" />
+    <ClInclude Include="ImpArt.h" />
     <ClInclude Include="Item.h" />
     <ClCompile Include="Golem.cpp" />
     <ClCompile Include="Imp.cpp" />
+    <ClCompile Include="ImpArt.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="Kobold.cpp" />
+    <ClCompile Include="KoboldArt.cpp" />
     <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="Orc.cpp" />
+    <ClCompile Include="OrcArt.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Slime.cpp" />
+    <ClCompile Include="SlimeArt.cpp" />
     <ClCompile Include="TeamSixFirstProject.cpp" />
     <ClCompile Include="TItle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Kobold.h" />
+    <ClInclude Include="KoboldArt.h" />
     <ClInclude Include="ManaPotion.h" />
     <ClInclude Include="Orc.h" />
+    <ClInclude Include="OrcArt.h" />
     <ClInclude Include="Shop.h" />
     <ClInclude Include="Slime.h" />
+    <ClInclude Include="SlimeArt.h" />
     <ClInclude Include="TItle.h" />
   </ItemGroup>
   <ItemGroup>
