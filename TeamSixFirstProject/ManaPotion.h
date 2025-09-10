@@ -4,11 +4,6 @@
 
 class ManaPotion :public Item
 {
-
-	std::string Name;
-	int ManaRestore;
-	int Price;
-
 public:
 	ManaPotion();
 	virtual bool Use(Character* character) override;

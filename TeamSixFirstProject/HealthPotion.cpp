@@ -2,11 +2,7 @@
 #include "Character.h"
 #include <iostream>
 
-
 HealthPotion::HealthPotion() : Item("체력 회복 포션", 5, 50) {}
-
-HealthPotion::HealthPotion() : Name("체력 회복 포션"), HealthRestore(50),Price(5) {}
-
 
 bool HealthPotion::Use(Character* character) // 아이템 사용
 {

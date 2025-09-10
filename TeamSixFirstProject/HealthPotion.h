@@ -5,12 +5,6 @@
 
 class HealthPotion :public Item
 {
-
-	std::string Name;
-	int HealthRestore;
-	int Price;
-
-
 public:
 	HealthPotion();
 	virtual bool Use(Character* character) override;

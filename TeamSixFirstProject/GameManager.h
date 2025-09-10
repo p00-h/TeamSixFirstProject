@@ -1,12 +1,10 @@
 #pragma once
 #include "Title.h"
 #include "Monster.h"
-
 #include "Character.h"
 
 #include <vector>
 #include <string>
-
 
 class GameManager {
 public:
@@ -23,19 +21,14 @@ private:
 
     bool SaveToFile(const Character& player, const std::string& path = "save.txt");
     bool LoadFromFile(Character& player, const std::string& path = "save.txt");
-    void PlayLoop(Character& player); // Ã€Ã¼Ã…Ãµ/Â»Ã³ÃÂ¡ Â¸ÃÃ€Ã Â·Ã§Ã‡Ã ÂºÃÂ¸Â®
+    void PlayLoop(Character& player); // ÀüÅõ/»óÁ¡ ¸ŞÀÎ ·çÇÁ ºĞ¸®
 
-    int  ShowMenu();        //Ã…Â¸Ã€ÃŒÃ†Â² Â¡Ã¨Â¡Ã© Â¼Â±Ã…Ãƒ + Enter ÃˆÂ®ÃÂ¤
-    // Ã‡Ã ÂµÂ¿ Â¼Â±Ã…Ãƒ Â¸ÃÂ´Âº
+    int  ShowMenu();        //Å¸ÀÌÆ² ¡è¡é ¼±ÅÃ + Enter È®Á¤
+    // Çàµ¿ ¼±ÅÃ ¸Ş´º
     int ArrowMenu(const std::vector<std::string>& items, const Character& player);
 
     void StartNewGame();
 
-
 	Monster* CreateMonster(int level);
     void OpenShop(Character& player);
 };
-
-	Monster* CreateMonster(int level);
-};
-

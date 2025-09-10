@@ -4,13 +4,6 @@
 
 class DefenseBoost :public Item
 {
-
-
-	std::string Name;
-	int DefenseIncrease;
-	int Price;
-
-
 public:
 	DefenseBoost();
 	virtual bool Use(Character* character) override;

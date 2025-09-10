@@ -2,19 +2,15 @@
 #include "Character.h"
 #include <iostream>
 
-
 using namespace std;
 
-AttackBoost::AttackBoost() : Name("Â°Ã¸Â°ÃÂ·Ã‚ ÃÃµÂ°Â¡ Ã†Ã·Â¼Ã‡"), AttackIncrease(10),Price(10) {}
+AttackBoost::AttackBoost() : Item("°ø°İ·Â Áõ°¡ Æ÷¼Ç", 10, 10) {}
 
-
-AttackBoost::AttackBoost() : Item("Â°Ã¸Â°ÃÂ·Ã‚ ÃÃµÂ°Â¡ Ã†Ã·Â¼Ã‡", 10, 10) {}
-
-bool AttackBoost::Use(Character* character) // Â¾Ã†Ã€ÃŒÃ…Ã› Â»Ã§Â¿Ã«
+bool AttackBoost::Use(Character* character) // ¾ÆÀÌÅÛ »ç¿ë
 {
-	if (IsActive) // Â¾Ã†Ã€ÃŒÃ…Ã› ÃˆÂ¿Â°Ãº ÃÃŸÃƒÂ¸ Â¹Ã¦ÃÃ¶
+	if (IsActive) // ¾ÆÀÌÅÛ È¿°ú ÁßÃ¸ ¹æÁö
 	{
-		cout << "Ã€ÃŒÂ¹ÃŒ " << Name << "Ã€Ã‡ ÃˆÂ¿Â°ÃºÂ°Â¡ Ã€Ã»Â¿Ã«ÃÃŸÃ€Ã”Â´ÃÂ´Ã™." << endl;
+		cout << "ÀÌ¹Ì " << Name << "ÀÇ È¿°ú°¡ Àû¿ëÁßÀÔ´Ï´Ù." << endl;
 		return false;
 	}
 	else
@@ -22,22 +18,22 @@ bool AttackBoost::Use(Character* character) // Â¾Ã†Ã€ÃŒÃ…Ã› Â»Ã§Â¿Ã«
 		IsActive = true;
 		ItemSound();
 		character->SetAttack(character->GetAttack() + Value);
-		cout << character->GetName() << "Ã€Ã‡ Â°Ã¸Â°ÃÂ·Ã‚Ã€ÃŒ " << Value << " ÃÃµÂ°Â¡Ã‡Ã•Â´ÃÂ´Ã™." << endl;
+		cout << character->GetName() << "ÀÇ °ø°İ·ÂÀÌ " << Value << " Áõ°¡ÇÕ´Ï´Ù." << endl;
 		return true;
 	}
 }
 
-string AttackBoost::ItemInfo() const // Â¾Ã†Ã€ÃŒÃ…Ã› ÃÂ¤ÂºÂ¸
+string AttackBoost::ItemInfo() const // ¾ÆÀÌÅÛ Á¤º¸
 {
-	return "Â°Ã¸Â°ÃÂ·Ã‚Ã€ÃŒ " + to_string(Value) + " ÃÃµÂ°Â¡Ã‡Ã•Â´ÃÂ´Ã™.";
+	return "°ø°İ·ÂÀÌ " + to_string(Value) + " Áõ°¡ÇÕ´Ï´Ù.";
 }
 
-Item* AttackBoost::Clone() const // Â¾Ã†Ã€ÃŒÃ…Ã› ÂºÂ¹ÃÂ¦
+Item* AttackBoost::Clone() const // ¾ÆÀÌÅÛ º¹Á¦
 {
 	return new AttackBoost(*this);
 }
 
-bool AttackBoost::IsDurationBased() const // ÃÃ¶Â¼Ã“Ã‡Ã¼Ã€ÃÃÃ¶
+bool AttackBoost::IsDurationBased() const // Áö¼ÓÇüÀÎÁö
 {
 	return true;
 }
@@ -45,6 +41,6 @@ bool AttackBoost::IsDurationBased() const // ÃÃ¶Â¼Ã“Ã‡Ã¼Ã€ÃÃÃ¶
 void AttackBoost::EffectIsOver(Character* character)
 {
 	IsActive = false;
-	cout << Name << "Ã€Ã‡ ÃˆÂ¿Â°ÃºÂ°Â¡ Â³Â¡Â³ÂµÂ½Ã€Â´ÃÂ´Ã™." << endl;
+	cout << Name << "ÀÇ È¿°ú°¡ ³¡³µ½À´Ï´Ù." << endl;
 	character->SetAttack(character->GetAttack() - Value);
 }

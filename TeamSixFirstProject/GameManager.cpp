@@ -1,5 +1,4 @@
 #include "GameManager.h"
-
 #include "Character.h"
 #include "Monster.h"
 #include "Golem.h"
@@ -18,11 +17,6 @@
 #include "Color.h"
 
 
-#include "Monster.h"
-#include "Golem.h"
-#include "Imp.h"
-
-
 #include <iostream>
 #include <limits>
 #include <conio.h>   // _getch()
@@ -35,7 +29,6 @@
 #endif
 
 using namespace std;
-
 
 void GameManager::SetColor(int color)
 {
@@ -59,9 +52,9 @@ bool GameManager::SaveToFile(const Character& player, const std::string& path) {
     std::ofstream ofs(path);
     if (!ofs) return false;
 
-    // 1ì¤„: ì´ë¦„
+    // 1ÁÙ: ÀÌ¸§
     ofs << player.GetName() << "\n";
-    // 1ì¤„: level exp hp maxhp mp maxmp atk def gold
+    // 1ÁÙ: level exp hp maxhp mp maxmp atk def gold
     ofs << player.GetLevel() << ' '
         << player.GetExp() << ' '
         << player.GetHp() << ' '
@@ -77,7 +70,7 @@ bool GameManager::SaveToFile(const Character& player, const std::string& path) {
     for (const auto& kv : inv) {
         Item* obj = kv.second.first;
         int   cnt = kv.second.second;
-        // ì´ë¦„ì„ ë°˜ë“œì‹œ ì‹¤ì œ ê°ì²´ ì´ë¦„ìœ¼ë¡œ ê¸°ë¡ + quotedë¡œ ê°ì‹¸ê¸°
+        // ÀÌ¸§À» ¹İµå½Ã ½ÇÁ¦ °´Ã¼ ÀÌ¸§À¸·Î ±â·Ï + quoted·Î °¨½Î±â
         ofs << std::quoted(obj->GetName()) << ' ' << cnt << "\n";  // 
     }
     return true;
@@ -87,39 +80,39 @@ bool GameManager::LoadFromFile(Character& player, const std::string& path) {
     std::ifstream ifs(path);
     if (!ifs) return false;
 
-    // ê¸°ì¡´ ì¸ë²¤í† ë¦¬ ì´ˆê¸°í™”(ë©”ëª¨ë¦¬ í•´ì œ)
+    // ±âÁ¸ ÀÎº¥Åä¸® ÃÊ±âÈ­(¸Ş¸ğ¸® ÇØÁ¦)
     {
         auto& inv = player.GetInventory();
         for (auto& kv : inv) delete kv.second.first;
         inv.clear();
     }
 
-    // 1) ì´ë¦„ (ë‹‰ë„¤ì„, ê³µë°± í—ˆìš©)
+    // 1) ÀÌ¸§ (´Ğ³×ÀÓ, °ø¹é Çã¿ë)
     std::string name;
     if (!std::getline(ifs, name)) return false;
 
-    // 2) ìŠ¤íƒ¯
+    // 2) ½ºÅÈ
     int level, exp, hp, maxhp, mp, maxmp, atk, def, gold;
     if (!(ifs >> level >> exp >> hp >> maxhp >> mp >> maxmp >> atk >> def >> gold)) return false;
     ifs.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
-    // 3) ì¸ë²¤í† ë¦¬ ê°œìˆ˜
+    // 3) ÀÎº¥Åä¸® °³¼ö
     int n = 0;
     if (!(ifs >> n)) return false;
     ifs.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
-    // 4) ì•„ì´í…œë“¤ (ê³µë°± ì•ˆì „í•˜ê²Œ ì²˜ë¦¬ quoted ì‚¬ìš©)
+    // 4) ¾ÆÀÌÅÛµé (°ø¹é ¾ÈÀüÇÏ°Ô Ã³¸® quoted »ç¿ë)
     for (int i = 0; i < n; ++i) {
         std::string itemName;
         int count;
         if (!(ifs >> std::quoted(itemName) >> count)) break;
 
         if (Item* it = CreateItemByName(itemName)) {
-            player.AddItem(it, count); // ë‚´ë¶€ì—ì„œ Clone/ìŠ¤íƒ ì²˜ë¦¬
+            player.AddItem(it, count); // ³»ºÎ¿¡¼­ Clone/½ºÅÃ Ã³¸®
         }
     }
 
-    // 5) ìºë¦­í„° ìƒíƒœ ë°˜ì˜
+    // 5) Ä³¸¯ÅÍ »óÅÂ ¹İ¿µ
     player.SetName(name);
     player.SetLevel(level);
     player.SetExp(exp);
@@ -134,8 +127,7 @@ bool GameManager::LoadFromFile(Character& player, const std::string& path) {
     return true;
 }
 
-
-// lo~hi ì‚¬ì´ì˜ ëœë¤ ì •ìˆ˜ ë°˜í™˜
+// lo~hi »çÀÌÀÇ ·£´ı Á¤¼ö ¹İÈ¯
 static int RandRange(int lo, int hi) {
     return lo + std::rand() % (hi - lo + 1);
 }
@@ -151,22 +143,23 @@ void GameManager::ClearScreen() {
 }
 
 void GameManager::WaitForEnter() {
-    system("pause");  // "Press any key to continue . . ." ë©”ì‹œì§€ ì¶œë ¥
+    system("pause");  // "Press any key to continue . . ." ¸Ş½ÃÁö Ãâ·Â
 }
 
 
-// í™”ì‚´í‘œ â†‘â†“ë¡œ ì´ë™í•˜ê³  Enterë¡œ í™•ì •í•˜ëŠ” ë©”ë‰´
+// È­»ìÇ¥ ¡è¡é·Î ÀÌµ¿ÇÏ°í Enter·Î È®Á¤ÇÏ´Â ¸Ş´º
 int GameManager::ShowMenu() {
-    const char* items[] = { "ê²Œì„ ì‹œì‘í•˜ê¸°","ê²Œì„ ì´ì–´í•˜ê¸°", "    ê²Œì„ ì¢…ë£Œ"};
+    const char* items[] = { "°ÔÀÓ ½ÃÀÛÇÏ±â","°ÔÀÓ ÀÌ¾îÇÏ±â", "    °ÔÀÓ Á¾·á"};
     const int count = 3;
     int sel = 0;
 
     while (true) {
         ClearScreen();
-        ShowTitle(); // íƒ€ì´í‹€ ì•„íŠ¸ ì¶œë ¥
+        ShowTitle(); // Å¸ÀÌÆ² ¾ÆÆ® Ãâ·Â
 
         for (int i = 0; i < count; ++i) {
             if (i == sel) {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 SetColor(15);
                 cout << "                                           -> " << items[i] << "\n";
                 SetColorDefault();
@@ -179,25 +172,25 @@ int GameManager::ShowMenu() {
         }
 
         int key = _getch();
-        if (key == 224) { // í™”ì‚´í‘œ í‚¤ ì…ë ¥
+        if (key == 224) { // È­»ìÇ¥ Å° ÀÔ·Â
             key = _getch();
-            if (key == 72) {          // â†‘
+            if (key == 72) {          // ¡è
                 sel = (sel - 1 + count) % count;
             }
-            else if (key == 80) {   // â†“
+            else if (key == 80) {   // ¡é
                 sel = (sel + 1) % count;
             }
         }
         else if (key == 13) {       // Enter
-            return sel;               // 0: ìƒˆê²Œì„, 1: ì´ì–´í•˜ê¸°, 2: ì¢…ë£Œ
+            return sel;               // 0: »õ°ÔÀÓ, 1: ÀÌ¾îÇÏ±â, 2: Á¾·á
         }
         else if (key == 27) {       // ESC
-            return 2;                 // ì¢…ë£Œ
+            return 2;                 // Á¾·á
         }
     }
 }
 
-// levelì— ë”°ë¼ ëª¬ìŠ¤í„° ìƒì„±
+// level¿¡ µû¶ó ¸ó½ºÅÍ »ı¼º
 Monster* GameManager::CreateMonster(int level)
 {
     Monster* monster = nullptr;
@@ -237,16 +230,17 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
     while (true) {
         ClearScreen();
 
-        // ìƒíƒœ/ì¸ë²¤í† ë¦¬ ê³ ì • í‘œì‹œ
+        // »óÅÂ/ÀÎº¥Åä¸® °íÁ¤ Ç¥½Ã
         player.ShowStatus();
         std::cout << "\n";
         player.ShowInventory();
         std::cout << "\n";
 
-        // ë©”ë‰´ ë Œë”ë§
+        // ¸Ş´º ·»´õ¸µ
         std::cout << "========================\n";
         for (int i = 0; i < n; ++i) {
             if (i == sel) {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 SetColor(15);
                 std::cout << "                 -> " << items[i] << "\n";
                 SetColorDefault();
@@ -258,49 +252,28 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
             }          
         }
 
-        // ì…ë ¥ ì²˜ë¦¬
+        // ÀÔ·Â Ã³¸®
         int key = _getch();
-        if (key == 224) {           // ë°©í–¥í‚¤ prefix
+        if (key == 224) {           // ¹æÇâÅ° prefix
             key = _getch();
-            if (key == 72) {        // â†‘
+            if (key == 72) {        // ¡è
                 sel = (sel - 1 + n) % n;
             }
-            else if (key == 80) { // â†“
+            else if (key == 80) { // ¡é
                 sel = (sel + 1) % n;
             }
         }
         else if (key == 13) {     // Enter
             return sel;
         }
-        else if (key == 27) {     // ESC -> ë§ˆì§€ë§‰ í•­ëª©(ë‚˜ê°€ê¸°)ë¡œ ì·¨ê¸‰
+        else if (key == 27) {     // ESC -> ¸¶Áö¸· Ç×¸ñ(³ª°¡±â)·Î Ãë±Ş
             return n - 1;
         }
     }
 }
     
 
-
-
-// levelì— ë”°ë¼ ëª¬ìŠ¤í„° ìƒì„±
-Monster* GameManager::CreateMonster(int level)
-{
-	Monster* monster = nullptr;
-
-    switch (RandRange(0, 1)) {
-    case 0: monster = new Golem(level); break;
-    case 1: monster = new Imp(level);    break;
-    }
-
-    const int hp = RandRange(level * 20, level * 30);
-    const int atk = RandRange(level * 5, level * 10);
-    monster->SetHP(hp);
-    monster->SetAttack(atk);
-    return monster;
-}
-    
-
-
-// ìƒˆ ê²Œì„ ì‹œì‘
+// »õ °ÔÀÓ ½ÃÀÛ
 void GameManager::StartNewGame() {
     ClearScreen();
     ShowGameRules();
@@ -308,15 +281,15 @@ void GameManager::StartNewGame() {
     ClearScreen();
     std::string name;
     while (true) {
-        std::cout << "ë‹‰ë„¤ì„ì„ ì…ë ¥í•˜ì„¸ìš”: ";
-        std::getline(std::cin, name);  // ê³µë°± í¬í•¨ ì…ë ¥ ë°›ìŒ
+        std::cout << "´Ğ³×ÀÓÀ» ÀÔ·ÂÇÏ¼¼¿ä: ";
+        std::getline(std::cin, name);  // °ø¹é Æ÷ÇÔ ÀÔ·Â ¹ŞÀ½
 
         if (name.find(' ') != std::string::npos) {
-            std::cout << "ë‹‰ë„¤ì„ì— ê³µë°±ì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.\n";
+            std::cout << "´Ğ³×ÀÓ¿¡ °ø¹éÀº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.\n";
             continue;
         }
-        if (name.empty()) { // ì—”í„°ë§Œ ëˆŒë €ì„ ë•Œ
-            std::cout << "ë‹‰ë„¤ì„ì€ ë¹„ì›Œë‘˜ ìˆ˜ ì—†ìŠµë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.\n";
+        if (name.empty()) { // ¿£ÅÍ¸¸ ´­·¶À» ¶§
+            std::cout << "´Ğ³×ÀÓÀº ºñ¿öµÑ ¼ö ¾ø½À´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.\n";
             continue;
         }
         break;
@@ -333,20 +306,20 @@ void GameManager::PlayLoop(Character& player) {
     while (keepPlaying && player.GetHp() > 0) {
         int sel = 0;
         if (!didBattleOnce) {
-            sel = ArrowMenu({ "ì „íˆ¬", "ì¢…ë£Œ" }, player);
+            sel = ArrowMenu({ "ÀüÅõ", "Á¾·á" }, player);
             if (sel == 1) {
                 ClearScreen();
-                std::cout << "ê²Œì„ì„ ì €ì¥ì¤‘ì…ë‹ˆë‹¤.\n";
-                SaveToFile(player);           // ì‹¤ì œ ì €ì¥ í˜¸ì¶œ
+                std::cout << "°ÔÀÓÀ» ÀúÀåÁßÀÔ´Ï´Ù.\n";
+                SaveToFile(player);           // ½ÇÁ¦ ÀúÀå È£Ãâ
                 break;
             }
         }
         else {
-            sel = ArrowMenu({ "ì „íˆ¬", "ìƒì ", "ì¢…ë£Œ" }, player);
+            sel = ArrowMenu({ "ÀüÅõ", "»óÁ¡", "Á¾·á" }, player);
             if (sel == 2) {
                 ClearScreen();
-                std::cout << "ê²Œì„ì„ ì €ì¥ì¤‘ì…ë‹ˆë‹¤.\n";
-                SaveToFile(player);           // ì‹¤ì œ ì €ì¥ í˜¸ì¶œ
+                std::cout << "°ÔÀÓÀ» ÀúÀåÁßÀÔ´Ï´Ù.\n";
+                SaveToFile(player);           // ½ÇÁ¦ ÀúÀå È£Ãâ
                 break;
             }
             if (sel == 1) {
@@ -356,14 +329,14 @@ void GameManager::PlayLoop(Character& player) {
             }
         }
 
-        // ===== ì „íˆ¬ ì‹œì‘ =====
+        // ===== ÀüÅõ ½ÃÀÛ =====
         GameManager gm;
         Monster* monster = gm.CreateMonster(player.GetLevel());
 
         if (player.GetLevel() >= 10) {
             ClearScreen();
             setColor(RED);
-            std::cout << "ë³´ìŠ¤ ëª¬ìŠ¤í„° [ë“œë˜ê³¤]ì´ ë‚˜íƒ€ë‚¬ìŠµë‹ˆë‹¤!"
+            std::cout << "º¸½º ¸ó½ºÅÍ [µå·¡°ï]ÀÌ ³ªÅ¸³µ½À´Ï´Ù!"
                 << " HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
             PrintDragonArt();
             PlaySound(TEXT("Thunder9.wav"), NULL, SND_FILENAME | SND_ASYNC);
@@ -372,22 +345,22 @@ void GameManager::PlayLoop(Character& player) {
         }
         else {
             ClearScreen();
-            std::cout << "ëª¬ìŠ¤í„°ê°€ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤! ì´ë¦„: " << monster->GetName()
+            std::cout << "¸ó½ºÅÍ°¡ »ı¼ºµÇ¾ú½À´Ï´Ù! ÀÌ¸§: " << monster->GetName()
                 << ", HP: " << monster->GetHP() << ", Attack: " << monster->GetAttack() << "\n";
-            if (monster->GetName() == "ë“œë˜ê³¤")       PrintDragonArt();
-            else if (monster->GetName() == "ê³¨ë ˜")    PrintGolemArt();
-            else if (monster->GetName() == "ì„í”„")    PrintImpArt();
-            else if (monster->GetName() == "ì½”ë³¼íŠ¸")  PrintKoboldArt();
-            else if (monster->GetName() == "ì˜¤í¬")    PrintOrcArt();
-            else if (monster->GetName() == "ìŠ¬ë¼ì„")  PrintSlimeArt();
+            if (monster->GetName() == "µå·¡°ï")       PrintDragonArt();
+            else if (monster->GetName() == "°ñ·½")    PrintGolemArt();
+            else if (monster->GetName() == "ÀÓÇÁ")    PrintImpArt();
+            else if (monster->GetName() == "ÄÚº¼Æ®")  PrintKoboldArt();
+            else if (monster->GetName() == "¿ÀÅ©")    PrintOrcArt();
+            else if (monster->GetName() == "½½¶óÀÓ")  PrintSlimeArt();
 			WaitForEnter();
         }
 
         Battle battle;
         int isLive = battle.StartBattle(&player, monster);
         
-        if (isLive == 1) { // ìŠ¹ë¦¬
-            if (player.GetLevel() >= 10 && monster->GetName() == "ë“œë˜ê³¤") {
+        if (isLive == 1) { // ½Â¸®
+            if (player.GetLevel() >= 10 && monster->GetName() == "µå·¡°ï") {
                 ClearScreen();
 				PrintTheEnd();
                 _getch();
@@ -397,7 +370,6 @@ void GameManager::PlayLoop(Character& player) {
             }
             else {
                 didBattleOnce = true;
-
 
                 player.SetExp(player.GetExp() + 50);
                 player.AddGold(RandRange(10, 20));
@@ -418,14 +390,14 @@ void GameManager::PlayLoop(Character& player) {
                 }
             
                 if (isLevelUp == true) {
-                    cout << "í”Œë ˆì´ì–´ê°€ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤! +EXP 50\n";
+                    cout << "ÇÃ·¹ÀÌ¾î°¡ ½Â¸®Çß½À´Ï´Ù! +EXP 50\n";
                     setColor(LIGHT_BLUE);
                     PlaySound(TEXT("Up1.wav"), NULL, SND_FILENAME | SND_ASYNC); 
                     player.ApplyLevelUp();
                     setColor(BRIGHT_WHITE);
                 }
                 else {
-                    cout << "í”Œë ˆì´ì–´ê°€ ìŠ¹ë¦¬í–ˆìŠµë‹ˆë‹¤! +EXP 50\n";
+                    cout << "ÇÃ·¹ÀÌ¾î°¡ ½Â¸®Çß½À´Ï´Ù! +EXP 50\n";
                 }
 
 
@@ -440,22 +412,22 @@ void GameManager::PlayLoop(Character& player) {
                     }
                     player.AddItem(dropped);
                     Sleep(1000);
-                    std::cout << "\n[ì „ë¦¬í’ˆ íšë“]\n";
+                    std::cout << "\n[Àü¸®Ç° È¹µæ]\n";
                     player.ShowInventory();
                 }
                 WaitForEnter();
                 ClearScreen();
             }
         }
-        else if (isLive == 2) { // ë„ë§
+        else if (isLive == 2) { // µµ¸Á
             ClearScreen();
             player.ShowStatus();
-            std::cout << "í”Œë ˆì´ì–´ê°€ ë„ë§ì³¤ìŠµë‹ˆë‹¤.\n";
+            std::cout << "ÇÃ·¹ÀÌ¾î°¡ µµ¸ÁÃÆ½À´Ï´Ù.\n";
             WaitForEnter();
             ClearScreen();
             didBattleOnce = true;
         }
-        else { // íŒ¨ë°°
+        else { // ÆĞ¹è
             setColor(LIGHT_RED);
             ClearScreen();
             player.ShowStatus();
@@ -468,17 +440,6 @@ void GameManager::PlayLoop(Character& player) {
 
         delete monster;
     }
-
-	GameManager gameManager;
-
-	Monster* monster = gameManager.CreateMonster(1/*ìºë¦­í„° ë ˆë²¨*/);
-
-    cout << "ëª¬ìŠ¤í„°ê°€ ìƒì„±ë˜ì—ˆìŠµë‹ˆë‹¤! ì´ë¦„: " << monster->GetName()
-         << ", HP: " << monster->GetHP()
-		<< ", Attack: " << monster->GetAttack() << "\n";
-
-    // Battle Battle;
-
 
     WaitForEnter();
 }
@@ -493,39 +454,37 @@ void GameManager::Run() {
             StartNewGame();
         }
         else if (choice == 1) {
-            // ì´ì–´í•˜ê¸°: ì„ì‹œ ìºë¦­í„°ì— ë¡œë“œ â†’ ë£¨í”„ ì§„ì…
+            // ÀÌ¾îÇÏ±â: ÀÓ½Ã Ä³¸¯ÅÍ¿¡ ·Îµå ¡æ ·çÇÁ ÁøÀÔ
             Character player("unknown");
             if (LoadFromFile(player)) {
                 PlayLoop(player);
             }
             else {
-                std::cout << "\nì„¸ì´ë¸Œ íŒŒì¼ì´ ì—†ì–´ ì´ì–´í•˜ê¸°ê°€ ë¶ˆê°€í•©ë‹ˆë‹¤. ìƒˆ ê²Œì„ì„ ì‹œì‘í•©ë‹ˆë‹¤.\n";
+                std::cout << "\n¼¼ÀÌºê ÆÄÀÏÀÌ ¾ø¾î ÀÌ¾îÇÏ±â°¡ ºÒ°¡ÇÕ´Ï´Ù. »õ °ÔÀÓÀ» ½ÃÀÛÇÕ´Ï´Ù.\n";
                 WaitForEnter();
                 StartNewGame();
             }
         }
         else{
-            cout << "\nê²Œì„ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.\n";
+            cout << "\n°ÔÀÓÀ» Á¾·áÇÕ´Ï´Ù.\n";
             break;
         }
     }
-
 }
 
 void GameManager::ShowGameRules() {
-    cout << "[ê²Œì„ ê·œì¹™ ì•ˆë‚´]\n";
-    cout << "* í”Œë ˆì´ì–´ëŠ” ì „íˆ¬ë¥¼ í†µí•´ ê²½í—˜ì¹˜ë¥¼ ì–»ê³  ë ˆë²¨ì„ ì˜¬ë¦´ ìˆ˜ ìˆìŠµë‹ˆë‹¤.\n";
-    cout << "* 10ë ˆë²¨ì— ë„ë‹¬í•˜ë©´ ê°•ë ¥í•œ ë³´ìŠ¤ ëª¬ìŠ¤í„° [ë“œë˜ê³¤]ì´ ë“±ì¥í•©ë‹ˆë‹¤.\n";
-    cout << "* ë“œë˜ê³¤ê³¼ì˜ ê²°íˆ¬ì—ì„œ ìŠ¹ë¦¬í•˜ë©´ ê²Œì„ì€ ì—”ë”©ì„ ë§ì´í•˜ê²Œ ë©ë‹ˆë‹¤.\n";
-    cout << "* ì „íˆ¬ ì¤‘ í–‰ë™ì€ 3ê°€ì§€ ì¤‘ í•˜ë‚˜ë¥¼ ì„ íƒí•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.\n";
-    cout << "    - ê³µê²©: ëª¬ìŠ¤í„°ì—ê²Œ ì§ì ‘ ê³µê²©ì„ ê°€í•©ë‹ˆë‹¤.\n";
-    cout << "    - ì•„ì´í…œ ì‚¬ìš©: ì¸ë²¤í† ë¦¬ì—ì„œ ì•„ì´í…œì„ ì‚¬ìš©í•©ë‹ˆë‹¤.\n";
-    cout << "    - ë„ë§ê°€ê¸°: ì „íˆ¬ì—ì„œ ë„ë§ì¹  ìˆ˜ ìˆìŠµë‹ˆë‹¤.\n";
-    cout << "* ëª¬ìŠ¤í„°ëŠ” ë§ˆë‚˜ê°€ ë‹¤ ì°¨ì˜¤ë¥´ë©´ ê°•ë ¥í•œ ìŠ¤í‚¬ì„ ì‚¬ìš©í•©ë‹ˆë‹¤.\n";
-    cout << "* ìƒì ì€ ì „íˆ¬ë¥¼ ìµœì†Œ 1íšŒ ì´ìƒ ì§„í–‰í•´ì•¼ í™œì„±í™”ë©ë‹ˆë‹¤.\n";
-    cout << "* ìƒì ì—ì„œëŠ” ì•„ì´í…œ êµ¬ë§¤ ë° íŒë§¤ê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤.\n";
-    cout << "    - êµ¬ë§¤: ê³¨ë“œë¥¼ ì†Œëª¨í•´ ì•„ì´í…œì„ íšë“í•©ë‹ˆë‹¤.\n";
-    cout << "    - íŒë§¤: ì•„ì´í…œì„ íŒë§¤í•˜ê³  ìƒì  êµ¬ë§¤ê°€ì˜ ì ˆë°˜ë§Œí¼ì˜ ê³¨ë“œë¥¼ íšë“í•©ë‹ˆë‹¤.\n\n";
-    cout << "* ìƒì ì— ì¬ë°©ë¬¸í•˜ê¸° ìœ„í•´ì„œëŠ” ì „íˆ¬ë¥¼ 1íšŒ ì´ìƒ ì§„í–‰í•´ì•¼í•©ë‹ˆë‹¤.\n";
-
+    cout << "[°ÔÀÓ ±ÔÄ¢ ¾È³»]\n";
+    cout << "* ÇÃ·¹ÀÌ¾î´Â ÀüÅõ¸¦ ÅëÇØ °æÇèÄ¡¸¦ ¾ò°í ·¹º§À» ¿Ã¸± ¼ö ÀÖ½À´Ï´Ù.\n";
+    cout << "* 10·¹º§¿¡ µµ´ŞÇÏ¸é °­·ÂÇÑ º¸½º ¸ó½ºÅÍ [µå·¡°ï]ÀÌ µîÀåÇÕ´Ï´Ù.\n";
+    cout << "* µå·¡°ï°úÀÇ °áÅõ¿¡¼­ ½Â¸®ÇÏ¸é °ÔÀÓÀº ¿£µùÀ» ¸ÂÀÌÇÏ°Ô µË´Ï´Ù.\n";
+    cout << "* ÀüÅõ Áß Çàµ¿Àº 3°¡Áö Áß ÇÏ³ª¸¦ ¼±ÅÃÇÒ ¼ö ÀÖ½À´Ï´Ù.\n";
+    cout << "    - °ø°İ: ¸ó½ºÅÍ¿¡°Ô Á÷Á¢ °ø°İÀ» °¡ÇÕ´Ï´Ù.\n";
+    cout << "    - ¾ÆÀÌÅÛ »ç¿ë: ÀÎº¥Åä¸®¿¡¼­ ¾ÆÀÌÅÛÀ» »ç¿ëÇÕ´Ï´Ù.\n";
+    cout << "    - µµ¸Á°¡±â: ÀüÅõ¿¡¼­ µµ¸ÁÄ¥ ¼ö ÀÖ½À´Ï´Ù.\n";
+    cout << "* ¸ó½ºÅÍ´Â ¸¶³ª°¡ ´Ù Â÷¿À¸£¸é °­·ÂÇÑ ½ºÅ³À» »ç¿ëÇÕ´Ï´Ù.\n";
+    cout << "* »óÁ¡Àº ÀüÅõ¸¦ ÃÖ¼Ò 1È¸ ÀÌ»ó ÁøÇàÇØ¾ß È°¼ºÈ­µË´Ï´Ù.\n";
+    cout << "* »óÁ¡¿¡¼­´Â ¾ÆÀÌÅÛ ±¸¸Å ¹× ÆÇ¸Å°¡ °¡´ÉÇÕ´Ï´Ù.\n";
+    cout << "    - ±¸¸Å: °ñµå¸¦ ¼Ò¸ğÇØ ¾ÆÀÌÅÛÀ» È¹µæÇÕ´Ï´Ù.\n";
+    cout << "    - ÆÇ¸Å: ¾ÆÀÌÅÛÀ» ÆÇ¸ÅÇÏ°í »óÁ¡ ±¸¸Å°¡ÀÇ Àı¹İ¸¸Å­ÀÇ °ñµå¸¦ È¹µæÇÕ´Ï´Ù.\n\n";
+    cout << "* »óÁ¡¿¡ Àç¹æ¹®ÇÏ±â À§ÇØ¼­´Â ÀüÅõ¸¦ 1È¸ ÀÌ»ó ÁøÇàÇØ¾ßÇÕ´Ï´Ù.\n";
 }
