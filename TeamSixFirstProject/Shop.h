@@ -21,6 +21,7 @@ private:
 
 	float SellRatio = 0.5f;
 
+
 	void ShowShopUI(std::vector<std::pair<Item*, int>> items, int selectnum, Character* character ,float priceratio = 1.f);
 	void DeleteShopItem();
 
@@ -30,4 +31,7 @@ private:
 
 	void BuyItem(std::pair<Item*, int>& item, Character* character);
 	void SellItem(std::pair<Item*, int> item, Character* character);
+	
+	void SetColor(int color);
+	void SetColorDefault();
 };
