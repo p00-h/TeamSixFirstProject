@@ -4,17 +4,19 @@
 
 ManaPotion::ManaPotion() : Item("마나 회복 포션",5, 10, 0) {}
 
-void ManaPotion::Use(Character* character) // 아이템 사용
+bool ManaPotion::Use(Character* character) // 아이템 사용
 {
 	if (character->GetMp() < character->GetMaxMp())
 	{
 		ItemSound();
 		character->SetMp(character->GetMp() + Value);
 		std::cout << character->GetName() << "의 마나가 " << Value << " 회복 됐습니다." << std::endl;
+		return true;
 	}
 	else
 	{
 		std::cout << "이미 마나가 가득 찼습니다." << std::endl;
+		return false;
 	}
 }
 
