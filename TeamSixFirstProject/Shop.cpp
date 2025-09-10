@@ -68,15 +68,30 @@ void Shop::ShowShopMenu(Character* character)
         cout << "============= [상점] =============" << endl;
         cout << "상점 주인: 상점에 온걸 환영하네!\n           뭐가 필요하지? \n";
         cout << "----------------------------------" << endl;
+        SetColor(14); // yellow
         cout << "보유 골드:" << character->GetGold() << "G \n";
+        SetColorDefault();
         cout << "----------------------------------" << endl;
 
-        for (int i = 0; i < 3; i++) {
-            if (i == selected) cout << "> " << ShopOptions[i] << endl;
-            else cout << "  " << ShopOptions[i] << endl;
+        for (int i = 0; i < 3; i++)
+        {
+            if (i == selected)
+            {
+                SetColor(15); // white
+                cout << "> " << ShopOptions[i] << endl;
+                SetColorDefault();
+            }
+            else
+            {
+                SetColor(8); // dark gray
+                cout << "  " << ShopOptions[i] << endl;
+                SetColorDefault();
+            }
+                
         }
 
         cout << "==================================" << endl;
+        
         
 
         int key = _getch();
@@ -206,16 +221,32 @@ void Shop::ShowShopUI(vector<pair<Item*, int>> items, int selectnum,  Character*
 
         int space = (name.size());
 
-        if (i == selectnum) cout << "> " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
-        else cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+        if (i == selectnum)
+        {
+            SetColor(15); // white
+            cout << "> " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+            SetColorDefault(); // gray
+        }
+        else
+        {
+            SetColor(8); // dark gray
+            cout << "  " << name << setw(22 - space) << "x" << count << setw(10) << price << "G " << endl;
+            SetColorDefault();
+        }
 
     }
     cout << "-----------------------------------------" << endl;
+    SetColor(15); //
     cout << "[효과] " << items[selectnum].first->ItemInfo() << endl;
-    //cout << "-----------------------------------------" << endl;
+    //SetColorDefault();
+    SetColor(14); // yellow
     cout << "보유 골드:" << character->GetGold() << "G \n";
+    SetColorDefault();
     cout << "-----------------------------------------" << endl;
+
+    SetColor(12); // red
     cout << "ESC: 상점 메뉴로 돌아가기\n";
+    SetColorDefault();
 }
 
 
@@ -248,7 +279,6 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
 
         PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
-        Sleep(1000);
         character->AddItem(buyItem,1);
 
         item.second--; 
@@ -266,6 +296,20 @@ void Shop::SellItem(pair<Item*, int> item, Character* character)
     character->SellItem(name, 1, SellRatio);
 
 }
+
+
+void Shop::SetColor(int color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void Shop::SetColorDefault()
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+}
+
+
+
 
 
 

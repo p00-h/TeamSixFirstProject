@@ -22,7 +22,7 @@ public:
 
 	virtual void TurnDecrease(Character* character);
 
-	virtual void Use(Character* character) = 0;
+	virtual bool Use(Character* character) = 0;
 	virtual std::string ItemInfo() const = 0;
 	virtual Item* Clone() const = 0;
 
