@@ -159,6 +159,7 @@ int GameManager::ShowMenu() {
 
         for (int i = 0; i < count; ++i) {
             if (i == sel) {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 SetColor(15);
                 cout << "                                           -> " << items[i] << "\n";
                 SetColorDefault();
@@ -239,6 +240,7 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
         std::cout << "========================\n";
         for (int i = 0; i < n; ++i) {
             if (i == sel) {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
                 SetColor(15);
                 std::cout << "                 -> " << items[i] << "\n";
                 SetColorDefault();
