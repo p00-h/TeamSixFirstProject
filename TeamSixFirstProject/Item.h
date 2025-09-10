@@ -22,6 +22,8 @@ public:
 	virtual Item* Clone() const = 0;
 	virtual bool IsDurationBased() const = 0;
 
+	virtual void EffectIsOver(Character* character);
+
 	void ItemSound();
 
 	virtual ~Item() = default;

@@ -37,3 +37,10 @@ bool AttackBoost::IsDurationBased() const // 지속형인지
 {
 	return true;
 }
+
+void AttackBoost::EffectIsOver(Character* character)
+{
+	IsActive = false;
+	cout << Name << "의 효과가 끝났습니다." << endl;
+	character->SetAttack(character->GetAttack() - Value);
+}

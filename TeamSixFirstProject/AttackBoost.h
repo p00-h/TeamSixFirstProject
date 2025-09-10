@@ -10,4 +10,5 @@ public:
 	virtual std::string ItemInfo() const override;
 	virtual Item* Clone() const override;
 	virtual bool IsDurationBased() const override;
+	virtual void EffectIsOver(Character* character) override;
 };
