@@ -124,20 +124,48 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AttackBoost.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="DefenseBoost.cpp" />
+=======
+    <ClCompile Include="Battle.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Character.h" />
+    <ClCompile Include="DefenseBoost.cpp" />
+    <ClCompile Include="DirectionManager.cpp" />
+    <ClCompile Include="Dragon.cpp" />
+>>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
     <ClCompile Include="HealthPotion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h" />
+<<<<<<< HEAD
     <ClInclude Include="DefenseBoost.h" />
+=======
+    <ClInclude Include="Battle.h" />
+    <ClInclude Include="Color.h" />
+    <ClInclude Include="DefenseBoost.h" />
+    <ClInclude Include="DirectionManager.h" />
+    <ClInclude Include="Dragon.h" />
+>>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
     <ClInclude Include="HealthPotion.h" />
     <ClInclude Include="Item.h" />
     <ClCompile Include="Golem.cpp" />
     <ClCompile Include="Imp.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="Item.cpp" />
+>>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
     <ClCompile Include="Kobold.cpp" />
     <ClCompile Include="ManaPotion.cpp" />
     <ClCompile Include="Monster.cpp" />
     <ClCompile Include="GameManager.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="MonsterArt.cpp" />
+    <ClCompile Include="Orc.cpp" />
+    <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="Slime.cpp" />
+>>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
     <ClCompile Include="TeamSixFirstProject.cpp" />
     <ClCompile Include="TItle.cpp" />
   </ItemGroup>
@@ -145,6 +173,13 @@
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="Kobold.h" />
     <ClInclude Include="ManaPotion.h" />
+<<<<<<< HEAD
+=======
+    <ClInclude Include="MonsterArt.h" />
+    <ClInclude Include="Orc.h" />
+    <ClInclude Include="Shop.h" />
+    <ClInclude Include="Slime.h" />
+>>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
     <ClInclude Include="TItle.h" />
   </ItemGroup>
   <ItemGroup>
