@@ -98,30 +98,18 @@ void Shop::ShowShopMenu(Character* character)
         if (key == 224) 
         {
             key = _getch();
-            if (key == 72 && selected > 0)
-            {
-                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
-                selected--; // ↑
-            }
-             
-            if (key == 80 && selected < 2)
-            {
-                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
-                selected++; // ↓
-            }
+            if (key == 72 && selected > 0) selected--; // ↑
+            if (key == 80 && selected < 2) selected++; // ↓
         }
         else if (key == 13) 
         { // 엔터
             if (ShopOptions[selected] == "아이템 구매") {
-               
                 ShowBuyMenu(character); 
             }
             else if (ShopOptions[selected] == "아이템 판매") {
-              
                ShowSellMenu(character);
             }
             else if (ShopOptions[selected] == "상점 나가기") {
-        
                 break; // 상점 나가기
             }
         }
@@ -148,16 +136,8 @@ void Shop::ShowBuyMenu(Character* character)
         if (key == 224) 
         {
             key = _getch();
-            if (key == 72 && itemSelected > 0)
-            {
-                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
-                itemSelected--; // ↑
-            }
-            if (key == 80 && itemSelected < AvailableItems.size() - 1)
-            {
-                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
-                itemSelected++; // ↓
-            }
+            if (key == 72 && itemSelected > 0) itemSelected--; // ↑
+            if (key == 80 && itemSelected < AvailableItems.size() - 1) itemSelected++; // ↓
         }
         else if (key == 13) 
         {
@@ -213,17 +193,8 @@ void Shop::ShowSellMenu(Character* character)
         if (key == 224)
         {
             key = _getch();
-            if (key == 72 && itemSelected > 0)
-            {
-                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
-                itemSelected--;
-            }
-            // ↑
-            if (key == 80 && itemSelected < Inventory.size() - 1)
-            {
-                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC);
-                itemSelected++;
-            } // ↓
+            if (key == 72 && itemSelected > 0) itemSelected--; // ↑
+            if (key == 80 && itemSelected < Inventory.size() - 1) itemSelected++; // ↓
         }
         else if (key == 13)
         {
@@ -303,13 +274,12 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
         return;
     }
 
-    if (character->SpendGold(buyItem->GetPrice()))
+    if (character->SpendGold(buyItem->GetPrice()) && character->AddItem(buyItem, 1))
     {
+        
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
 
         PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
-        character->AddItem(buyItem,1);
-
         item.second--; 
 
         
