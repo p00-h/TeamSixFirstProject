@@ -4,12 +4,18 @@
 
 class AttackBoost :public Item
 {
+
+
 	std::string Name;
 	int AttackIncrease;
 	int Price;
 
+
 public:
 	AttackBoost();
-	virtual std::string GetName() override;
-	virtual void Use(Character* character) override;
+	virtual bool Use(Character* character) override;
+	virtual std::string ItemInfo() const override;
+	virtual Item* Clone() const override;
+	virtual bool IsDurationBased() const override;
+	virtual void EffectIsOver(Character* character) override;
 };

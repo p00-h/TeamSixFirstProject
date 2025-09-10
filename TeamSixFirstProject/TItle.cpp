@@ -4,6 +4,7 @@
 #include <thread>
 #include <chrono>
 
+
 #ifdef _WIN32
 #include <windows.h>
 static void ClearScreen_T() { system("cls"); }
@@ -32,14 +33,17 @@ static vector<string> SplitLines(const string& block) {
     return out;
 }
 
-// ==== ASCII 아트 (RPG GAME) ====
+// ==== ASCII 아트 ====
 static const string BANNER_EDGE = R"(
-______ ______  _____   _____   ___  ___  ___ _____ 
-| ___ \| ___ \|  __ \ |  __ \ / _ \ |  \/  ||  ___|
-| |_/ /| |_/ /| |  \/ | |  \// /_\ \| .  . || |__  
-|    / |  __/ | | __  | | __ |  _  || |\/| ||  __| 
-| |\ \ | |    | |_\ \ | |_\ \| | | || |  | || |___ 
-\_| \_|\_|     \____/  \____/\_| |_/\_|  |_/\____/ 
+
+ _____  _____   ___  ___  ___        _____  _____ __   __
+|_   _||  ___| / _ \ |  \/  |       /  ___||_   _|\ \ / /
+  | |  | |__  / /_\ \| .  . |       \ `--.   | |   \ V / 
+  | |  |  __| |  _  || |\/| |        `--. \  | |   /   \ 
+  | |  | |___ | | | || |  | |       /\__/ / _| |_ / /^\ \
+  \_/  \____/ \_| |_/\_|  |_/       \____/  \___/ \/   \/
+                                                         
+                                                Text Game
 
 )";
 
@@ -49,4 +53,44 @@ void ShowTitle(TitleStyle style) {
     auto lines = SplitLines(BANNER_EDGE);
     PrintLinesWithDelay(lines, 5);
     cout << "\n";
+}
+
+// Title.cpp
+
+const std::vector<std::string> Gameover =
+{
+R"(   _____                         ____                 )",
+R"(  / ____|                       / __ \                )",
+R"( | |  __  __ _ _ __ ___   ___  | |  | |_   _____ _ __ )",
+R"( | | |_ |/ _` | '_ ` _ \ / _ \ | |  | \ \ / / _ \ '__|)",
+R"( | |__| | (_| | | | | | |  __/ | |__| |\ V /  __/ |   )",
+R"(  \_____|\__,_|_| |_| |_|\___|  \____/  \_/ \___|_|   )",
+R"(                                                      )"
+};
+
+void PrintGameover()
+{
+    for (const auto& line : Gameover)
+    {
+        std::cout << line << "\n";
+    }
+}
+
+const std::vector<std::string> TheEnd =
+{
+R"(  _______ _            ______           _ )",
+R"( |__   __| |          |  ____|         | |)",
+R"(    | |  | |__   ___  | |____   ___  __| |)",
+R"(    | |  | '_ \ / _ \ |  __\ \ / / |/ _` |)",
+R"(    | |  | | | |  __/ | |___\ V /| | (_| |)",
+R"(    |_|  |_| |_|\___| |______\_/ |_|\__,_|)",
+R"(                                          )"
+};
+
+void PrintTheEnd()
+{
+    for (const auto& line : TheEnd)
+    {
+        std::cout << line << "\n";
+    }
 }
