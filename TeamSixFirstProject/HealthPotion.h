@@ -7,7 +7,7 @@ class HealthPotion :public Item
 {
 public:
 	HealthPotion();
-	virtual void Use(Character* character) override;
+	virtual bool Use(Character* character) override;
 	virtual std::string ItemInfo() const override;
 	virtual Item* Clone() const override;
 };

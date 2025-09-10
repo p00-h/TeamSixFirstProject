@@ -6,7 +6,7 @@ using namespace std;
 
 DefenseBoost::DefenseBoost() : Item("방어력 증가 포션", 15, 10, -1) {}
 
-void DefenseBoost::Use(Character* character) // 아이템 사용
+bool DefenseBoost::Use(Character* character) // 아이템 사용
 {
 	if (Turn <= 0) // 아이템 효과 중첩 방지
 	{
@@ -14,10 +14,12 @@ void DefenseBoost::Use(Character* character) // 아이템 사용
 		Turn = 3;
 		character->SetDefense(character->GetDefense() + Value);
 		cout << character->GetName() << "의 방어력이 " << Turn << "턴 동안 " << Value << " 증가합니다." << endl;
+		return true;
 	}
 	else
 	{
 		cout << "이미 " << Name << "의 효과가 적용중입니다." << endl;
+		return false;
 	}
 }
 
