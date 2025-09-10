@@ -53,12 +53,12 @@ bool GameManager::SaveToFile(const Character& player, const std::string& path) {
         << player.GetDefense() << ' '
         << player.GetGold() << "\n";
 
-    const auto& inv = player.GetInventory();  // map<string, pair<Item*, int>>  :contentReference[oaicite:0]{index=0}
+    const auto& inv = player.GetInventory(); 
     ofs << inv.size() << "\n";
     for (const auto& kv : inv) {
         Item* obj = kv.second.first;
         int   cnt = kv.second.second;
-        // ★ 이름을 반드시 실제 객체 이름으로 기록 + quoted로 감싸기
+        // 이름을 반드시 실제 객체 이름으로 기록 + quoted로 감싸기
         ofs << std::quoted(obj->GetName()) << ' ' << cnt << "\n";  // 
     }
     return true;
@@ -89,7 +89,7 @@ bool GameManager::LoadFromFile(Character& player, const std::string& path) {
     if (!(ifs >> n)) return false;
     ifs.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
-    // 4) 아이템들 (이름이 공백 포함될 수 있으므로 quoted 사용)
+    // 4) 아이템들 (공백 안전하게 처리 quoted 사용)
     for (int i = 0; i < n; ++i) {
         std::string itemName;
         int count;
@@ -247,12 +247,17 @@ void GameManager::StartNewGame() {
     ShowGameRules();
 	WaitForEnter();
     ClearScreen();
-    std::cout << "* 닉네임을 입력해주세요(공백 불가): ";
     std::string name;
     while (true) {
-        std::cin >> name; // 공백 포함 시 끊김
+        std::cout << "닉네임을 입력하세요: ";
+        std::getline(std::cin, name);  // 공백 포함 입력 받음
+
         if (name.find(' ') != std::string::npos) {
-            std::cout << "닉네임에 공백은 사용할 수 없습니다. 다시 입력하세요: ";
+            std::cout << "닉네임에 공백은 사용할 수 없습니다. 다시 입력하세요.\n";
+            continue;
+        }
+        if (name.empty()) { // 엔터만 눌렀을 때
+            std::cout << "닉네임은 비워둘 수 없습니다. 다시 입력하세요.\n";
             continue;
         }
         break;
@@ -336,6 +341,7 @@ void GameManager::PlayLoop(Character& player) {
 
                 player.SetExp(player.GetExp() + 50);
                 player.AddGold(RandRange(10, 20));
+                Sleep(1000);
 
                 int tempHP = player.GetMaxHp();
 				int tempAtk = player.GetAttack();
@@ -373,6 +379,7 @@ void GameManager::PlayLoop(Character& player) {
                     case 4: dropped = new DefenseBoost();  break;
                     }
                     player.AddItem(dropped);
+                    Sleep(1000);
                     std::cout << "\n[전리품 획득]\n";
                     player.ShowInventory();
                 }
