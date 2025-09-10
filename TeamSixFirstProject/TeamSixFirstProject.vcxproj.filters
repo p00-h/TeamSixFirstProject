@@ -1,68 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-
-    <ClCompile Include="Character.h">
-      <Filter>Header Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Character.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Shop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TeamSixFirstProject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AttackBoost.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="DefenseBoost.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="HealthPotion.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="ManaPotion.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Item.cpp">
-      <Filter>Source Files\Item</Filter>
-    </ClCompile>
-    <ClCompile Include="Battle.cpp">
-      <Filter>Source Files\GameManage</Filter>
-    </ClCompile>
-    <ClCompile Include="GameManager.cpp">
-      <Filter>Source Files\GameManage</Filter>
-    </ClCompile>
-    <ClCompile Include="TItle.cpp">
-      <Filter>Source Files\GameManage</Filter>
-    </ClCompile>
-    <ClCompile Include="Golem.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Imp.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Kobold.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Monster.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="DirectionManager.cpp" />
-    <ClCompile Include="Orc.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Slime.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="Dragon.cpp">
-      <Filter>Source Files\Monster</Filter>
-    </ClCompile>
-    <ClCompile Include="MonsterArt.cpp">
-      <Filter>Source Files\Monster</Filter>
-
     <Filter Include="소스 파일">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -127,54 +65,10 @@
     </ClCompile>
     <ClCompile Include="Kobold.cpp">
       <Filter>소스 파일\Monster</Filter>
-
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AttackBoost.h">
-
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="DefenseBoost.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="HealthPotion.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="ManaPotion.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.h">
-      <Filter>Header Files\Item</Filter>
-    </ClInclude>
-    <ClInclude Include="Battle.h">
-      <Filter>Header Files\GameManage</Filter>
-    </ClInclude>
-    <ClInclude Include="GameManager.h">
-      <Filter>Header Files\GameManage</Filter>
-    </ClInclude>
-    <ClInclude Include="TItle.h">
-      <Filter>Header Files\GameManage</Filter>
-    </ClInclude>
-    <ClInclude Include="Golem.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Imp.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Kobold.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Monster.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Shop.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DirectionManager.h" />
-    <ClInclude Include="Orc.h">
-      <Filter>Header Files\Monster</Filter>
-
       <Filter>헤더 파일\Item</Filter>
     </ClInclude>
     <ClInclude Include="DefenseBoost.h">
@@ -206,45 +100,6 @@
     </ClInclude>
     <ClInclude Include="Kobold.h">
       <Filter>헤더 파일\Monster</Filter>
-
     </ClInclude>
-    <ClInclude Include="Slime.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Dragon.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Header Files\GameManage</Filter>
-    </ClInclude>
-    <ClInclude Include="MonsterArt.h">
-      <Filter>Header Files\Monster</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{bbc5fb23-72cd-42f1-aa57-c7a8587adbae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{c4881d65-ab15-4822-b19c-fc9f8fd03b14}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Item">
-      <UniqueIdentifier>{a0d1e07c-4e13-4105-8caf-91219a3831f0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Monster">
-      <UniqueIdentifier>{a41fc62d-2f70-43c2-b608-5c74b21f6145}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\GameManage">
-      <UniqueIdentifier>{73762a21-dea0-436c-8538-57012aae9f74}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Item">
-      <UniqueIdentifier>{70628fdd-6e57-42f7-a5d1-606c8cf48dd6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Monster">
-      <UniqueIdentifier>{e09525dd-7094-422d-b1f9-93cfe75a9a6e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GameManage">
-      <UniqueIdentifier>{b3e8990a-815e-4cd4-9286-a901eb0a7a61}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
 </Project>
