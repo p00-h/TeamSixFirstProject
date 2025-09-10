@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Character.h"
 
 
 class Monster
@@ -40,8 +41,8 @@ public:
 	bool IsDead() const;	// Monster.cpp 줄 18번 구현
 
 	//다형성 가상 함수
-	virtual void NormalAttack() = 0;
-	virtual void UseSkill() = 0;
+	virtual void NormalAttack(Character* target) = 0;
+	virtual void UseSkill(Character* target) = 0;
 
 	virtual ~Monster() {}
 };

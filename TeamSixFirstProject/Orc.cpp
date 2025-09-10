@@ -12,37 +12,40 @@ Orc::Orc(int level)
 	//OrcBouns = level * 5;
 }
 
-void Orc::BellyFatAttack()
+void Orc::BellyFatAttack(Character* target)
 {
 	int BellyFatAttackDamage = GetAttack() * 1.5;
 	cout << GetName() << "의 뱃살 공격! 기분이 나쁘다.. 대미지 : " << BellyFatAttackDamage << endl;
+	if (target) target->SetHp(target->GetHp() - BellyFatAttackDamage);
 }
 
-void Orc::ClubAttack()
+void Orc::ClubAttack(Character* target)
 {
 	int ClubAttackDamage = GetAttack() * 1.2;
 	cout << GetName() << "의 몽둥이 공격! 대미지 : " << ClubAttackDamage << endl;
+	if (target) target->SetHp(target->GetHp() - ClubAttackDamage);
 }
 
-void Orc::GroundShaking()
+void Orc::GroundShaking(Character* target)
 {
 	int GroundShakingDamage = GetAttack() * 2;
 	cout << GetName() << "의 땅울림!! 대미지 : " << GroundShakingDamage << endl;
+	if (target) target->SetHp(target->GetHp() - GroundShakingDamage);
 }
 
-void Orc::NormalAttack()
+void Orc::NormalAttack(Character* target)
 {
 	int Dmg = GetAttack();
 	cout << GetName() << "의 일반 공격! 대미지 : " << Dmg << endl;
 	//SetMP(GetMP() + 1);	//공격시 마나+1
 }
 
-void Orc::UseSkill()
+void Orc::UseSkill(Character* target)
 {
 	int Choice = rand() % 3;
-	if (Choice == 0)  BellyFatAttack();
-	else if (Choice == 1) ClubAttack();
-	else GroundShaking();
+	if (Choice == 0)  BellyFatAttack(target);
+	else if (Choice == 1) ClubAttack(target);
+	else GroundShaking(target);
 
 	//SetMP(0);	//마나 초기화
 }
