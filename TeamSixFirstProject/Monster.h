@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Character.h"	//스킬대미지 주기위해 헤더불러옴
 
 
 class Monster
@@ -11,6 +12,7 @@ private:
 	int Attack;
 	int MP;
 	int AttackBouns;
+	//int MaxHP;
 
 public:
 	Monster(const std::string& N, int level);	// &문자열 복사하지 않고 직접 참조
@@ -25,6 +27,8 @@ public:
 	{ return MP; }
 	int GetAttackBouns()const 
 	{ return AttackBouns; }
+	//int GetMaxHP()const
+	//{ return MaxHP; }
 
 	void SetHP(int newHP)
 	{ HP = newHP; }
@@ -37,8 +41,8 @@ public:
 	bool IsDead() const;	// Monster.cpp 줄 18번 구현
 
 	//다형성 가상 함수
-	virtual void NormalAttack() = 0;
-	virtual void UseSkill() = 0;
+	virtual void NormalAttack(Character* target) = 0;
+	virtual void UseSkill(Character* target) = 0;
 
 	virtual ~Monster() {}
 };

@@ -10,12 +10,14 @@ Monster::Monster(const string& n, int level)
 	Attack = 10;	
 	MP = 0;
 	AttackBouns = 0;
+	//HP = MaxHP;
 }
 
 void Monster::TakeDamage(int dmg)
 {
 	HP -= dmg;
 	if (HP < 0) HP = 0;
+	//if (HP > MaxHP) HP = MaxHP;
 }
 bool Monster::IsDead()const
 {

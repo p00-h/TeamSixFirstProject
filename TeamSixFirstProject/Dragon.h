@@ -7,10 +7,10 @@ class Dragon : public Monster
 	public:
 		Dragon(int level);
 
-		void FireBrass();
-		void TailSwing();	//꼬리 공격
-		void DeadlyCharge();	//치명적인돌격
+		void FireBrass(Character* target);
+		void TailSwing(Character* target);	//꼬리 공격
+		void DeadlyCharge(Character* target);	//치명적인돌격
 
-		void NormalAttack() override;	//일반공격
-		void UseSkill() override;	//랜덤 스킬
+		void NormalAttack(Character* target) override;	//일반공격
+		void UseSkill(Character* target) override;	//랜덤 스킬
 };
