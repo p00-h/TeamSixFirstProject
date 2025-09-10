@@ -11,6 +11,9 @@ public:
     GameManager();
     void Run();
 
+    void SetColor(int color);
+    void SetColorDefault();
+
 private:
     void ClearScreen();
     void WaitForEnter();
