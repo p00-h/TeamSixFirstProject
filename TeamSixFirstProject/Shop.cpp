@@ -274,7 +274,7 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
         return;
     }
 
-    if (character->SpendGold(buyItem->GetPrice()) && character->AddItem(buyItem, 99))
+    if (character->SpendGold(buyItem->GetPrice()) && character->AddItem(buyItem, 1))
     {
         
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
