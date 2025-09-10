@@ -2,7 +2,7 @@
 #include "Character.h"
 #include <iostream>
 
-ManaPotion::ManaPotion() : Item("마나 회복 포션",5, 10, 0) {}
+ManaPotion::ManaPotion() : Item("마나 회복 포션",5, 10) {}
 
 bool ManaPotion::Use(Character* character) // 아이템 사용
 {
@@ -28,4 +28,9 @@ std::string ManaPotion::ItemInfo() const // 아이템 정보
 Item* ManaPotion::Clone() const // 아이템 복제
 {
 	return new ManaPotion(*this);
+}
+
+bool ManaPotion::IsDurationBased() const // 지속형인지
+{
+	return false;
 }

@@ -5,8 +5,8 @@
 #include <mmsystem.h>
 #pragma comment(lib, "winmm.lib")
 
-Item::Item(std::string name, int price, int value, int turn)
-	: Name(name), Price(price), Value(value), Turn(turn) {}
+Item::Item(std::string name, int price, int value)
+	: Name(name), Price(price), Value(value), IsActive(false) {}
 
 int Item::GetPrice() const
 {
@@ -18,20 +18,8 @@ std::string Item::GetName() const
 	return Name;
 }
 
-void Item::TurnDecrease(Character* character) {}
-
-void Item::SetTurn(int turn)
-{
-	Turn = turn;
-}
-
 void Item::ItemSound()
 {
 	PlaySound(TEXT("Potion.wav"), NULL, SND_FILENAME | SND_ASYNC);
 	Sleep(1000);
-}
-
-int Item::GetTurn() const
-{
-	return Turn;
 }
