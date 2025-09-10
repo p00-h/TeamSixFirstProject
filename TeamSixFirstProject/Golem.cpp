@@ -1,0 +1,56 @@
+#include "Golem.h"
+#include "Character.h"
+#include <iostream>
+using namespace std;
+
+Golem::Golem(int level)
+	:Monster("골렘", level)
+{												//Monster.h의 HP와 Attack을 private를 유지하면서 수정 가능
+	SetHP(GetHP()+50);	
+	SetAttack(GetAttack() + 15);
+	SetMP(0);
+												//Monster.h의  HP와 Attack을 protected 사용 시
+	//HP += 50;
+	//Attack += 15;
+												//Golem.cpp의 레벨 보너스 대미지 사용 시 ,Golem.h 줄 14 정의
+	//StompBouns = level * 5;
+}
+
+void Golem::Stomp(Character* target)															//Golem.h의 줄10 정의
+{
+	int StompDamage = GetAttack() * 2;						// 레벨보너스 대미지 사용 안할 시
+// 	int StompDamage = GetAttack() + StompBouns;		//레벨보너스 대미지 사용 시 Golem.h 줄 14정의
+	cout << GetName() << "의 스톰프 스킬 공격! 대미지 : " << StompDamage << endl;
+	if (target) target->SetHp(target->GetHp() - StompDamage);
+}
+
+void Golem::WindMill(Character* target)
+{
+	int WindMillDamage = GetAttack() * 1.2;
+	cout << GetName() << "의 읜드밀 스킬 공격! 대미지 : " << WindMillDamage << endl;
+	if (target) target->SetHp(target->GetHp() - WindMillDamage);
+}
+
+void Golem::SharpRock(Character* target)
+{
+	int SharpRockDamage = GetAttack() * 2.5;
+	cout << GetName() << "의 날카로운 바위 공격! 대미지 : " << SharpRockDamage << endl;
+	if (target) target->SetHp(target->GetHp() - SharpRockDamage);
+}
+
+void Golem::NormalAttack(Character* target)
+{
+	int Dmg = GetAttack();
+	cout << GetName() << "의 일반 공격! 대미지: " << Dmg << endl;
+	//SetMP(GetMP() + 1);	//일반 공격할 때 마나 +1
+}
+
+void Golem::UseSkill(Character* target)
+{
+	int Choice = rand() % 3;	//0~2 중 하나
+	if (Choice == 0) Stomp(target);
+	else if (Choice == 1) WindMill(target);
+	else SharpRock(target);
+
+	//SetMP(0);	//스킬 사용 후 마나 초기화
+}
