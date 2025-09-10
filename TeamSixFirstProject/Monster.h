@@ -11,6 +11,7 @@ private:
 	int Attack;
 	int MP;
 	int AttackBouns;
+	//int MaxHP;
 
 public:
 	Monster(const std::string& N, int level);	// &문자열 복사하지 않고 직접 참조
@@ -25,6 +26,8 @@ public:
 	{ return MP; }
 	int GetAttackBouns()const 
 	{ return AttackBouns; }
+	//int GetMaxHP()const
+	//{ return MaxHP; }
 
 	void SetHP(int newHP)
 	{ HP = newHP; }
