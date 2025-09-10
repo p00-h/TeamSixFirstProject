@@ -1,6 +1,8 @@
 #pragma once
 #include "Monster.h"
+
 #include "Character.h"
+
 #include <string>
 
 class Kobold : public Monster
@@ -8,13 +10,20 @@ class Kobold : public Monster
 	public:
 		Kobold(int level);
 
-		void PickaxeAttack(Character* target);	//°î±ªÀÌ°ø°İ
-		void OreThrow(Character* target); //±¤¹° ´øÁö±â
+
+		void PickaxeAttack(Character* target);	//ê³¡ê´­ì´ê³µê²©
+		void OreThrow(Character* target); //ê´‘ë¬¼ ë˜ì§€ê¸°
 		void TramCarRush(Character* target);
 		
 //private:
-//	int AttackBouns;	//·¹º§¿¡ µû¸¥ º¸³Ê½º Á¤ÀÇ
+//	int AttackBouns;	//ë ˆë²¨ì— ë”°ë¥¸ ë³´ë„ˆìŠ¤ ì •ì˜
 
-		void NormalAttack(Character* target) override;	//ÀÏ¹İ °ø°İ
-		void UseSkill(Character* target) override;	//·£´ı ½ºÅ³
+		void NormalAttack(Character* target) override;	//ì¼ë°˜ ê³µê²©
+		void UseSkill(Character* target) override;	//ëœë¤ ìŠ¤í‚¬
+
+		//void BaseAttack();		//ì½”ë³¼íŠ¸ ì¼ë°˜ ê³µê²© ì •ì˜, Kobold.cpp ì¤„ 17êµ¬í˜„
+		
+//private:
+//	int AttackBouns;	//ë ˆë²¨ì— ë”°ë¥¸ ë³´ë„ˆìŠ¤ ì •ì˜
+
 };

@@ -4,13 +4,15 @@ using namespace std;
 Monster::Monster(const string& n, int level)
 {
 	Name = n;
-	//HP = rand() % (level * 30 - level * 20 + 1) + (level * 20);	//+1Àº level =5 °¡Á¤ 150 - 100 + 1 = 51 rand()% 51ÀÌ¶ó°í °¡Á¤ 0~50 »çÀÌ °ª + 100À» ´õÇÔÀ¸·Î ·¹º§ ºñ·Ê Áõ°¡ÆøÀÌ Ä¿Áü
+	//HP = rand() % (level * 30 - level * 20 + 1) + (level * 20);	//+1ì€ level =5 ê°€ì • 150 - 100 + 1 = 51 rand()% 51ì´ë¼ê³  ê°€ì • 0~50 ì‚¬ì´ ê°’ + 100ì„ ë”í•¨ìœ¼ë¡œ ë ˆë²¨ ë¹„ë¡€ ì¦ê°€í­ì´ ì»¤ì§
 	HP = 10;	
 	//Attack = rand() % (level * 10 - level * 5 + 1) + (level * 5);
 	Attack = 10;	
+
 	MP = 0;
 	AttackBouns = 0;
 	//HP = MaxHP;
+
 }
 
 void Monster::TakeDamage(int dmg)

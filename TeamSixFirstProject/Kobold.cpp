@@ -3,53 +3,73 @@
 using namespace std;
 
 Kobold::Kobold(int level)
-	:Monster("ÄÚº¼Æ®", level)
-{														//Monster.hÀÇ HP¿Í AttackÀ» private¸¦ À¯ÁöÇÏ¸é¼­ ¼öÁ¤ °¡´É
+
+	:Monster("ì½”ë³¼íŠ¸", level)
+{														//Monster.hì˜ HPì™€ Attackì„ privateë¥¼ ìœ ì§€í•˜ë©´ì„œ ìˆ˜ì • ê°€ëŠ¥
 	SetHP(GetHP() + 10);
 	SetAttack(GetAttack() + 2);
 	SetMP(0);
-														//Monster.hÀÇ  HP¿Í AttackÀ» protected »ç¿ë ½Ã
+														//Monster.hì˜  HPì™€ Attackì„ protected ì‚¬ìš© ì‹œ
 	//HP += 10;
 	//Attack += 15;
-														//Kobold.hÀÇ ·¹º§ º¸³Ê½º ´ë¹ÌÁö »ç¿ë ½Ã, Kobold.h ÁÙ 14Á¤ÀÇ
+														//Kobold.hì˜ ë ˆë²¨ ë³´ë„ˆìŠ¤ ëŒ€ë¯¸ì§€ ì‚¬ìš© ì‹œ, Kobold.h ì¤„ 14ì •ì˜
 	//AttackBouns = level * 2;
 }
 
 void Kobold::PickaxeAttack(Character* target)
 {
-	int PickaxeAttackDamage = GetAttack() * 1.2;										//·¹º§ º¸³Ê½º ´ë¹ÌÁö »ç¿ë ¾ÈÇÒ ½Ã
-//	int KoboldDamage = GetAttack() + AttackBouns;				//·¹º§ º¸³Ê½º ´ë¹ÌÁö »ç¿ë ½Ã Kobodl.h ÁÙ 14 Á¤ÀÇ
-	cout << GetName() << "ÀÇ ÀÏ¹İ °ø°İ, ´ë¹ÌÁö : " << PickaxeAttackDamage << endl;
+	int PickaxeAttackDamage = GetAttack() * 1.2;										//ë ˆë²¨ ë³´ë„ˆìŠ¤ ëŒ€ë¯¸ì§€ ì‚¬ìš© ì•ˆí•  ì‹œ
+//	int KoboldDamage = GetAttack() + AttackBouns;				//ë ˆë²¨ ë³´ë„ˆìŠ¤ ëŒ€ë¯¸ì§€ ì‚¬ìš© ì‹œ Kobodl.h ì¤„ 14 ì •ì˜
+	cout << GetName() << "ì˜ ì¼ë°˜ ê³µê²©, ëŒ€ë¯¸ì§€ : " << PickaxeAttackDamage << endl;
 	if (target) target->SetHp(target->GetHp() - PickaxeAttackDamage);
 }
 
 void Kobold::OreThrow(Character* target)
 {
 	int OreThrowDamage = GetAttack() * 1.4;
-	cout << GetName() << "ÀÇ ±¤¹° ´øÁø±â, ´ë¹ÌÁö : " << OreThrowDamage << endl;
+	cout << GetName() << "ì˜ ê´‘ë¬¼ ë˜ì§„ê¸°, ëŒ€ë¯¸ì§€ : " << OreThrowDamage << endl;
 	if (target) target->SetHp(target->GetHp() - OreThrowDamage);
 }
 
 void Kobold::TramCarRush(Character* target)
 {
 	int TramCarRushDamage = GetAttack() * 1.8;
-	cout << GetName() << "ÀÇ ±¤Â÷ ·¯½¬! ´ë¹ÌÁö : " << TramCarRushDamage << endl;
+	cout << GetName() << "ì˜ ê´‘ì°¨ ëŸ¬ì‰¬! ëŒ€ë¯¸ì§€ : " << TramCarRushDamage << endl;
 	if (target) target->SetHp(target->GetHp() - TramCarRushDamage);
 }
 
 void Kobold::NormalAttack(Character* target)
 {
 	int Dmg = GetAttack();
-	cout << GetName() << "ÀÇ ÀÏ¹İ °ø°İ! ´ë¹ÌÁö : " << Dmg << endl;
-	//SetMP(GetMP() + 1);	//ÀÏ¹İ °ø°İÇÒ ¶§ ¸¶³ª+1
+	cout << GetName() << "ì˜ ì¼ë°˜ ê³µê²©! ëŒ€ë¯¸ì§€ : " << Dmg << endl;
+	//SetMP(GetMP() + 1);	//ì¼ë°˜ ê³µê²©í•  ë•Œ ë§ˆë‚˜+1
 }
 
 void Kobold::UseSkill(Character* target)
 {
-	int Choice = rand() % 3;	//0~2 Áß ÇÏ³ª
+	int Choice = rand() % 3;	//0~2 ì¤‘ í•˜ë‚˜
 	if (Choice == 0) PickaxeAttack(target);
 	else if (Choice == 1)OreThrow(target);
 	else TramCarRush(target);
 
-	//SetMP(0);	//½ºÅ³ »ç¿ë ÈÄ ¸¶³ª ÃÊ±âÈ­
+	//SetMP(0);	//ìŠ¤í‚¬ ì‚¬ìš© í›„ ë§ˆë‚˜ ì´ˆê¸°í™”
 }
+
+	:Monster("Kobold", level)
+{														//Monster.hì˜ HPì™€ Attackì„ privateë¥¼ ìœ ì§€í•˜ë©´ì„œ ìˆ˜ì • ê°€ëŠ¥
+	SetHP(GetHP() + 10);
+	SetAttack(GetAttack() + 2);
+														//Monster.hì˜  HPì™€ Attackì„ protected ì‚¬ìš© ì‹œ
+	//HP += 10;
+	//Attack += 15;
+														//Kobold.hì˜ ë ˆë²¨ ë³´ë„ˆìŠ¤ ëŒ€ë¯¸ì§€ ì‚¬ìš© ì‹œ, Kobold.h ì¤„ 12ì •ì˜
+	//AttackBouns = level * 2;
+}
+
+//void Kobold::BaseAttack()
+//{
+//	int KoboldDamage = GetAttack() + 5;										//ë ˆë²¨ ë³´ë„ˆìŠ¤ ëŒ€ë¯¸ì§€ ì‚¬ìš© ì•ˆí•  ì‹œ
+//	int KoboldDamage = GetAttack() + AttackBouns;				//ë ˆë²¨ ë³´ë„ˆìŠ¤ ëŒ€ë¯¸ì§€ ì‚¬ìš© ì‹œ Kobodl.h ì¤„ 12 ì •ì˜
+//	cout << GetName() << "ì˜ ì¼ë°˜ ê³µê²©, ëŒ€ë¯¸ì§€ : " << KoboldDamage << endl;
+//}
+

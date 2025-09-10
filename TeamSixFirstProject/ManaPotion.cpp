@@ -2,35 +2,39 @@
 #include "Character.h"
 #include <iostream>
 
-ManaPotion::ManaPotion() : Item("¸¶³ª È¸º¹ Æ÷¼Ç",5, 10) {}
 
-bool ManaPotion::Use(Character* character) // ¾ÆÀÌÅÛ »ç¿ë
+ManaPotion::ManaPotion() : Item("Â¸Â¶Â³Âª ÃˆÂ¸ÂºÂ¹ Ã†Ã·Â¼Ã‡",5, 10) {}
+
+ManaPotion::ManaPotion() : Name("Â¸Â¶Â³Âª ÃˆÂ¸ÂºÂ¹ Ã†Ã·Â¼Ã‡"), ManaRestore(10), Price(5) {}
+
+
+bool ManaPotion::Use(Character* character) // Â¾Ã†Ã€ÃŒÃ…Ã› Â»Ã§Â¿Ã«
 {
 	if (character->GetMp() < character->GetMaxMp())
 	{
 		ItemSound();
 		character->SetMp(character->GetMp() + Value);
-		std::cout << character->GetName() << "ÀÇ ¸¶³ª°¡ " << Value << " È¸º¹ µÆ½À´Ï´Ù." << std::endl;
+		std::cout << character->GetName() << "Ã€Ã‡ Â¸Â¶Â³ÂªÂ°Â¡ " << Value << " ÃˆÂ¸ÂºÂ¹ ÂµÃ†Â½Ã€Â´ÃÂ´Ã™." << std::endl;
 		return true;
 	}
 	else
 	{
-		std::cout << "ÀÌ¹Ì ¸¶³ª°¡ °¡µæ Ã¡½À´Ï´Ù." << std::endl;
+		std::cout << "Ã€ÃŒÂ¹ÃŒ Â¸Â¶Â³ÂªÂ°Â¡ Â°Â¡ÂµÃ¦ ÃƒÂ¡Â½Ã€Â´ÃÂ´Ã™." << std::endl;
 		return false;
 	}
 }
 
-std::string ManaPotion::ItemInfo() const // ¾ÆÀÌÅÛ Á¤º¸
+std::string ManaPotion::ItemInfo() const // Â¾Ã†Ã€ÃŒÃ…Ã› ÃÂ¤ÂºÂ¸
 {
-	return "¸¶³ª¸¦ " + std::to_string(Value) + " È¸º¹ÇÕ´Ï´Ù.";
+	return "Â¸Â¶Â³ÂªÂ¸Â¦ " + std::to_string(Value) + " ÃˆÂ¸ÂºÂ¹Ã‡Ã•Â´ÃÂ´Ã™.";
 }
 
-Item* ManaPotion::Clone() const // ¾ÆÀÌÅÛ º¹Á¦
+Item* ManaPotion::Clone() const // Â¾Ã†Ã€ÃŒÃ…Ã› ÂºÂ¹ÃÂ¦
 {
 	return new ManaPotion(*this);
 }
 
-bool ManaPotion::IsDurationBased() const // Áö¼ÓÇüÀÎÁö
+bool ManaPotion::IsDurationBased() const // ÃÃ¶Â¼Ã“Ã‡Ã¼Ã€ÃŽÃÃ¶
 {
 	return false;
 }

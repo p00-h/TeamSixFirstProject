@@ -2,15 +2,19 @@
 #include "Character.h"
 #include <iostream>
 
+
 using namespace std;
 
-DefenseBoost::DefenseBoost() : Item("¹æ¾î·Â Áõ°¡ Æ÷¼Ç", 15, 10) {}
+DefenseBoost::DefenseBoost() : Name("Â¹Ã¦Â¾Ã®Â·Ã‚ ÃÃµÂ°Â¡ Ã†Ã·Â¼Ã‡"), DefenseIncrease(10),Price(15) {}
 
-bool DefenseBoost::Use(Character* character) // ¾ÆÀÌÅÛ »ç¿ë
+
+DefenseBoost::DefenseBoost() : Item("Â¹Ã¦Â¾Ã®Â·Ã‚ ÃÃµÂ°Â¡ Ã†Ã·Â¼Ã‡", 15, 10) {}
+
+bool DefenseBoost::Use(Character* character) // Â¾Ã†Ã€ÃŒÃ…Ã› Â»Ã§Â¿Ã«
 {
 	if (IsActive)
 	{
-		cout << "ÀÌ¹Ì " << Name << "ÀÇ È¿°ú°¡ Àû¿ëÁßÀÔ´Ï´Ù." << endl;
+		cout << "Ã€ÃŒÂ¹ÃŒ " << Name << "Ã€Ã‡ ÃˆÂ¿Â°ÃºÂ°Â¡ Ã€Ã»Â¿Ã«ÃÃŸÃ€Ã”Â´ÃÂ´Ã™." << endl;
 		return false;
 	}
 	else
@@ -18,22 +22,22 @@ bool DefenseBoost::Use(Character* character) // ¾ÆÀÌÅÛ »ç¿ë
 		IsActive = true;
 		ItemSound();
 		character->SetDefense(character->GetDefense() + Value);
-		cout << character->GetName() << "ÀÇ ¹æ¾î·ÂÀÌ " << Value << " Áõ°¡ÇÕ´Ï´Ù." << endl;
+		cout << character->GetName() << "Ã€Ã‡ Â¹Ã¦Â¾Ã®Â·Ã‚Ã€ÃŒ " << Value << " ÃÃµÂ°Â¡Ã‡Ã•Â´ÃÂ´Ã™." << endl;
 		return true;
 	}
 }
 
-string DefenseBoost::ItemInfo() const // ¾ÆÀÌÅÛ Á¤º¸
+string DefenseBoost::ItemInfo() const // Â¾Ã†Ã€ÃŒÃ…Ã› ÃÂ¤ÂºÂ¸
 {
-	return "¹æ¾î·ÂÀÌ " + to_string(Value) + " Áõ°¡ÇÕ´Ï´Ù.";
+	return "Â¹Ã¦Â¾Ã®Â·Ã‚Ã€ÃŒ " + to_string(Value) + " ÃÃµÂ°Â¡Ã‡Ã•Â´ÃÂ´Ã™.";
 }
 
-Item* DefenseBoost::Clone() const // ¾ÆÀÌÅÛ º¹Á¦
+Item* DefenseBoost::Clone() const // Â¾Ã†Ã€ÃŒÃ…Ã› ÂºÂ¹ÃÂ¦
 {
 	return new DefenseBoost(*this);
 }
 
-bool DefenseBoost::IsDurationBased() const // Áö¼ÓÇüÀÎÁö
+bool DefenseBoost::IsDurationBased() const // ÃÃ¶Â¼Ã“Ã‡Ã¼Ã€ÃÃÃ¶
 {
 	return true;
 }
@@ -41,6 +45,6 @@ bool DefenseBoost::IsDurationBased() const // Áö¼ÓÇüÀÎÁö
 void DefenseBoost::EffectIsOver(Character* character)
 {
 	IsActive = false;
-	cout << Name << "ÀÇ È¿°ú°¡ ³¡³µ½À´Ï´Ù." << endl;
+	cout << Name << "Ã€Ã‡ ÃˆÂ¿Â°ÃºÂ°Â¡ Â³Â¡Â³ÂµÂ½Ã€Â´ÃÂ´Ã™." << endl;
 	character->SetDefense(character->GetDefense() - Value);
 }
