@@ -9,22 +9,18 @@ protected:
 	std::string Name;
 	int Price;
 	int Value;
-	int Turn;
+	bool IsActive;
 
-	Item(std::string name, int price, int value, int turn);
+	Item(std::string name, int price, int value);
 
 public:
 	std::string GetName() const;
 	int GetPrice() const;
-	int GetTurn() const;
-
-	void SetTurn(int turn);
-
-	virtual void TurnDecrease(Character* character);
 
 	virtual bool Use(Character* character) = 0;
 	virtual std::string ItemInfo() const = 0;
 	virtual Item* Clone() const = 0;
+	virtual bool IsDurationBased() const = 0;
 
 	void ItemSound();
 
