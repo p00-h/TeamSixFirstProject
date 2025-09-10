@@ -341,6 +341,7 @@ void GameManager::PlayLoop(Character& player) {
 
                 player.SetExp(player.GetExp() + 50);
                 player.AddGold(RandRange(10, 20));
+                Sleep(1000);
 
                 int tempHP = player.GetMaxHp();
 				int tempAtk = player.GetAttack();
@@ -378,6 +379,7 @@ void GameManager::PlayLoop(Character& player) {
                     case 4: dropped = new DefenseBoost();  break;
                     }
                     player.AddItem(dropped);
+                    Sleep(1000);
                     std::cout << "\n[Àü¸®Ç° È¹µæ]\n";
                     player.ShowInventory();
                 }
