@@ -54,11 +54,13 @@ bool GameManager::SaveToFile(const Character& player, const std::string& path) {
 
     // 1줄: 이름
     ofs << player.GetName() << "\n";
-    // 1줄: level exp hp mp atk def gold
+    // 1줄: level exp hp maxhp mp maxmp atk def gold
     ofs << player.GetLevel() << ' '
         << player.GetExp() << ' '
         << player.GetHp() << ' '
+        << player.GetMaxHp() << ' '
         << player.GetMp() << ' '
+        << player.GetMaxMp() << ' '
         << player.GetAttack() << ' '
         << player.GetDefense() << ' '
         << player.GetGold() << "\n";
@@ -90,8 +92,8 @@ bool GameManager::LoadFromFile(Character& player, const std::string& path) {
     if (!std::getline(ifs, name)) return false;
 
     // 2) 스탯
-    int level, exp, hp, mp, atk, def, gold;
-    if (!(ifs >> level >> exp >> hp >> mp >> atk >> def >> gold)) return false;
+    int level, exp, hp, maxhp, mp, maxmp, atk, def, gold;
+    if (!(ifs >> level >> exp >> hp >> maxhp >> mp >> maxmp >> atk >> def >> gold)) return false;
     ifs.ignore((std::numeric_limits<std::streamsize>::max)(), '\n');
 
     // 3) 인벤토리 개수
@@ -115,7 +117,9 @@ bool GameManager::LoadFromFile(Character& player, const std::string& path) {
     player.SetLevel(level);
     player.SetExp(exp);
     player.SetHp(hp);
+	player.SetMaxHp(maxhp);
     player.SetMp(mp);
+	player.SetMaxMp(maxmp);
     player.SetAttack(atk);
     player.SetDefense(def);
     player.SetGold(gold);
