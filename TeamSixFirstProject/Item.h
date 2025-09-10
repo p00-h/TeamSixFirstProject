@@ -23,7 +23,7 @@ public:
 	virtual bool IsDurationBased() const = 0;
 
 	virtual void EffectIsOver(Character* character);
-	void SetIsActive(bool active);
+	virtual void SetIsActive(bool active);
 
 	void ItemSound();
 
