@@ -99,19 +99,21 @@ void Character::ShowInventory() const {
 
 bool Character::UseItem(const std::string& itemName) {
     auto it = Inventory.find(itemName);
+
     if (it == Inventory.end()) return false;
 
     Item* item = it->second.first;
     if (!item) return false;
 
-    if (item->Use(this)) {
+    //if (item->Use(this)) {
         if (--it->second.second <= 0) {
             delete it->second.first;
             Inventory.erase(it);
+
         }
-        return true;
-    }
-    return false;
+    //    return true;
+    //}
+    //return false;
 }
 
 bool Character::SellItem(const std::string& itemName, int count, float ratio) {
