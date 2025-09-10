@@ -22,6 +22,11 @@ void Item::EffectIsOver(Character* character)
 {
 }
 
+void Item::SetIsActive(bool active)
+{
+	IsActive = active;
+}
+
 void Item::ItemSound()
 {
 	PlaySound(TEXT("Potion.wav"), NULL, SND_FILENAME | SND_ASYNC);
