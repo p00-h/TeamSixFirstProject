@@ -42,8 +42,8 @@ bool Character::SpendGold(int amount) {
     return false;
 }
 
-void Character::AddItem(Item* item, int count) {
-    if (!item) return;
+bool Character::AddItem(Item* item, int count) {
+    if (!item) return false;
 
     std::string itemName = item->GetName();
     auto it = Inventory.find(itemName);
@@ -51,17 +51,21 @@ void Character::AddItem(Item* item, int count) {
     if (it == Inventory.end()) {
         Inventory[itemName] = { item->Clone(), count };
         std::cout << itemName << " x" << count << " 인벤토리에 추가되었습니다!\n";
+        return true;
     }
     else {
         if (it->second.second + count > 99) {
             it->second.second = 99;
             std::cout << itemName << " 은(는) 더 이상 가질 수 없습니다 (최대 99개).\n";
+            return false;
         }
         else {
             it->second.second += count;
+            return true;
         }
         delete item;
     }
+    
 }
 
 bool Character::RemoveItem(const std::string& itemName, int count) {

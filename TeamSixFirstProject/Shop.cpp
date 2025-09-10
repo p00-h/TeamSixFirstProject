@@ -274,13 +274,12 @@ void Shop::BuyItem(pair<Item*, int>& item, Character* character)
         return;
     }
 
-    if (character->SpendGold(buyItem->GetPrice()))
+    if (character->SpendGold(buyItem->GetPrice()) && character->AddItem(buyItem, 99))
     {
+        
         cout << buyItem->GetName() << "을(를) 구매했습니다." << endl;
 
         PlaySound(TEXT("Shop.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
-        character->AddItem(buyItem,1);
-
         item.second--; 
 
         
