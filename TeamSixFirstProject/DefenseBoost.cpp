@@ -37,3 +37,10 @@ bool DefenseBoost::IsDurationBased() const // 지속형인지
 {
 	return true;
 }
+
+void DefenseBoost::EffectIsOver(Character* character)
+{
+	IsActive = false;
+	cout << Name << "의 효과가 끝났습니다." << endl;
+	character->SetDefense(character->GetDefense() - Value);
+}
