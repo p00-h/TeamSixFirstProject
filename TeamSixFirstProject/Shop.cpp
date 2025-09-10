@@ -98,8 +98,17 @@ void Shop::ShowShopMenu(Character* character)
         if (key == 224) 
         {
             key = _getch();
-            if (key == 72 && selected > 0) selected--; // ↑
-            if (key == 80 && selected < 2) selected++; // ↓
+            if (key == 72 && selected > 0)
+            {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+                selected--; // ↓
+            }
+         
+            if (key == 80 && selected < 2)
+            {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+                selected++; 
+            }
         }
         else if (key == 13) 
         { // 엔터
@@ -136,8 +145,16 @@ void Shop::ShowBuyMenu(Character* character)
         if (key == 224) 
         {
             key = _getch();
-            if (key == 72 && itemSelected > 0) itemSelected--; // ↑
-            if (key == 80 && itemSelected < AvailableItems.size() - 1) itemSelected++; // ↓
+            if (key == 72 && itemSelected > 0)
+            {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+                itemSelected--; // ↑
+            }
+            if (key == 80 && itemSelected < AvailableItems.size() - 1)
+            {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+                itemSelected++; // ↓
+            }
         }
         else if (key == 13) 
         {
@@ -193,8 +210,17 @@ void Shop::ShowSellMenu(Character* character)
         if (key == 224)
         {
             key = _getch();
-            if (key == 72 && itemSelected > 0) itemSelected--; // ↑
-            if (key == 80 && itemSelected < Inventory.size() - 1) itemSelected++; // ↓
+            if (key == 72 && itemSelected > 0)
+            {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+                itemSelected--; // ↑
+            }
+                
+            if (key == 80 && itemSelected < Inventory.size() - 1)
+            {
+                PlaySound(TEXT("Cursor2.wav"), NULL, SND_FILENAME | SND_ASYNC); //일반 재생
+                itemSelected++; // ↓
+            }
         }
         else if (key == 13)
         {
