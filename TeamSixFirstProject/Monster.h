@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "Character.h"
+#include "Character.h"	//스킬대미지 주기위해 헤더불러옴
 
 
 class Monster
