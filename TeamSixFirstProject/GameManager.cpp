@@ -358,14 +358,14 @@ void GameManager::PlayLoop(Character& player) {
                 }
             
                 if (isLevelUp == true) {
-                    cout << "플레이어가 승리했습니다! \n";
+                    cout << "플레이어가 승리했습니다! +EXP 50\n";
                     setColor(LIGHT_BLUE);
                     PlaySound(TEXT("Up1.wav"), NULL, SND_FILENAME | SND_ASYNC); 
                     player.ApplyLevelUp();
                     setColor(BRIGHT_WHITE);
                 }
                 else {
-                    cout << "플레이어가 승리했습니다! \n";
+                    cout << "플레이어가 승리했습니다! +EXP 50\n";
                 }
 
 
