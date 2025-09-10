@@ -27,7 +27,7 @@ public:
     void ShowStatus() const;
     void AddGold(int amount);
     bool SpendGold(int amount);
-    void AddItem(Item* item, int count = 1);
+    bool AddItem(Item* item, int count = 1);
     bool RemoveItem(const std::string& itemName, int count = 1);
     void ShowInventory() const;
     bool UseItem(const std::string& itemName);
