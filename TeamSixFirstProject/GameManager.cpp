@@ -30,6 +30,16 @@
 
 using namespace std;
 
+void GameManager::SetColor(int color)
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), color);
+}
+
+void GameManager::SetColorDefault()
+{
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+}
+
 static Item* CreateItemByName(const std::string& name) {
     { HealthPotion t;  if (t.GetName() == name) return new HealthPotion(); }
     { ManaPotion t;    if (t.GetName() == name) return new ManaPotion(); }
@@ -144,8 +154,16 @@ int GameManager::ShowMenu() {
         ShowTitle(); // 타이틀 아트 출력
 
         for (int i = 0; i < count; ++i) {
-            if (i == sel) cout << "                                           -> " << items[i] << "\n";
-            else          cout << "                                              " << items[i] << "\n";
+            if (i == sel) {
+                SetColor(15);
+                cout << "                                           -> " << items[i] << "\n";
+                SetColorDefault();
+            }
+            else {
+                SetColor(8);
+                cout << "                                              " << items[i] << "\n";
+                SetColorDefault();
+            }
         }
 
         int key = _getch();
@@ -216,8 +234,16 @@ int GameManager::ArrowMenu(const std::vector<std::string>& items, const Characte
         // 메뉴 렌더링
         std::cout << "========================\n";
         for (int i = 0; i < n; ++i) {
-            if (i == sel) std::cout << "                 -> " << items[i] << "\n";
-            else          std::cout << "                    " << items[i] << "\n";
+            if (i == sel) {
+                SetColor(15);
+                std::cout << "                 -> " << items[i] << "\n";
+                SetColorDefault();
+            }
+            else {
+                SetColor(8);
+                std::cout << "                    " << items[i] << "\n";
+                SetColorDefault();
+            }          
         }
 
         // 입력 처리
