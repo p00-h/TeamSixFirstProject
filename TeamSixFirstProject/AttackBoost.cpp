@@ -1,17 +1,7 @@
 #include "AttackBoost.h"
+#include "Character.h"
+#include <iostream>
 
-<<<<<<< HEAD
-AttackBoost::AttackBoost() : Name("공격력 증가 포션"), AttackIncrease(10),Price(10) {}
-
-std::string AttackBoost::GetName()
-{
-    return Name;
-}
-
-void AttackBoost::Use(Character* character)
-{
-}
-=======
 using namespace std;
 
 AttackBoost::AttackBoost() : Item("공격력 증가 포션", 10, 10) {}
@@ -54,4 +44,3 @@ void AttackBoost::EffectIsOver(Character* character)
 	cout << Name << "의 효과가 끝났습니다." << endl;
 	character->SetAttack(character->GetAttack() - Value);
 }
->>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)

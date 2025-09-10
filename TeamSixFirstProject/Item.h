@@ -5,7 +5,27 @@ class Character;
 
 class Item
 {
+protected:
+	std::string Name;
+	int Price;
+	int Value;
+	bool IsActive;
+
+	Item(std::string name, int price, int value);
+
 public:
-	virtual std::string GetName() = 0;
-	virtual void Use(Character* character) = 0;
+	std::string GetName() const;
+	int GetPrice() const;
+
+	virtual bool Use(Character* character) = 0;
+	virtual std::string ItemInfo() const = 0;
+	virtual Item* Clone() const = 0;
+	virtual bool IsDurationBased() const = 0;
+
+	virtual void EffectIsOver(Character* character);
+	void SetIsActive(bool active);
+
+	void ItemSound();
+
+	virtual ~Item() = default;
 };

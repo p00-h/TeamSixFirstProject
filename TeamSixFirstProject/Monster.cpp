@@ -8,18 +8,16 @@ Monster::Monster(const string& n, int level)
 	HP = 10;	
 	//Attack = rand() % (level * 10 - level * 5 + 1) + (level * 5);
 	Attack = 10;	
-<<<<<<< HEAD
-=======
 	MP = 0;
 	AttackBouns = 0;
 	//HP = MaxHP;
->>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
 }
 
 void Monster::TakeDamage(int dmg)
 {
 	HP -= dmg;
 	if (HP < 0) HP = 0;
+	//if (HP > MaxHP) HP = MaxHP;
 }
 bool Monster::IsDead()const
 {

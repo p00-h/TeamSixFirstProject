@@ -1,16 +1,7 @@
 #include "ManaPotion.h"
+#include "Character.h"
+#include <iostream>
 
-<<<<<<< HEAD
-ManaPotion::ManaPotion() : Name("마나 회복 포션"), ManaRestore(10), Price(5) {}
-
-std::string ManaPotion::GetName()
-{
-    return Name;
-}
-
-void ManaPotion::Use(Character* character)
-{
-=======
 ManaPotion::ManaPotion() : Item("마나 회복 포션",5, 10) {}
 
 bool ManaPotion::Use(Character* character) // 아이템 사용
@@ -42,5 +33,4 @@ Item* ManaPotion::Clone() const // 아이템 복제
 bool ManaPotion::IsDurationBased() const // 지속형인지
 {
 	return false;
->>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
 }

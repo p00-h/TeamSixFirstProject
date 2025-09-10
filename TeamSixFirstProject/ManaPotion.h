@@ -4,15 +4,10 @@
 
 class ManaPotion :public Item
 {
-<<<<<<< HEAD
-	std::string Name;
-	int ManaRestore;
-	int Price;
-
-=======
->>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
 public:
 	ManaPotion();
-	virtual std::string GetName() override;
-	virtual void Use(Character* character) override;
+	virtual bool Use(Character* character) override;
+	virtual std::string ItemInfo() const override;
+	virtual Item* Clone() const override;
+	virtual bool IsDurationBased() const override;
 };

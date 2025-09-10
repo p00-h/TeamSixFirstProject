@@ -1,17 +1,7 @@
 #include "DefenseBoost.h"
+#include "Character.h"
+#include <iostream>
 
-<<<<<<< HEAD
-DefenseBoost::DefenseBoost() : Name("방어력 증가 포션"), DefenseIncrease(10),Price(15) {}
-
-std::string DefenseBoost::GetName()
-{
-    return Name;
-}
-
-void DefenseBoost::Use(Character* character)
-{
-}
-=======
 using namespace std;
 
 DefenseBoost::DefenseBoost() : Item("방어력 증가 포션", 15, 10) {}
@@ -54,4 +44,3 @@ void DefenseBoost::EffectIsOver(Character* character)
 	cout << Name << "의 효과가 끝났습니다." << endl;
 	character->SetDefense(character->GetDefense() - Value);
 }
->>>>>>> parent of 5e63b35 (Merge branch 'main' into dev)
