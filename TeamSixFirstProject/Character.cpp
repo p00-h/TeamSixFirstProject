@@ -99,12 +99,18 @@ void Character::ShowInventory() const {
 
 bool Character::UseItem(const std::string& itemName) {
     auto it = Inventory.find(itemName);
-    if (it != Inventory.end() && it->second.second > 0) {
-        it->second.first->Use(this);
-        RemoveItem(itemName, 1);
+    if (it == Inventory.end()) return false;
+
+    Item* item = it->second.first;
+    if (!item) return false;
+
+    if (item->Use(this)) {
+        if (--it->second.second <= 0) {
+            delete it->second.first;
+            Inventory.erase(it);
+        }
         return true;
     }
-    std::cout << itemName << " 아이템이 없습니다.\n";
     return false;
 }
 

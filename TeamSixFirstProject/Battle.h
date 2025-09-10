@@ -12,9 +12,11 @@ class Battle
 {
 public:
 	Battle();
+	void SetColor(int color);
+	void SetColorDefault();
 	void CharaterAttack(Character* character, Monster* monster);
+	int ShowBattel(Monster* monster, Character* character, int& monsterhp, const int& monstermp);
 	void MonsterAttack(Character* character, Monster* monster);
 	int StartBattle(Character* character, Monster* monster);
-	
 };
 
