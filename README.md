@@ -56,6 +56,7 @@ flowchart TD
   H --> J
   G --> I
 ```
+---
 
 ```mermaid
 classDiagram
